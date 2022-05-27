@@ -32,7 +32,7 @@ const ProfileButton = ({ user }) => {
       <button>
         <i
           onClick={openMenu}
-          class="fa-solid fa-user"
+          className="fa-solid fa-user"
         >
         </i>
       </button>
