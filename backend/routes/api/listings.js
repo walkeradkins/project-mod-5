@@ -6,7 +6,7 @@ const { findCurrentUser } = require('../../utils/auth');
 
 // const { getUserToken } = require("../auth");
 
-const { Listing, User } = require('../../db/models');
+const { Listing } = require('../../db/models');
 const router = express.Router();
 
 const validateListing = [
@@ -24,7 +24,7 @@ const validateListing = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a state/province')
     .isLength({ max: 50 })
-    .withMessage('Please keep state/province within 50 characters'), ,
+    .withMessage('Please keep state/province within 50 characters'),
   check('country')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a country')
@@ -42,10 +42,11 @@ const validateListing = [
 ];
 
 router.get('/', asyncHandler(async (_req, res) => {
+  const listings = await Listing.findAll()
   return res.json(listings);
 }));
 
-router.post('/', asyncHandler(async function (req, res) {
+router.post('/', validateListing, asyncHandler(async function (req, res, next) {
   const currentUser = findCurrentUser(req);
 
   const {
@@ -69,13 +70,12 @@ router.post('/', asyncHandler(async function (req, res) {
   return res.json(listing);
 }));
 
-router.put('/:id', asyncHandler(async function (req, res) {
+router.put('/:id', validateListing, asyncHandler(async function (req, res, next) {
   const id = parseInt(req.params.id);
    await Listing.update(req.body, {
     where: { id }
   });
   const listing = await Listing.findByPk(id);
-  console.log('New Listing', listing)
   return res.json(listing);
 }))
 
