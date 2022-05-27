@@ -82,9 +82,12 @@ router.put('/:id', validateListing, asyncHandler(async function (req, res, next)
 router.delete('/:id', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
   const listing = await Listing.findByPk(id);
-  if (!listing) throw new Error('Cannot find item');
-  await Listing.destroy({ where: { id: listing.id }});
-  return listing.id;
+  if (listing) {
+    await listing.destroy();
+    return res.json(listing.id)
+  } else {
+    throw new Error('Listing not found')
+  }
 }));
 
 module.exports = router;

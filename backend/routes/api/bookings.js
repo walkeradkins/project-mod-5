@@ -49,8 +49,11 @@ router.put('/:id', asyncHandler(async function (req, res) {
 router.delete('/:id', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
   const booking = await Booking.findByPk(id);
-  if (!booking) throw new Error('Cannot find booking');
-  await Booking.destroy({ where: { id: booking.id }});
-  return booking.id;
+  if (booking) {
+    await booking.destroy();
+    return res.json(booking.id)
+  } else {
+    throw new Error('Booking not found')
+  }
 }));
 module.exports = router;
