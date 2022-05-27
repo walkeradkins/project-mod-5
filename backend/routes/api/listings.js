@@ -71,9 +71,12 @@ router.post('/', asyncHandler(async function (req, res) {
 
 router.put('/:id', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
+   await Listing.update(req.body, {
+    where: { id }
+  });
   const listing = await Listing.findByPk(id);
-  const updatedListing = await Listing.update(listing);
-  return res.json(updatedListing);
+  console.log('New Listing', listing)
+  return res.json(listing);
 }))
 
 router.delete('/:id', asyncHandler(async function (req, res) {
