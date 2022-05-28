@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getListings } from '../../store/listings';
 import { Link } from 'react-router-dom'
+import ListingCard from '../ListingCard';
 
 const ListingsBrowser = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -12,18 +13,14 @@ const ListingsBrowser = () => {
     dispatch(getListings());
   }, [dispatch]);
 
-  console.log('listings:: ', listings)
   return (
     sessionUser &&
-    <div>
-      <h1>Greetings from Listings Broswer</h1>
-      <ul>
+    <div className='listings'>
+      <ul className='listings listings__cards'>
         {listings.map(listing => {
           return (
             <li key={listing.id}>
-              <Link to={`/listings/${listing.id}`}>
-                <img src={listing.Images[0].url} />
-              </Link>
+              <ListingCard listing={listing} />
             </li>
           )
         })}
