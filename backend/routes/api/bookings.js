@@ -6,15 +6,13 @@ const { findCurrentUser } = require('../../utils/auth');
 
 // const { getUserToken } = require("../auth");
 
-const { Booking } = require('../../db/models');
+const { Booking, Image, Listing } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (_req, res) => {
   const currentUser = findCurrentUser(_req);
   const bookings = await Booking.findAll({
-    where: {
-      userId: currentUser.id
-    }
+    where: { userId: currentUser.id },
   })
   return res.json(bookings);
 }));
