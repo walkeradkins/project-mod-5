@@ -1,9 +1,9 @@
 import './ListingCard.css'
 import { Link } from 'react-router-dom';
-import { useListing } from '../../context/ListingContext';
+import { useEffect, useState } from 'react'
+
 
 const ListingCard = ({ listing }) => {
-  const { setListing } = useListing();
   const { id, city, state, name, country, Images, price } = listing;
 
   const displayLocation = () => {
@@ -11,7 +11,7 @@ const ListingCard = ({ listing }) => {
   }
 
   return (
-    <div onClick={() => setListing(listing)} >
+    <div>
       <Link to={`/listings/${id}`}>
         <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )`}} />
         <h4>{displayLocation()}</h4>

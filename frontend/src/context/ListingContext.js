@@ -5,13 +5,13 @@ export const ListingContext = createContext();
 export const useListing = () => useContext(ListingContext);
 
 export default function ListingProvider(props) {
-  const [listing, setListing] = useState({});
+  const [selectedListing, setSelectedListing] = useState({});
 
   return (
   <ListingContext.Provider
     value={{
-      listing,
-      setListing
+      selectedListing,
+      setSelectedListing
     }}
     >
       {props.children}

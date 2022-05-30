@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { getListings } from '../../store/listings';
 import { Link } from 'react-router-dom'
 import ListingCard from '../ListingCard';
-
+import { useListing } from '../../context/ListingContext';
 
 const ListingsBrowser = () => {
   const sessionUser = useSelector(state => state.session.user);
