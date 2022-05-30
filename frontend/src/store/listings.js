@@ -30,6 +30,7 @@ export const getOneListing = (id) => async dispatch => {
 
   if (response.ok) {
     const listing = await response.json();
+    console.log(listing)
     dispatch(loadOne(listing));
   }
 }
@@ -49,7 +50,22 @@ const listingsReducer = (state = initialState, action) => {
         listings: action.listings
       };
     case LOAD_ONE:
-
+      // if (!state[action.listing.id]) {
+      //   const newState = {
+      //     ...state,
+      //     [action.listing.id]: action.listing
+      //   };
+      //   const listings = newState.listings.map(id => newState[id])
+      //   listings.push(action.listing);
+      //   return listings
+      // };
+      return {
+        ...state,
+        [action.listing.id]: {
+          ...state[action.listing.id],
+          ...action.listing
+        }
+      };
     default:
       return state;
   }

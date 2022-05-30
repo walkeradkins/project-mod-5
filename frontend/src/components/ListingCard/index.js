@@ -9,9 +9,9 @@ const ListingCard = ({ listing }) => {
   }
 
   return (
-    <div className='card'>
+    <div>
       <Link to={`/listings/${id}`}>
-        <img className='card__image' src={Images[0].url} />
+        <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )`}} />
         <h4>{displayLocation()}</h4>
         <p>{name}</p>
         <p><b>${price}</b> night</p>

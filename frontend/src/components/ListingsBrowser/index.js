@@ -13,13 +13,14 @@ const ListingsBrowser = () => {
     dispatch(getListings());
   }, [dispatch]);
 
+
   return (
     sessionUser &&
-    <div className='listings'>
-      <ul className='listings listings__cards'>
+    <div className='container'>
+      <ul className='row'>
         {listings.map(listing => {
           return (
-            <li key={listing.id}>
+            <li className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={listing.id}>
               <ListingCard listing={listing} />
             </li>
           )
