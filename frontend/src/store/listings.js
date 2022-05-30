@@ -9,9 +9,9 @@ const load = listings => ({
   listings
 });
 
-const loadOne = listings => ({
+const loadOne = listing => ({
   type: LOAD_ONE,
-  listings
+  listing
 })
 
 // thunk action creators
@@ -30,7 +30,6 @@ export const getOneListing = (id) => async dispatch => {
 
   if (response.ok) {
     const listing = await response.json();
-    console.log(listing)
     dispatch(loadOne(listing));
   }
 }
@@ -65,7 +64,7 @@ const listingsReducer = (state = initialState, action) => {
           ...state[action.listing.id],
           ...action.listing
         }
-      };
+      }
     default:
       return state;
   }

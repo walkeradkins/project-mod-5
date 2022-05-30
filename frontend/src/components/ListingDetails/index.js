@@ -3,21 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneListing } from '../../store/listings';
+import { useListing } from '../../context/ListingContext';
 
 const ListingDetails = () => {
-  const {id} = useParams();
-  const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user);
-  const listing = useSelector(state => state.listings.listing)
+  const { listing } = useListing();
+  const { id, city, state, name, country, Images, price } = listing;
 
-  useEffect(() => {
-    dispatch(getOneListing(id));
-  }, [dispatch]);
-
-  console.log('LISTING :', listing)
+  console.log(Images[0].url)
   return (
     <div>
-      <h1>listing details</h1>
+      <h2>{name}</h2>
+      <h4>{city}, {state}, {country}</h4>
+      <div></div>
     </div>
   )
 }
