@@ -30,6 +30,33 @@ module.exports = {
       name: 'Desert Hideout ',
       price: 95
     },
+    {
+      userId: 3,
+      address: '66 Mountain rd.',
+      city: 'Bend',
+      state: 'Oregon',
+      country: 'USA',
+      name: 'Welcome to my mountain retreat!',
+      price: 250
+    },
+    {
+      userId: 3,
+      address: '12 Paso tr.',
+      city: 'Canggu',
+      state: 'Bali',
+      country: 'Indonesia',
+      name: 'Jungle home surrounded by nature!',
+      price: 55
+    },
+    {
+      userId: 4,
+      address: '99 Wind Way',
+      city: 'North Shore',
+      state: 'Hawaii',
+      country: 'USA',
+      name: 'Steps from the beach! Wonderful natural light',
+      price: 120
+    },
    ], {});
   },
 

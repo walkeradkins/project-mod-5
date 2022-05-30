@@ -4,6 +4,8 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import ListingsBrowser from "./components/ListingsBrowser";
+import ListingDetails from "./components/ListingDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,9 +19,12 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+          <Route exact path={'/'}>
+            <ListingsBrowser />
+          </Route>
+          <Route path={'/listings/:id'}>
+            <ListingDetails />
+          </Route>
         </Switch>
       )}
     </>

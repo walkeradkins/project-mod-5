@@ -3,10 +3,11 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { findCurrentUser } = require('../../utils/auth');
+const ImagesRepository = require('../../db/images-repository')
 
 // const { getUserToken } = require("../auth");
 
-const { Listing } = require('../../db/models');
+const { Listing, Image } = require('../../db/models');
 const router = express.Router();
 
 const validateListing = [
@@ -42,8 +43,25 @@ const validateListing = [
 ];
 
 router.get('/', asyncHandler(async (_req, res) => {
-  const listings = await Listing.findAll()
+  const listings = await Listing.findAll({
+    include: {
+      model: Image,
+    }
+  })
   return res.json(listings);
+}));
+
+router.get('/:id', asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const listing = await Listing.findByPk(id, {
+    include: {
+      model: Image,
+      where: {
+        listingId: id
+      }
+    }
+  });
+  return res.json(listing);
 }));
 
 router.post('/', validateListing, asyncHandler(async function (req, res, next) {
@@ -72,7 +90,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
 
 router.put('/:id', validateListing, asyncHandler(async function (req, res, next) {
   const id = parseInt(req.params.id);
-   await Listing.update(req.body, {
+  await Listing.update(req.body, {
     where: { id }
   });
   const listing = await Listing.findByPk(id);
@@ -82,9 +100,12 @@ router.put('/:id', validateListing, asyncHandler(async function (req, res, next)
 router.delete('/:id', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
   const listing = await Listing.findByPk(id);
-  if (!listing) throw new Error('Cannot find item');
-  await Listing.destroy({ where: { id: listing.id }});
-  return listing.id;
+  if (listing) {
+    await listing.destroy();
+    return res.json(listing.id)
+  } else {
+    throw new Error('Listing not found')
+  }
 }));
 
 module.exports = router;

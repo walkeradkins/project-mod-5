@@ -1,0 +1,12 @@
+.card__image {
+  width: 100%;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.card__image::after{
+  display: block;
+  padding-top: 100%;
+  content: '';
+}
