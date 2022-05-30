@@ -1,8 +1,9 @@
-import { bindActionCreators } from 'redux';
+import { ValidationError } from '../utils/validationError'
 import { csrfFetch } from './csrf';
 
 const LOAD_LISTINGS = 'listings/LOAD_LISTINGS';
 const LOAD_ONE = 'listings/LOAD_ONE';
+const CREATE_ONE = 'listings/CREATE_ONE'
 
 const load = listings => ({
   type: LOAD_LISTINGS,
@@ -12,6 +13,11 @@ const load = listings => ({
 const loadOne = listing => ({
   type: LOAD_ONE,
   listing
+});
+
+const createOne = newListing => ({
+  type: CREATE_ONE,
+  newListing
 })
 
 // thunk action creators
@@ -30,8 +36,40 @@ export const getOneListing = (id) => async dispatch => {
 
   if (response.ok) {
     const listing = await response.json();
-    // console.log('listing from getOneListing: ', listing)
     dispatch(loadOne(listing));
+  }
+}
+
+export const createNewListing = (payload) => async dispatch => {
+  try {
+    const response = await csrfFetch(`/api/listings`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) {
+      let error;
+      if (response.status === 422) {
+        error = await response.json();
+        throw new ValidationError(error.errors, response.statusText);
+      } else {
+        let errorJSON;
+        error = await response.text();
+        try {
+          errorJSON = JSON.parse(error);
+        } catch {
+          throw new Error(error);
+        }
+        throw new Error(`${errorJSON.title}: ${errorJSON.message}`);
+      }
+    }
+    const listing = await response.json();
+    dispatch(createOne(listing));
+    return listing;
+  } catch (error) {
+      throw error;
   }
 }
 
@@ -50,12 +88,19 @@ const listingsReducer = (state = initialState, action) => {
         listings: action.listings
       };
     case LOAD_ONE:
-      console.log('state',...state)
       return {
         ...state,
         current: action.listing
+      };
+    case CREATE_ONE:
+      if (!state[action.newListing.id]) {
+        const newState = {
+          ...state,
+          [action.newListing.id]: action.newListing
         }
-   default:
+        return newState;
+      };
+    default:
       return state;
   }
 };

@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import ListingsBrowser from "./components/ListingsBrowser";
 import ListingDetails from "./components/ListingDetails";
+import ListingForm from "./components/ListingForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path={'/listings/:id'}>
             <ListingDetails />
+          </Route>
+          <Route path={'/listings'}>
+            <ListingForm />
           </Route>
         </Switch>
       )}
