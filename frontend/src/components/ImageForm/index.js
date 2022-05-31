@@ -8,6 +8,7 @@ import { createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 
 const ImageForm = ({ listingId }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([{ url: "" }])
 
@@ -34,12 +35,20 @@ const ImageForm = ({ listingId }) => {
     try {
       images = await dispatch(createNewImages(payload, listingId))
      } catch (error) {
-
+      // TODO error handle
+     }
+     if (images) {
+       reset();
+       history.push(`/listings/${listingId}`)
      }
   }
 
+  const reset = () => {
+    setImageURLs([{ url: "" }]);
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autocomplete="off">
       {imageURLs.map((element, index) => (
         <div key={index}>
           <input

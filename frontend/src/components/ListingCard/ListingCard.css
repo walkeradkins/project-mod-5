@@ -3,6 +3,7 @@
   margin: 0;
   background-size: cover;
   background-position: center;
+  border-radius: .60em;
 }
 
 .card__image::after{

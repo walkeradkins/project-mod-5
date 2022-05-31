@@ -35,7 +35,7 @@ const ProfileButton = ({ user }) => {
     <>
       <button>
         <i
-          onClick={openMenu}
+          onMouseEnter={openMenu}
           className="fa-solid fa-user"
         >
         </i>
@@ -45,6 +45,7 @@ const ProfileButton = ({ user }) => {
           <li key={`username`}>{user.username}</li>
           <li key={`email`}>{user.email}</li>
           <li key={`newListing`}><Link to='/listings'>Host your Home</Link></li>
+          <li key={`viewListing`}><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
           <li key={`logout`}><button onClick={logout}>Log Out</button></li>
         </ul>
       )}

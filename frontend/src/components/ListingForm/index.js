@@ -22,6 +22,7 @@ const ListingForm = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [accepted, setAccepted] = useState(false);
+
   const [id, setId] = useState('');
 
   const handleSubmit = async (e) => {
@@ -50,9 +51,20 @@ const ListingForm = () => {
       setErrorMessages({});
       setAccepted(true)
       setId(newListing.id)
-      // history.push(`/listings/${newListing.id}`)
+      // reset()
     }
   }
+  const reset = () => {
+    setErrorMessages({})
+    setAddress('');
+    setCity('');
+    setState('');
+    setCountry('');
+    setName('');
+    setPrice('');
+    setAccepted('');
+  }
+
   return (
     !accepted ?
       (<div>
