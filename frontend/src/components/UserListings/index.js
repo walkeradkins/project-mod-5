@@ -6,18 +6,25 @@ import { getListings } from '../../store/listings'
 import ListingCard from '../ListingCard';
 import EditListingForm from '../EditListingForm';
 
-const UserListings = ({ listings }) => {
+const UserListings = ({ listings, user }) => {
   const [editForm, setEditForm] = useState(false);
-  const [listing, setListing] = useState({});
-
+  const [selectedListing, setSelectedListing] = useState(null);
   const { id } = useParams();
+
   const userListings = listings.filter((listing) => {
     return listing.userId === +id
   });
 
-  // useEffect((e) => {
-  //   setListing(e.target.value)
-  // }, [editForm])
+  useEffect(() => {
+    if (selectedListing)
+      setEditForm(true)
+  }, [selectedListing])
+
+  useEffect(() => {
+    if (!editForm) {
+      setSelectedListing(null);
+    }
+  }, [editForm])
 
   return (
     <div>
@@ -27,11 +34,13 @@ const UserListings = ({ listings }) => {
           return (
             listing.Images.length &&
             <li className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={listing.id} >
-              <ListingCard listing={listing} />
+              <ListingCard listing={listing}
+                isSelected={selectedListing && listing.id === selectedListing.id}
+              />
               <button>Remove Listing</button>
               <button
-              onClick={() => setEditForm(prev => !prev)}
-              className={listing.id}
+                className={`button-{listing.id}`}
+                onClick={() => setSelectedListing(listing)}
               >Edit Listing</button>
             </li>
           )
@@ -39,7 +48,11 @@ const UserListings = ({ listings }) => {
       </ul>
       {editForm &&
         <div>
-          <EditListingForm />
+          <EditListingForm
+            listing={selectedListing}
+            visible={editForm}
+            setVisible={setEditForm}
+            user={user} />
         </div>}
     </div>
   )

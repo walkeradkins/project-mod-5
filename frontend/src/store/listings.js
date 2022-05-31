@@ -3,21 +3,27 @@ import { csrfFetch } from './csrf';
 
 const LOAD_LISTINGS = 'listings/LOAD_LISTINGS';
 const LOAD_ONE = 'listings/LOAD_ONE';
-const CREATE_ONE = 'listings/CREATE_ONE'
+const CREATE_ONE = 'listings/CREATE_ONE';
+const UPDATE_ONE = 'listings/UPDATE_ONE';
 
-const load = listings => ({
+export const load = listings => ({
   type: LOAD_LISTINGS,
   listings
 });
 
-const loadOne = listing => ({
+export const loadOne = listing => ({
   type: LOAD_ONE,
   listing
 });
 
-const createOne = newListing => ({
+export const createOne = newListing => ({
   type: CREATE_ONE,
   newListing
+});
+
+export const updateOne = updatedListing => ({
+  type: UPDATE_ONE,
+  updatedListing
 })
 
 // thunk action creators
@@ -69,7 +75,23 @@ export const createNewListing = (payload) => async dispatch => {
     dispatch(createOne(listing));
     return listing;
   } catch (error) {
-      throw error;
+    throw error;
+  }
+}
+
+export const editListing = (payload, listingId) => async dispatch => {
+  const response = await csrfFetch(`/api/listings/${listingId}`, {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    const updatedListing = await response.json();
+    dispatch(updateOne(updatedListing));
+    return updatedListing
   }
 }
 
@@ -100,6 +122,15 @@ const listingsReducer = (state = initialState, action) => {
         }
         return newState;
       };
+    case UPDATE_ONE:
+      const updatedState = {
+        ...state,
+        [action.updatedListing.id]: {
+          ...state[action.updatedListing.id],
+          ...action.updatedListing
+        }
+      }
+      return updatedState;
     default:
       return state;
   }

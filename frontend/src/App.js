@@ -41,7 +41,7 @@ function App() {
             <ListingForm />
           </Route>
           <Route path={'/users/:id/listings'}>
-            <UserListings listings={listings} />
+            <UserListings listings={listings} user={sessionUser}/>
           </Route>
         </Switch>
       )}

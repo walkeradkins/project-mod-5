@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
-import { createNewListing, getListings } from '../../store/listings'
+import { createNewListing } from '../../store/listings'
 import ErrorMessage from '../ErrorMessage/'
 import ImageForm from '../ImageForm';
 
@@ -116,7 +116,6 @@ const ListingForm = () => {
         </form>
       </div>) :
       <ImageForm listingId={id}/>
-
   )
 }
 
