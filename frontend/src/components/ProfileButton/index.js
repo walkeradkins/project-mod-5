@@ -28,9 +28,9 @@ const ProfileButton = ({ user }) => {
     dispatch(sessionActions.logout());
   }
 
-  const addListing = (e) => {
-    e.preventDefault();
-  }
+  // const addListing = (e) => {
+  //   e.preventDefault();
+  // }
   return (
     <>
       <button>
