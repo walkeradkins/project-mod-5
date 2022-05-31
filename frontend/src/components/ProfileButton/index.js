@@ -1,6 +1,7 @@
 import './ProfileButton.css';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 
 const ProfileButton = ({ user }) => {
@@ -27,11 +28,14 @@ const ProfileButton = ({ user }) => {
     dispatch(sessionActions.logout());
   }
 
+  const addListing = (e) => {
+    e.preventDefault();
+  }
   return (
     <>
       <button>
         <i
-          onClick={openMenu}
+          onMouseEnter={openMenu}
           className="fa-solid fa-user"
         >
         </i>
@@ -40,6 +44,8 @@ const ProfileButton = ({ user }) => {
         <ul className='profile-dropdown'>
           <li key={`username`}>{user.username}</li>
           <li key={`email`}>{user.email}</li>
+          <li key={`newListing`}><Link to='/listings'>Host your Home</Link></li>
+          <li key={`viewListing`}><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
           <li key={`logout`}><button onClick={logout}>Log Out</button></li>
         </ul>
       )}

@@ -1,23 +1,34 @@
 import './ListingDetails.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneListing } from '../../store/listings';
+import { getListings } from '../../store/listings';
 
 const ListingDetails = () => {
-  const {id} = useParams();
+  const { id } = useParams();
+  const [isImages, setIsImages] = useState(false)
   const dispatch = useDispatch();
-  // const sessionUser = useSelector(state => state.session.user);
-  const listing = useSelector(state => state.listings.listing)
+  let selectedListing = useSelector(state => state.listings[id])
+
+  if (!selectedListing) {
+    selectedListing = JSON.parse(localStorage.getItem('currentListing'))
+  }
 
   useEffect(() => {
-    dispatch(getOneListing(id));
-  }, [dispatch]);
+    dispatch(getListings());
+    localStorage.setItem('currentListing', JSON.stringify(selectedListing))
+  }, [dispatch, id]);
 
-  console.log('LISTING :', listing)
+
+  const { city, state, name, country, Images, price } = selectedListing;
+
+
   return (
     <div>
-      <h1>listing details</h1>
+      <h2>{name}</h2>
+      <h4>{city}, {state}, {country}</h4>
+      <div></div>
     </div>
   )
 }

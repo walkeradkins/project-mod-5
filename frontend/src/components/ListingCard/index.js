@@ -1,5 +1,7 @@
 import './ListingCard.css'
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+
 
 const ListingCard = ({ listing }) => {
   const { id, city, state, name, country, Images, price } = listing;

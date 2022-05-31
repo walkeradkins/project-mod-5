@@ -64,6 +64,8 @@ router.get('/:id', asyncHandler(async (req, res) => {
   return res.json(listing);
 }));
 
+
+
 router.post('/', validateListing, asyncHandler(async function (req, res, next) {
   const currentUser = findCurrentUser(req);
 
@@ -108,4 +110,27 @@ router.delete('/:id', asyncHandler(async function (req, res) {
   }
 }));
 
+router.post('/:id/images', asyncHandler(async function (req, res, next) {
+  if (req.body.newImages) {
+    req.body.newImages.forEach(async item => {
+      await Image.create(item);
+    })
+    return res.json(req.body.newImages);
+  } else {
+    req.body.imageURLs.forEach(async item => {
+      await Image.create(item);
+    })
+    return res.json(req.body.imageURLs);
+  }
+}));
+
+router.put('/:id/images', asyncHandler(async function (req, res, next) {
+  // console.log('put', req.body)
+  req.body.updatedPhotos.forEach(async item => {
+    await Image.update(item, {
+      where: { id: item.id }
+    })
+  })
+  return res.json(req.body.updatedPhotos);
+}));
 module.exports = router;
