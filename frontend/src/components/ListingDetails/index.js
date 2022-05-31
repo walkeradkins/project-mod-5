@@ -7,6 +7,7 @@ import { getListings } from '../../store/listings';
 
 const ListingDetails = () => {
   const { id } = useParams();
+  const [isImages, setIsImages] = useState(false)
   const dispatch = useDispatch();
   let selectedListing = useSelector(state => state.listings[id])
 
@@ -22,7 +23,14 @@ const ListingDetails = () => {
 
   const { city, state, name, country, Images, price } = selectedListing;
 
+  if (!Images) {
+    return (
+      <p>You need to add Images before we can publish your listing!</p>
+    )
+  }
+
   return (
+   Images.length &&
     <div>
       <h2>{name}</h2>
       <h4>{city}, {state}, {country}</h4>

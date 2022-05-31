@@ -108,4 +108,12 @@ router.delete('/:id', asyncHandler(async function (req, res) {
   }
 }));
 
+router.post('/:id/images', asyncHandler(async function (req, res, next) {
+  console.log('req.body', req.body.imageURLs)
+  req.body.imageURLs.forEach(async item => {
+    await Image.create(item);
+  })
+  return res.json(req.body.imageURLs);
+}));
+
 module.exports = router;

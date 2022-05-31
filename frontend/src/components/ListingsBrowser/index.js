@@ -8,7 +8,7 @@ import { useListing } from '../../context/ListingContext';
 
 const ListingsBrowser = () => {
   const sessionUser = useSelector(state => state.session.user);
-  const listings = useSelector(state => state.listings.listings)
+  const listings = useSelector(state => state.listings.listings);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getListings());
@@ -21,6 +21,7 @@ const ListingsBrowser = () => {
       <ul className='row'>
         {listings.map(listing => {
           return (
+            listing.Images.length &&
             <li className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={listing.id} >
               <ListingCard listing={listing} />
             </li>
