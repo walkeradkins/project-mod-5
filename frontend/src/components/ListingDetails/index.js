@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneListing } from '../../store/listings';
 import { getListings } from '../../store/listings';
+import  DetailPhotoDisplay from '../DetailPhotoDisplay';
+import  BookingCard from '../BookingCard';
 
 const ListingDetails = () => {
   const { id } = useParams();
@@ -28,7 +30,8 @@ const ListingDetails = () => {
     <div>
       <h2>{name}</h2>
       <h4>{city}, {state}, {country}</h4>
-      <div></div>
+      <DetailPhotoDisplay listing={selectedListing}/>
+      <BookingCard listing={selectedListing}/>
     </div>
   )
 }

@@ -1,0 +1,17 @@
+.listing-photos {
+  display: flex;
+  flex-direction: row;
+  /* float: left; */
+}
+
+.listing-photos__sub {
+  flex-wrap: wrap;
+}
+
+.listing-photos__main-image {
+  border-radius: .6em 0 0 .6em;
+}
+
+.listing-photos__sub {
+
+}

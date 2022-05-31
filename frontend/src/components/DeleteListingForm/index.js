@@ -19,9 +19,7 @@ const DeleteListingForm = ({ listing, visible, setVisible, user }) => {
     dispatch(getListings())
   }, [deleted]);
 
-  // console.log('userListings', listings)
   const handleDelete = async (id) => {
-    // console.log('id:: ', id)
     try {
       await dispatch(deleteListing(id))
     } catch (error) {
