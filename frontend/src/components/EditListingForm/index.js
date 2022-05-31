@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { ValidationError } from '../../utils/validationError';
 import { editListing } from '../../store/listings'
+import  EditImageForm  from '../EditImageForm'
 
 const EditListingForm = ({ listing, visible, setVisible, user }) => {
   console.log(listing)
@@ -53,7 +54,8 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
   }
 
   return (
-    visible && <div>
+    visible &&  !accepted ? (
+    <div>
       <h1>Edit Listing Form</h1>
       <form className='edit-form' onSubmit={handleSubmit}>
         <input
@@ -92,10 +94,14 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
           value={price}
           onChange={(e) => updatePrice(e.target.value)}
         />
-        <button type="submit">Save Changes</button>
+        <button type="submit">Save and Edit Photos</button>
         <button onClick={() => setVisible(false)}>Cancel</button>
       </form>
-    </div>
+    </div>)
+    :
+    (
+      <EditImageForm listing={listing}/>
+    )
   )
 };
 

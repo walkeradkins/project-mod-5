@@ -2,11 +2,17 @@ import { ValidationError } from "../utils/validationError"
 import { csrfFetch } from './csrf'
 
 export const CREATE_IMAGES = 'images/CREATE_IMAGES'
+export const EDIT_IMAGES = 'images/EDIT_IMAGES'
 
 export const createImages = newImages => ({
   type: CREATE_IMAGES,
   newImages
-})
+});
+
+export const editedImages = updatedImages => ({
+  type: EDIT_IMAGES,
+  updatedImages
+});
 
 export const createNewImages = (payload, id) => async dispatch => {
   try {
@@ -42,6 +48,23 @@ export const createNewImages = (payload, id) => async dispatch => {
   }
 }
 
+export const editImages = (payload, id) => async dispatch => {
+  // console.log('editphots: ', payload)
+  const response = await csrfFetch(`/api/listings/${id}/images`, {
+    method: 'PUT',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    const updatedImages = await response.json();
+    dispatch(editedImages(updatedImages));
+    return updatedImages
+  }
+}
+
 const imagesReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_IMAGES:
@@ -51,6 +74,16 @@ const imagesReducer = (state = {}, action) => {
       });
       return {
         ...allImages,
+        ...state
+      };
+    case EDIT_IMAGES:
+
+      const editedImages = {}
+      action.updatedImages.forEach(updatedImage => {
+        editedImages[updatedImage.id] = updatedImage
+      });
+      return {
+        ...editedImages,
         ...state
       };
     default:

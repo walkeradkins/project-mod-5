@@ -1,16 +1,18 @@
-import './ImageForm.css'
+import './EditImageForm.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
-import { createNewImages } from '../../store/images'
+import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 
-const ImageForm = ({ listingId }) => {
+
+const EditImageForm = ({ listing }) => {
+  const { id, Images } = listing
   const history = useHistory();
   const dispatch = useDispatch();
-  const [imageURLs, setImageURLs] = useState([{ url: "" }])
+  const [imageURLs, setImageURLs] = useState([...Images])
 
   let handleChange = (i, e) => {
     let newFormValues = [...imageURLs];
@@ -25,27 +27,49 @@ const ImageForm = ({ listingId }) => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     imageURLs.map(imageURL => {
-      imageURL['listingId'] = listingId;
+      imageURL['listingId'] = id;
     })
-    const payload = {
-      imageURLs
-    };
 
-    let images;
+    const newImages = []
+
+    imageURLs.forEach((image, index) => {
+      if (!image.id) {
+        newImages.push(image);
+      }
+    })
+
+    const updatedPhotos = imageURLs.filter(image => {
+      return (image.id);
+    })
+
+    const newImagePayload = { newImages }
+    const updatedPayload = { updatedPhotos }
+
+    let updatedImages;
+    let newPhotos;
+
+    if (newImages.length) {
+      try {
+        newPhotos = await dispatch(createNewImages(newImagePayload, id))
+      } catch (error) {
+        // TODO error handle
+      }
+    }
+
     try {
-      images = await dispatch(createNewImages(payload, listingId))
-     } catch (error) {
+      updatedImages = await dispatch(editImages(updatedPayload, id))
+    } catch (error) {
       // TODO error handle
-     }
-     if (images) {
-       reset();
-       history.push(`/listings/${listingId}`)
-     }
-  }
+    }
 
+    if (updatedImages) {
+      reset();
+      history.push(`/listings/${id}`)
+    }
+  }
   const reset = () => {
     setImageURLs([{ url: "" }]);
-  }
+}
 
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
@@ -68,4 +92,4 @@ const ImageForm = ({ listingId }) => {
   )
 }
 
-export default ImageForm
+export default EditImageForm;
