@@ -11,7 +11,7 @@ import ListingDetails from "./components/ListingDetails";
 import ListingForm from "./components/ListingForm";
 import UserListings from "./components/UserListings";
 import UserBookings from "./components/UserBookings";
-
+import BookingDetails from "./components/BookingDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,13 +23,12 @@ function App() {
 
   const sessionUser = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings.listings);
-  const bookings = useSelector(state => state.bookings.bookings)
+  const bookings = useSelector(state => state.bookings)
 
   useEffect(() => {
     dispatch(getListings());
     dispatch(getBookings())
   }, [dispatch]);
-
 
   return (
     <>
@@ -49,7 +48,10 @@ function App() {
             <UserListings listings={listings} user={sessionUser}/>
           </Route>
           <Route exact path={'/users/:id/bookings'}>
-            <UserBookings bookings={bookings} user={sessionUser}/>
+            <UserBookings bookings={bookings.bookings} listings={listings} user={sessionUser}/>
+          </Route>
+          <Route exact path={'/users/:id/bookings/:id'}>
+            <BookingDetails bookings={bookings} listings={listings} user={sessionUser}/>
           </Route>
         </Switch>
       )}
