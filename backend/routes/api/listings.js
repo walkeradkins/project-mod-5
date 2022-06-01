@@ -75,7 +75,9 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     state,
     country,
     name,
-    price
+    price,
+    cleaningFee,
+    serviceFee
   } = req.body;
 
   const listing = await Listing.create({
@@ -85,7 +87,9 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     state,
     country,
     name,
-    price
+    price,
+    cleaningFee,
+    serviceFee
   });
   return res.json(listing);
 }));

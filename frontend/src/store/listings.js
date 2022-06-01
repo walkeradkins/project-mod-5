@@ -5,6 +5,7 @@ const LOAD_LISTINGS = 'listings/LOAD_LISTINGS';
 const LOAD_ONE = 'listings/LOAD_ONE';
 const CREATE_ONE = 'listings/CREATE_ONE';
 const UPDATE_ONE = 'listings/UPDATE_ONE';
+const REMOVE_ONE = 'listings/REMOVE_ONE';
 
 export const load = listings => ({
   type: LOAD_LISTINGS,
@@ -24,7 +25,12 @@ export const createOne = newListing => ({
 export const updateOne = updatedListing => ({
   type: UPDATE_ONE,
   updatedListing
-})
+});
+
+export const removeListing = listingToRemove => ({
+  type: REMOVE_ONE,
+  listingToRemove
+});
 
 // thunk action creators
 // getting listings
@@ -95,6 +101,18 @@ export const editListing = (payload, listingId) => async dispatch => {
   }
 }
 
+export const deleteListing = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/listings/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const deletedListing = await response.json();
+    dispatch(removeListing(deletedListing));
+    return deletedListing;
+  }
+}
+
 // reducer
 const initialState = { listings: [] };
 const listingsReducer = (state = initialState, action) => {
@@ -131,6 +149,10 @@ const listingsReducer = (state = initialState, action) => {
         }
       }
       return updatedState;
+    case REMOVE_ONE:
+      const newState = {...state};
+      delete newState[action.listingToRemove.id];
+      return newState;
     default:
       return state;
   }

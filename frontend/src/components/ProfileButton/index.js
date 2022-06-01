@@ -28,9 +28,9 @@ const ProfileButton = ({ user }) => {
     dispatch(sessionActions.logout());
   }
 
-  const addListing = (e) => {
-    e.preventDefault();
-  }
+  // const addListing = (e) => {
+  //   e.preventDefault();
+  // }
   return (
     <>
       <button>
@@ -45,6 +45,7 @@ const ProfileButton = ({ user }) => {
           <li key={`username`}>{user.username}</li>
           <li key={`email`}>{user.email}</li>
           <li key={`newListing`}><Link to='/listings'>Host your Home</Link></li>
+          <li key={`viewBookings`}><Link to={`/users/${user.id}/bookings`}>Your Trips</Link></li>
           <li key={`viewListing`}><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
           <li key={`logout`}><button onClick={logout}>Log Out</button></li>
         </ul>

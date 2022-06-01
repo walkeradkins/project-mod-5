@@ -1,0 +1,18 @@
+.booking-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.booking-link__image {
+  width: 4em;
+  margin: 1em;
+  background-size: cover;
+  background-position: center;
+  border-radius: .4em;
+}
+
+.booking-link__image::after{
+  display: block;
+  padding-top: 100%;
+  content: '';
+}

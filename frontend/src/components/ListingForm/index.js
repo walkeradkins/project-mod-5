@@ -22,6 +22,8 @@ const ListingForm = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [accepted, setAccepted] = useState(false);
+  const [cleaningFee, setCleaningFee] = useState('');
+  const [serviceFee, setServiceFee] = useState('');
 
   const [id, setId] = useState('');
 
@@ -35,7 +37,9 @@ const ListingForm = () => {
       state,
       country,
       name,
-      price
+      price,
+      cleaningFee,
+      serviceFee
     };
 
     let newListing;
@@ -63,6 +67,8 @@ const ListingForm = () => {
     setName('');
     setPrice('');
     setAccepted('');
+    setCleaningFee(0);
+    setServiceFee(0);
   }
 
   return (
@@ -111,6 +117,20 @@ const ListingForm = () => {
             required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+          <input
+            type='number'
+            placeholder='One time cleaning fee'
+            required
+            value={cleaningFee}
+            onChange={(e) => setCleaningFee(e.target.value)}
+          />
+          <input
+            type='number'
+            placeholder='One time service fee'
+            required
+            value={serviceFee}
+            onChange={(e) => setServiceFee(e.target.value)}
           />
           <button type="submit">Create new Listing</button>
         </form>
