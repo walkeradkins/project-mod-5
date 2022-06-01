@@ -26,6 +26,18 @@ module.exports = {
         type: Sequelize.DATEONLY,
         allowNull: false,
       },
+      totalDays: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      totalPrice: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      totalGuests: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

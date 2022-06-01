@@ -4,11 +4,13 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import { getListings } from './store/listings'
+import { getBookings } from './store/bookings'
 import Navigation from "./components/Navigation";
 import ListingsBrowser from "./components/ListingsBrowser";
 import ListingDetails from "./components/ListingDetails";
 import ListingForm from "./components/ListingForm";
 import UserListings from "./components/UserListings";
+import UserBookings from "./components/UserBookings";
 
 
 function App() {
@@ -21,10 +23,13 @@ function App() {
 
   const sessionUser = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings.listings);
+  const bookings = useSelector(state => state.bookings.bookings)
 
   useEffect(() => {
     dispatch(getListings());
+    dispatch(getBookings())
   }, [dispatch]);
+
 
   return (
     <>
@@ -40,8 +45,11 @@ function App() {
           <Route path={'/listings'}>
             <ListingForm />
           </Route>
-          <Route path={'/users/:id/listings'}>
+          <Route exact path={'/users/:id/listings'}>
             <UserListings listings={listings} user={sessionUser}/>
+          </Route>
+          <Route exact path={'/users/:id/bookings'}>
+            <UserBookings bookings={bookings} user={sessionUser}/>
           </Route>
         </Switch>
       )}

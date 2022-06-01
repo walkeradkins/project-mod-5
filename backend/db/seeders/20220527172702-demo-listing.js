@@ -10,7 +10,9 @@ module.exports = {
       state: 'Texas',
       country: 'USA',
       name: 'Garden Villa',
-      price: 550
+      price: 550,
+      cleaningFee: 50,
+      serviceFee: 100
     },
     {
       userId: 2,
@@ -19,7 +21,9 @@ module.exports = {
       state: 'Jalisco',
       country: 'Mexico',
       name: 'Rooftop apartment with pool!',
-      price: 120
+      price: 120,
+      cleaningFee: 45,
+      serviceFee: 150
     },
     {
       userId: 3,
@@ -28,7 +32,9 @@ module.exports = {
       state: 'California',
       country: 'USA',
       name: 'Desert Hideout ',
-      price: 95
+      price: 95,
+      cleaningFee: 35,
+      serviceFee: 95
     },
     {
       userId: 3,
@@ -37,7 +43,9 @@ module.exports = {
       state: 'Oregon',
       country: 'USA',
       name: 'Welcome to my mountain retreat!',
-      price: 250
+      price: 250,
+      cleaningFee: 55,
+      serviceFee: 80
     },
     {
       userId: 3,
@@ -46,7 +54,9 @@ module.exports = {
       state: 'Bali',
       country: 'Indonesia',
       name: 'Jungle home surrounded by nature!',
-      price: 55
+      price: 55,
+      cleaningFee: 20,
+      serviceFee: 25
     },
     {
       userId: 4,
@@ -55,7 +65,9 @@ module.exports = {
       state: 'Hawaii',
       country: 'USA',
       name: 'Steps from the beach! Wonderful natural light',
-      price: 120
+      price: 120,
+      cleaningFee: 200,
+      serviceFee: 25
     },
    ], {});
   },

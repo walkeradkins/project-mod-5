@@ -16,7 +16,19 @@ module.exports = (sequelize, DataTypes) => {
     endDate: {
       type: DataTypes.DATEONLY,
       allowNull: false
-    }
+    },
+    totalDays: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalGuests: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {});
   Booking.associate = function (models) {
     Booking.belongsTo(models.Listing, { foreignKey: 'listingId' });

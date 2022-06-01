@@ -37,6 +37,14 @@ module.exports = {
         type: Sequelize.NUMERIC,
         allowNull: false,
       },
+      cleaningFee: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      serviceFee: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

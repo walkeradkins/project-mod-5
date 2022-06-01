@@ -43,7 +43,15 @@ module.exports = (sequelize, DataTypes) => {
     price: {
       type:DataTypes.NUMERIC,
       allowNull: false
-     }
+     },
+     cleaningFee: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    serviceFee: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {});
   Listing.associate = function(models) {
     Listing.belongsTo(models.User, { foreignKey: 'userId' })

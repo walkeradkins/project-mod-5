@@ -18,21 +18,27 @@ router.get('/', asyncHandler(async (_req, res) => {
 }));
 
 router.post('/', asyncHandler(async function (req, res) {
-  const currentUser = findCurrentUser(req);
+  // const currentUser = findCurrentUser(req);
   const {
     userId,
     listingId,
     startDate,
     endDate,
+    totalDays,
+    totalPrice,
+    totalGuests
   } = req.body;
 
   const booking = await Booking.create({
     userId,
     listingId,
     startDate,
-    endDate
+    endDate,
+    totalDays,
+    totalPrice,
+    totalGuests
   });
-  console.log(booking)
+
   return res.json(booking);
 }));
 

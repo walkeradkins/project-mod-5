@@ -27,7 +27,7 @@ const BookingCard = ({ listing, user }) => {
   const futureDate = new Date(day.setDate(day.getDate() + 3));
   const initialCheckOutDate = formatDate(futureDate)
 
-  let { price } = listing
+  let { price, cleaningFee, serviceFee } = listing
   price = parseInt(price);
   const [errorMessages, setErrorMessages] = useState({});
   const [openCalendar, setOpenCalendar] = useState(false)
@@ -37,7 +37,9 @@ const BookingCard = ({ listing, user }) => {
   const [checkInISO, setCheckInISO] = useState(new Date().toISOString().slice(0, 10));
   const [checkOutISO, setCheckOutISO] = useState(futureDate.toISOString().slice(0, 10));
   const [totalDays, setTotalDays] = useState(3);
-  const [totalPrice, setTotalPrice] = useState(3 * +price);
+  const [priceBeforeFees, setPriceBeforeFees] = useState((3 * +price))
+  const [totalPrice, setTotalPrice] = useState((3 * +price) + cleaningFee + serviceFee);
+  const [totalGuests, setTotalGuests] = useState(1);
 
   const handleClick = () => {
     setOpenCalendar(prev => !prev);
@@ -56,9 +58,11 @@ const BookingCard = ({ listing, user }) => {
     setCheckOutISO(checkOutDate.toISOString().slice(0, 10));
     const days = countDays(checkInDate, checkOutDate);
     setTotalDays(days);
-    setTotalPrice(days * price)
+    setPriceBeforeFees(days * price)
+    setTotalPrice((days * price) + cleaningFee + serviceFee)
     setCheckIn(formatDate(checkInDate));
     setCheckOut(formatDate(checkOutDate));
+
     setOpenCalendar(false);
   }
 
@@ -70,8 +74,11 @@ const BookingCard = ({ listing, user }) => {
       listingId: listing.id,
       startDate: checkInISO,
       endDate: checkOutISO,
+      totalDays,
+      totalPrice,
+      totalGuests: +totalGuests
     }
-
+    console.log('payload:: ', payload)
     let newBooking;
 
     try {
@@ -95,7 +102,7 @@ const BookingCard = ({ listing, user }) => {
         <p><b>${price}</b> night</p>
         <p>check-in {checkIn}</p>
         <p>check-out {checkOut}</p>
-        <button onClick={() => handleClick()}>dates</button>
+        <button type='button' onClick={() => handleClick()}>dates</button>
         {openCalendar &&
           <Calendar
             minDate={new Date()}
@@ -104,8 +111,24 @@ const BookingCard = ({ listing, user }) => {
             value={date}
           />}
         <div>
+          <label>
+            Guests
+            <select
+              onChange={(e) => setTotalGuests(e.target.value)}
+              value={totalGuests}
+            >
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </label>
           <ul>
-            <li>${price} x {totalDays} nights ${totalPrice}</li>
+
+            <li>${price} x {totalDays} nights ${priceBeforeFees}</li>
+            <li>Cleaning fee ${cleaningFee}</li>
+            <li>Service fee ${serviceFee}</li>
             <li>Total before taxes ${totalPrice}</li>
           </ul>
         </div>

@@ -78,7 +78,6 @@ export const createNewListing = (payload) => async dispatch => {
       }
     }
     const listing = await response.json();
-    console.log('lising here:: ', listing)
     dispatch(createOne(listing));
     return listing;
   } catch (error) {
