@@ -13,17 +13,17 @@ const ListingDetails = ({ user }) => {
   const dispatch = useDispatch();
   let selectedListing = useSelector(state => state.listings[id])
   const listingsArray = useSelector(state => state.listings.listings)
+  console.log('selecteListing without Images:: ', selectedListing)
+  if (!selectedListing) {
+    selectedListing = JSON.parse(localStorage.getItem('currentListing'))
+  }
 
   if (!selectedListing.Images) {
-    console.log('selecteListing without Images:: ', selectedListing)
     selectedListing = listingsArray.find(listing => {
       return listing.id == id;
     })
   }
 
-  if (!selectedListing) {
-    selectedListing = JSON.parse(localStorage.getItem('currentListing'))
-  }
 
   useEffect(() => {
     dispatch(getListings());
