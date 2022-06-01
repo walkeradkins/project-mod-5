@@ -21,7 +21,6 @@ const ListingDetails = ({ user }) => {
     })
   }
 
-
   if (!selectedListing) {
     selectedListing = JSON.parse(localStorage.getItem('currentListing'))
   }
