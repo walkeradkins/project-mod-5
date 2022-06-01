@@ -22,7 +22,7 @@ function App() {
   }, [dispatch]);
 
   const sessionUser = useSelector(state => state.session.user);
-  const listings = useSelector(state => state.listings.listings);
+  const listings = useSelector(state => state.listings);
   const bookings = useSelector(state => state.bookings)
 
   useEffect(() => {
@@ -39,16 +39,16 @@ function App() {
             <ListingsBrowser />
           </Route>
           <Route path={'/listings/:id'}>
-            <ListingDetails user={sessionUser}/>
+            <ListingDetails user={sessionUser} listings={listings}/>
           </Route>
           <Route path={'/listings'}>
             <ListingForm />
           </Route>
           <Route exact path={'/users/:id/listings'}>
-            <UserListings listings={listings} user={sessionUser}/>
+            <UserListings listings={listings.listings} user={sessionUser}/>
           </Route>
           <Route exact path={'/users/:id/bookings'}>
-            <UserBookings bookings={bookings.bookings} listings={listings} user={sessionUser}/>
+            <UserBookings user={sessionUser}/>
           </Route>
           <Route exact path={'/users/:id/bookings/:id'}>
             <BookingDetails bookings={bookings} listings={listings} user={sessionUser}/>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const BookingLink = ({ listing, booking, user }) => {
   const { name, city, Images } = listing;
-  const { id } = user
+  const { id } = user;
 
   const getTravelDates = (start, end) => {
     const startArr = start.split('-');

@@ -92,7 +92,7 @@ const BookingCard = ({ listing, user }) => {
     if (newBooking) {
       console.log('here:: ', newBooking)
       setErrorMessages({});
-      history.push('/')
+      history.push(`/users/${user.id}/bookings`)
     }
   }
 

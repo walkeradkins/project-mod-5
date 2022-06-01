@@ -8,14 +8,23 @@ import EditListingForm from '../EditListingForm';
 import DeleteListingForm from '../DeleteListingForm';
 
 const UserListings = ({ listings, user }) => {
+  const dispatch = useDispatch()
   const [editForm, setEditForm] = useState(false);
   const [deleteForm, setDeleteForm] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
   const [deletedListing, setDeletedListing] = useState(null);
   const { id } = useParams();
-  const userListings = listings.filter((listing) => {
-    return listing.userId === +id
-  });
+
+  // const userListings = listings.filter((listing) => {
+  //   return listing.userId === +id
+  // });
+  const userListings = useSelector(state => state.listings.listings.filter(listing => {
+    return listing.userId === user.id;
+  }));
+
+  useEffect(() => {
+    dispatch(getListings())
+  }, []);
 
   useEffect(() => {
     if (selectedListing)

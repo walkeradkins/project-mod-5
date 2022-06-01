@@ -1,6 +1,7 @@
 import './DetailPhotoDisplay.css'
 
 const DetailPhotoDisplay = ({ listing }) => {
+  // console.log('Listing from PhotoDisplay:: ', listing)
   const { Images } = listing
 
   const firstImage = Images[0].url;

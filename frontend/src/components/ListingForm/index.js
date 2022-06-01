@@ -135,7 +135,7 @@ const ListingForm = () => {
           <button type="submit">Create new Listing</button>
         </form>
       </div>) :
-      <ImageForm listingId={id}/>
+      <ImageForm listingId={id} user={sessionUser}/>
   )
 }
 

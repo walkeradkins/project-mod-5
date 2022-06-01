@@ -1,8 +1,8 @@
 import { ValidationError } from "../utils/validationError"
 import { csrfFetch } from './csrf'
 
-export const CREATE_IMAGES = 'images/CREATE_IMAGES'
-export const EDIT_IMAGES = 'images/EDIT_IMAGES'
+export const CREATE_IMAGES = 'images/CREATE_IMAGES';
+export const EDIT_IMAGES = 'images/EDIT_IMAGES';
 
 export const createImages = newImages => ({
   type: CREATE_IMAGES,

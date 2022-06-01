@@ -2,15 +2,21 @@ import './ImageForm.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getListings } from '../../store/listings'
 import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
 import { createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 
-const ImageForm = ({ listingId }) => {
+const ImageForm = ({ listingId, user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [imageURLs, setImageURLs] = useState([{ url: "" }])
+  const [imageURLs, setImageURLs] = useState([{ url: "" }]);
+  const [created, setCreated] = useState(false);
+
+  const userListings = useSelector(state => state.listings.listings.filter(listing => {
+    return listing.userId === user.id;
+  }));
 
   let handleChange = (i, e) => {
     let newFormValues = [...imageURLs];
@@ -21,6 +27,10 @@ const ImageForm = ({ listingId }) => {
   let addFormFields = () => {
     setImageURLs([...imageURLs, { url: "" }])
   }
+
+  useEffect(() => {
+    dispatch(getListings())
+  }, [created]);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,13 +48,15 @@ const ImageForm = ({ listingId }) => {
       // TODO error handle
      }
      if (images) {
+       setCreated(true)
        reset();
-       history.push(`/listings/${listingId}`)
+       history.push(`/users/${user.id}/listings`)
      }
   }
 
   const reset = () => {
     setImageURLs([{ url: "" }]);
+    setCreated(false)
   }
 
   return (
