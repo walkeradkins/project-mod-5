@@ -35,7 +35,7 @@ function App() {
             <ListingsBrowser />
           </Route>
           <Route path={'/listings/:id'}>
-            <ListingDetails />
+            <ListingDetails user={sessionUser}/>
           </Route>
           <Route path={'/listings'}>
             <ListingForm />

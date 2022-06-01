@@ -9,7 +9,7 @@ const DetailPhotoDisplay = ({ listing }) => {
   for (let i = 1; i < 5; i++) {
     displayFour.push(Images[i]);
   }
-  console.log(displayFour)
+
   return (
     <div className='listing-photos'>
       <div className='listing-photos__main col-6'>
