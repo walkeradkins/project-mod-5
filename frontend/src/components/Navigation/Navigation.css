@@ -9,6 +9,7 @@
   margin-bottom: 3em;
   background-color: white;
   border-bottom: #E2E2E2 1px solid;
+  z-index: 10;
 }
 
 .navbar__logo-image {

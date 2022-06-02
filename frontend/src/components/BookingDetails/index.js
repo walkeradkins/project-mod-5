@@ -7,6 +7,7 @@ import ReservationDetailsCard from '../ReservationDetailsCard';
 import { useDispatch, useSelector } from "react-redux";
 import { getListings } from '../../store/listings';
 import { getBookings } from '../../store/bookings';
+import PhotoCarousel from '../Carousel';
 
 const BookingDetails = ({ user }) => {
   const { id } = useParams();
@@ -42,6 +43,7 @@ const BookingDetails = ({ user }) => {
       <div className='booking__details-info'>
         <h1 className='booking__details-location header-title'>{city}, {state}, {country}</h1>
         <p className='booking__details-dates header-subtitle'>{dateString}</p>
+        <PhotoCarousel images={Images} />
         <ReservationDetailsCard listing={currentListing} user={user} booking={currentBooking}/>
         <button className='btn' onClick={toggleCancel}>Cancel Reservation</button>
       </div>

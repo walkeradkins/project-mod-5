@@ -39,3 +39,7 @@
   padding-top: 100%;
   content: '';
 }
+
+.card__carousel > .carousel {
+  border: red 2px solid;
+}

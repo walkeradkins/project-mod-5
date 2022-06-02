@@ -12,19 +12,9 @@ const UserBookings = ({ user }) => {
   let listings = useSelector(state => state.listings);
   let userBookings = useSelector(state => state.bookings.bookings)
 
-
   useEffect(() => {
     dispatch(getListings());
     dispatch(getBookings());
-    // if (userBookings.length === 0) {
-    //   userBookings = JSON.parse(localStorage.getItem('userBookings'))
-    // }
-
-    // if (Object.keys(listings).length == 1) {
-    //   listings = JSON.parse(localStorage.getItem('listings'))
-    // }
-    // localStorage.setItem('listings', JSON.stringify(listings))
-    // localStorage.setItem('bookings', JSON.stringify(userBookings))
   }, [dispatch]);
 
   if (!listings) return null;
