@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 const NoListingsCard = () => {
   const history = useHistory();
   const handleClick = () => {
-    history.push('/')
+    history.push('/listings')
   }
   return (
     <div className='container nolistings__container'>

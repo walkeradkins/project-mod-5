@@ -11,22 +11,34 @@ import ErrorMessage from '../ErrorMessage/'
 const ImageForm = ({ listingId, user }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [imageURLs, setImageURLs] = useState([{ url: "" }]);
+  const [imageURLs, setImageURLs] = useState([
+    { url: "" },
+    { url: "" },
+    { url: "" },
+    { url: "" },
+    { url: "" }
+  ]);
   const [created, setCreated] = useState(false);
 
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === user.id;
   }));
 
-  let handleChange = (i, e) => {
+  const handleChange = (i, e) => {
     let newFormValues = [...imageURLs];
     newFormValues[i][e.target.name] = e.target.value;
     setImageURLs(newFormValues);
   }
 
-  let addFormFields = () => {
+  const addFormFields = () => {
     setImageURLs([...imageURLs, { url: "" }])
   }
+
+  const removeFormFields = (i) => {
+    let newFormValues = [...imageURLs];
+    newFormValues.splice(i, 1);
+    setImageURLs(newFormValues)
+}
 
   useEffect(() => {
     dispatch(getListings())
@@ -44,14 +56,14 @@ const ImageForm = ({ listingId, user }) => {
     let images;
     try {
       images = await dispatch(createNewImages(payload, listingId))
-     } catch (error) {
+    } catch (error) {
       // TODO error handle
-     }
-     if (images) {
-       setCreated(true)
-       reset();
-       history.push(`/users/${user.id}/listings`)
-     }
+    }
+    if (images) {
+      setCreated(true)
+      reset();
+      history.push(`/users/${user.id}/listings`)
+    }
   }
 
   const reset = () => {
@@ -62,19 +74,25 @@ const ImageForm = ({ listingId, user }) => {
   return (
     <form onSubmit={handleSubmit} autoComplete="off">
       {imageURLs.map((element, index) => (
-        <div key={index}>
+        <div className='booking-link__container' key={index}>
+          <figure className='booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
           <input
             placeholder='Image URL'
+            className='booking_link__input'
             type="text"
+            required
             name="url"
             value={element.url || ""}
             onChange={e => handleChange(index, e)}
           />
+          { index > 4 ?
+              <button type="button" className=" booking-link__button btn" onClick={() => removeFormFields(index)}>Remove</button>
+              : null }
         </div>
       ))}
-      <div>
-        <button type="button" onClick={() => addFormFields()}>Add Another Photo</button>
-        <button type="submit">Submit</button>
+      <div className='booking-link__button-container'>
+        <button className='booking-link__button btn' type="button" onClick={() => addFormFields()}>Add Another Photo</button>
+        <button className='booking-link__button btn' type="submit" disabled={imageURLs.length < 5}>Submit</button>
       </div>
     </form>
   )

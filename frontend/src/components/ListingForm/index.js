@@ -73,10 +73,12 @@ const ListingForm = () => {
 
   return (
     !accepted ?
-      (<div>
-        <h1>Listing Form</h1>
+      (<div className='listing-container container'>
+        <h1 className='header-title'>Open your door to hosting</h1>
         <form className='create-listing' onSubmit={handleSubmit}>
+          <div className='listing-form'>
           <input
+            className='listing-form__input'
             type='text'
             placeholder='Address'
             required
@@ -84,6 +86,7 @@ const ListingForm = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
           <input
+            className='listing-form__input'
             type='text'
             placeholder='City'
             required
@@ -91,6 +94,7 @@ const ListingForm = () => {
             onChange={(e) => setCity(e.target.value)}
           />
           <input
+            className='listing-form__input'
             type='text'
             placeholder='State/Province'
             required
@@ -98,6 +102,7 @@ const ListingForm = () => {
             onChange={(e) => setState(e.target.value)}
           />
           <input
+            className='listing-form__input'
             type='text'
             placeholder='Country'
             required
@@ -105,6 +110,7 @@ const ListingForm = () => {
             onChange={(e) => setCountry(e.target.value)}
           />
           <input
+            className='listing-form__input'
             type='text'
             placeholder='Name'
             required
@@ -113,6 +119,7 @@ const ListingForm = () => {
           />
           <input
             type='number'
+            className='listing-form__input'
             placeholder='Price / Night'
             required
             value={price}
@@ -120,6 +127,7 @@ const ListingForm = () => {
           />
           <input
             type='number'
+            className='listing-form__input'
             placeholder='One time cleaning fee'
             required
             value={cleaningFee}
@@ -127,15 +135,20 @@ const ListingForm = () => {
           />
           <input
             type='number'
+            className='listing-form__input'
             placeholder='One time service fee'
             required
             value={serviceFee}
             onChange={(e) => setServiceFee(e.target.value)}
           />
-          <button type="submit">Create new Listing</button>
+          <button className='btn listing-form__btn' type="submit">Upload Images</button>
+          </div>
         </form>
       </div>) :
-      <ImageForm listingId={id} user={sessionUser}/>
+      <div className='listing-form__image-container container'>
+        <p className='header-title listing-form__header'>Please add at least five images of your home</p>
+        <ImageForm listingId={id} user={sessionUser}/>
+      </div>
   )
 }
 
