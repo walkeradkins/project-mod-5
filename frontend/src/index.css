@@ -22,6 +22,19 @@
   background-color: #FF3339;
   cursor: pointer;
 }
+.header-title {
+  font-size: 1.75em;
+  font-weight: 600;
+  margin: .5em
+}
+
+.header-subtitle {
+  margin: .85em;
+  padding: .5em;
+}
+.btn:focus {
+  outline: none;
+}
 
 .underline {
   border-bottom: #E2E2E2 1px solid;
