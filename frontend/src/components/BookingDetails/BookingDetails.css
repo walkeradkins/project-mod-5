@@ -4,7 +4,7 @@
 }
 
 .booking__details-info {
-  margin: 4em;
+  margin: 0 4em 4em;
 }
 
 .booking__details-location {
@@ -13,4 +13,11 @@
 
 .booking__details-dates {
 
+}
+
+.cancel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

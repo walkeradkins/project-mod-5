@@ -1,0 +1,45 @@
+.notrips__container {
+  display: flex;
+  justify-content: center;
+}
+
+.notrips__card {
+  display: flex;
+  max-width: 75em;
+  min-height: 20em;
+  min-width: 50em;
+  margin: 2em 7em;
+  border-radius: .75em;
+  border: #E2E2E2 1px solid;
+  font-family: 'Montserrat', sans-serif
+}
+
+.notrips__content {
+  padding-bottom: 1em;
+}
+
+.notrips__hand {
+  font-size: 2.5em;
+  color: #FF5A5F
+}
+
+.notrips__sub{
+  font-weight: 600;
+}
+
+.notrips__text {
+  font-size: .85em;
+}
+
+.notrips__left {
+  padding: 2em;
+  text-align: left;
+}
+
+.notrips__image {
+  max-width: 100%;
+  max-height: auto;
+  min-height: 20em;
+  border-top-right-radius: .75em;
+  border-bottom-right-radius: .75em;
+}

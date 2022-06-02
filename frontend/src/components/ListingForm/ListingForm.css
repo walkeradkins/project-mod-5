@@ -1,0 +1,30 @@
+.listing-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-form {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+}
+
+.listing-form__input {
+  margin: 2em;
+  padding: 1em;
+  max-width: 50%;
+  border-radius: .50em;
+  border: .5px solid #C8C8C8;
+}
+
+.listing-form__btn {
+  max-width: 50%;
+}
+
+.listing-form__image-container {
+  margin: 3em;
+}
+
+.listing-form__header {
+  margin-bottom: 2em;
+}

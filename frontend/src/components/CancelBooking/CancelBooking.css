@@ -1,0 +1,13 @@
+.cancel-booking {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+
+.cancel-booking__prompt {
+  margin: 2em;
+}
+
+.cancel-booking__btn {
+  margin: 1em;
+}

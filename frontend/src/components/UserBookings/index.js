@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getListings } from '../../store/listings';
 import { getBookings } from '../../store/bookings';
 import { useParams, Link } from 'react-router-dom';
+import NoTripsCard from '../NoTripsCard'
 
 const UserBookings = ({ user }) => {
   const { id } = useParams();
@@ -17,13 +18,21 @@ const UserBookings = ({ user }) => {
     dispatch(getBookings());
   }, [dispatch]);
 
+  if (!userBookings.length) {
+    return (
+      <>
+       <h2 className='notrips header-title'>Trips</h2>
+      <NoTripsCard />
+      </>
+    )
+  }
   if (!listings) return null;
   if (!userBookings) return null;
 
   if (user.id !== +id) {
     return (
       <div>
-        <p>Looks like these aren't your trips...</p>
+        <p className='header-title'>Looks like these aren't your trips...</p>
         <ul>
           <li><Link to={`/users/${user.id}/bookings`}>Your Bookings</Link></li>
           <li><Link to='/'>Back to all listings</Link></li>
@@ -34,8 +43,8 @@ const UserBookings = ({ user }) => {
 
   return (
     <>
-      <h2>Where you're going</h2>
-      <ul>
+      <h2 className='header-title'>Trips</h2>
+      <ul className='row'>
         {userBookings.map(booking =>
           <li key={booking.id}>
             <BookingLink listing={listings[booking.listingId]} booking={booking} user={user} />

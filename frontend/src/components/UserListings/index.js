@@ -6,6 +6,7 @@ import { getListings } from '../../store/listings'
 import ListingCard from '../ListingCard';
 import EditListingForm from '../EditListingForm';
 import DeleteListingForm from '../DeleteListingForm';
+import NoListingsCard from '../NotListingsCard';
 
 const UserListings = ({ listings, user }) => {
   const dispatch = useDispatch()
@@ -15,9 +16,6 @@ const UserListings = ({ listings, user }) => {
   const [deletedListing, setDeletedListing] = useState(null);
   const { id } = useParams();
 
-  // const userListings = listings.filter((listing) => {
-  //   return listing.userId === +id
-  // });
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === user.id;
   }));
@@ -50,10 +48,19 @@ const UserListings = ({ listings, user }) => {
     }
   }, [deleteForm])
 
+  if (!userListings.length) {
+    return (
+      <>
+       <h2 className='notrips header-title'>Listings</h2>
+      <NoListingsCard />
+      </>
+    )
+  }
+
   if (user.id !== +id) {
     return (
       <div>
-        <p>Looks like these aren't your listings...</p>
+        <p className='header-title'>Looks like these aren't your listings...</p>
         <ul>
           <li><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
           <li><Link to='/'>Back to all listings</Link></li>
@@ -63,7 +70,7 @@ const UserListings = ({ listings, user }) => {
   }
 return (
   <div>
-    <h1>my listings</h1>
+    <h1 className='header-title'>Listings</h1>
     <ul className='row'>
       {userListings.map(listing => {
         return (

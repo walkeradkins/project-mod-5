@@ -1,10 +1,13 @@
 .booking-link {
   display: inline-flex;
   align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 10em;
+  margin-bottom: 5em;
 }
 
 .booking-link__image {
-  width: 4em;
+  width: 5em;
   margin: 1em;
   background-size: cover;
   background-position: center;
@@ -15,4 +18,18 @@
   display: block;
   padding-top: 100%;
   content: '';
+}
+
+.booking-link__city {
+  text-decoration: none;
+  max-width: 50%;
+  color: black;
+  font-weight: 600;
+  padding: .75em;
+}
+
+.booking-link__date {
+  text-decoration: none;
+  color: #474747;
+  padding: .75em;
 }

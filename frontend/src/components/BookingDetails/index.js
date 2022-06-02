@@ -47,7 +47,7 @@ const BookingDetails = ({ user }) => {
         <ReservationDetailsCard listing={currentListing} user={user} booking={currentBooking}/>
         <button className='btn' onClick={toggleCancel}>Cancel Reservation</button>
       </div>
-      <div>
+      <div className='cancel-container'>
         {displayCancelForm &&
           <CancelBooking
             booking={currentBooking}
