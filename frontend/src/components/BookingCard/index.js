@@ -98,20 +98,34 @@ const BookingCard = ({ listing, user }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <p><b>${price}</b> night</p>
-        <p>check-in {checkIn}</p>
-        <p>check-out {checkOut}</p>
-        <button type='button' onClick={() => handleClick()}>dates</button>
+      <form className='booking' onSubmit={handleSubmit}>
+        <span className='booking__header'>
+          <span className='booking__price'>
+            <p className='booking__amount'>${price}</p>
+            <p className='booking__night'>night</p>
+          </span>
+          <button className='btn' type='button' onClick={() => handleClick()}>dates</button>
+        </span>
+        <ul>
+          <li className='booking__text-check'>
+            <p className='booking__text-check-text'>CHECK-IN</p>
+            <p className='booking__text-check-date'>{checkIn}</p>
+          </li>
+          <li className='booking__text-check'>
+            <p className='booking__text-check-text'>CHECK-OUT</p>
+            <p className='booking__text-check-date'>{checkOut}</p>
+          </li>
+        </ul>
         {openCalendar &&
           <Calendar
+            className='booking__calender'
             minDate={new Date()}
             selectRange
             onChange={onChange}
             value={date}
           />}
         <div>
-          <label>
+          <label className='booking__text'>
             Guests
             <select
               onChange={(e) => setTotalGuests(e.target.value)}
@@ -124,15 +138,27 @@ const BookingCard = ({ listing, user }) => {
               <option>5</option>
             </select>
           </label>
+          <button className='btn btn-reserve' type='submit'>Reserve</button>
+          <p className='booking__text-charge'>You won't actually be charged</p>
           <ul>
-
-            <li>${price} x {totalDays} nights ${priceBeforeFees}</li>
-            <li>Cleaning fee ${cleaningFee}</li>
-            <li>Service fee ${serviceFee}</li>
-            <li>Total before taxes ${totalPrice}</li>
+            <li className='booking__text'>
+              <p>${price} x {totalDays} nights</p>
+              <p>${priceBeforeFees}</p>
+            </li>
+            <li className='booking__text'>
+              <p>Cleaning fee </p>
+              <p>${cleaningFee}</p>
+            </li>
+            <li className='booking__text underline booking__text-lastline'>
+              <p>Service fee</p>
+              <p>${serviceFee}</p>
+            </li>
+            <li className='booking__text booking__text-total'>
+              <p>Total before taxes </p>
+              <p>${totalPrice}</p>
+            </li>
           </ul>
         </div>
-        <button type='submit'>Reserve</button>
       </form>
     </>
 
