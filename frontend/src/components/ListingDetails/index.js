@@ -9,20 +9,29 @@ import  BookingCard from '../BookingCard';
 
 const ListingDetails = ({ user }) => {
   const { id } = useParams();
-  const [isImages, setIsImages] = useState(false)
+  const [isImages, setIsImages] = useState(true)
   const dispatch = useDispatch();
   let selectedListing = useSelector(state => state.listings[id])
-
+  const listingsArray = useSelector(state => state.listings.listings)
+  console.log('selecteListing without Images:: ', selectedListing)
   if (!selectedListing) {
     selectedListing = JSON.parse(localStorage.getItem('currentListing'))
   }
 
+  if (!selectedListing.Images) {
+    selectedListing = listingsArray.find(listing => {
+      return listing.id == id;
+    })
+  }
+
+
   useEffect(() => {
     dispatch(getListings());
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
-  }, [dispatch, id]);
+  },[dispatch]);
 
 
+  console.log('selectedListing:: ', selectedListing);
   const { city, state, name, country, Images, price } = selectedListing;
 
 

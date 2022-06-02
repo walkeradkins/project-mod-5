@@ -2,7 +2,8 @@ import { ValidationError } from '../utils/validationError'
 import { csrfFetch } from './csrf';
 
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
-const LOAD_BOOKINGS = 'bookings/GET_BOOKINGS'
+const LOAD_BOOKINGS = 'bookings/GET_BOOKINGS';
+const DELETE_BOOKING = 'bookings/DELETE-BOOKING';
 
 export const createOne = booking => ({
   type: CREATE_BOOKING,
@@ -13,6 +14,11 @@ export const load = bookings => ({
   type: LOAD_BOOKINGS,
   bookings
 });
+
+export const removeBooking = removedBooking => ({
+  type: DELETE_BOOKING,
+  removedBooking
+})
 
 export const createNewBooking = (payload) => async dispatch => {
   try {
@@ -56,6 +62,18 @@ export const getBookings = () => async dispatch => {
   }
 }
 
+export const deleteBooking = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/bookings/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const deletedBooking = await response.json();
+    dispatch(removeBooking(deletedBooking));
+    return deletedBooking;
+  }
+}
+
 const initialState = { bookings: [] };
 const bookingsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -77,7 +95,11 @@ const bookingsReducer = (state = initialState, action) => {
         }
         return newState;
       };
-      default:
+    case DELETE_BOOKING:
+      const newState = {...state};
+      delete newState[action.removedBooking.id]
+      return newState;
+    default:
       return state;
   }
 }

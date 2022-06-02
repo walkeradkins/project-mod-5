@@ -33,23 +33,23 @@ const ProfileButton = ({ user }) => {
   // }
   return (
     <>
-      <button>
-        <i
-          onMouseEnter={openMenu}
-          className="fa-solid fa-user"
-        >
-        </i>
+      <button className='navbar__profilebutton' onClick={openMenu}>
+        <span className="material-symbols-outlined navbar__threelines" >
+          menu
+        </span>
       </button>
-      {showMenu && (
-        <ul className='profile-dropdown'>
-          <li key={`username`}>{user.username}</li>
-          <li key={`email`}>{user.email}</li>
-          <li key={`newListing`}><Link to='/listings'>Host your Home</Link></li>
-          <li key={`viewBookings`}><Link to={`/users/${user.id}/bookings`}>Your Trips</Link></li>
-          <li key={`viewListing`}><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
-          <li key={`logout`}><button onClick={logout}>Log Out</button></li>
-        </ul>
-      )}
+      {
+        showMenu && (
+          <ul className='navbar__profile-dropdown'>
+            <li className='navbar__user-info' key={`username`}>{user.username}</li>
+            <li className='navbar__user-info navbar__underline' key={`email`}>{user.email}</li>
+            <li className='navbar__dropdown-links navbar__dropdown--nav' key={`newListing`}><Link className='navbar__dropdown--nav'to='/listings'>Host your Home</Link></li>
+            <li className='navbar__dropdown-links navbar__dropdown--nav' key={`viewBookings`}><Link className='navbar__dropdown--nav' to={`/users/${user.id}/bookings`}>Your Trips</Link></li>
+            <li className='navbar__dropdown-links navbar__dropdown--nav navbar__underline' key={`viewListing`}><Link className='navbar__dropdown--nav' to={`/users/${user.id}/listings`}>Your Listings</Link></li>
+            <li className='navbar__dropdown-links' key={`logout`} onClick={logout}>Log Out</li>
+          </ul>
+        )
+      }
     </>
   )
 }
