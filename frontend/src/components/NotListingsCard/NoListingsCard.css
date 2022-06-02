@@ -1,0 +1,45 @@
+.nolistings__container {
+  display: flex;
+  justify-content: center;
+}
+
+.nolistings__card {
+  display: flex;
+  max-width: 75em;
+  min-height: 20em;
+  min-width: 40em;
+  margin: 2em 7em;
+  border-radius: .75em;
+  border: #E2E2E2 1px solid;
+  font-family: 'Montserrat', sans-serif
+}
+
+.nolistings__content {
+  padding-bottom: 1em;
+}
+
+.nolistings__house {
+  font-size: 2.5em;
+  color: #FF5A5F
+}
+
+.nolistings__sub{
+  font-weight: 600;
+}
+
+.nolistings__text {
+  font-size: .85em;
+}
+
+.nolistings__left {
+  padding: 2em;
+  text-align: left;
+}
+
+.nolistings__image {
+  max-width: auto;
+  max-height: 20em;
+  min-height: 20em;
+  border-top-right-radius: .75em;
+  border-bottom-right-radius: .75em;
+}

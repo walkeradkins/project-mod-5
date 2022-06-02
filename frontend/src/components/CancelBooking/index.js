@@ -32,11 +32,11 @@ const CancelBooking = ({ booking, setVisible, user }) => {
   }
 
   return (
-    <>
-      <h3>Are you sure you want to cancel your reservation?</h3>
-      <button className='btn' onClick={() => handleCancel(booking.id)}>Yes, cancel my reservation</button>
-      <button className='btn' onClick={() => setVisible(false)}>No, take me back</button>
-    </>
+    <div className='cancel-booking'>
+      <h3 className='cancel-booking__prompt'>Are you sure you want to cancel your reservation?</h3>
+      <button className='btn cancel-booking__btn' onClick={() => handleCancel(booking.id)}>Yes, cancel my reservation</button>
+      <button className='btn cancel-booking__btn' onClick={() => setVisible(false)}>No, take me back</button>
+    </div>
   )
 }
 

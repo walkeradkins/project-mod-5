@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
       <>
         <div className='navbar__search'>
           <input className='navbar__search-input' />
-          <span class="material-symbols-outlined navbar__search-icon">search</span>
+          <span className="material-symbols-outlined navbar__search-icon">search</span>
         </div>
         <div className='navbar__user'>
           <NavLink to='/listings' className='navbar__host'>Become a Host</NavLink>
