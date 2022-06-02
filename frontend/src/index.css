@@ -9,6 +9,25 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+.btn {
+  background-color:  #FF5A5F;
+  color: white;
+  font-weight: 600;
+  padding: .75em 2em;
+  border: transparent;
+  border-radius: .5em;
+}
+
+.btn:hover {
+  background-color: #FF3339;
+  cursor: pointer;
+}
+
+.underline {
+  border-bottom: #E2E2E2 1px solid;
+}
+
+
 .container{
   max-width: 1440px;
   margin-right: auto;

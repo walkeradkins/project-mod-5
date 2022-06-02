@@ -10,7 +10,7 @@ const SignupFormModal = () => {
   }
   return (
     <>
-      <button onClick={handleToggle}>Sign Up</button>
+      <button className='navbar__signup'onClick={handleToggle}>Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <SignupForm />

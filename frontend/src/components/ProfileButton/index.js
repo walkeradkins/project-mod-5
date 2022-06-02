@@ -46,7 +46,7 @@ const ProfileButton = ({ user }) => {
             <li className='navbar__dropdown-links navbar__dropdown--nav' key={`newListing`}><Link className='navbar__dropdown--nav'to='/listings'>Host your Home</Link></li>
             <li className='navbar__dropdown-links navbar__dropdown--nav' key={`viewBookings`}><Link className='navbar__dropdown--nav' to={`/users/${user.id}/bookings`}>Your Trips</Link></li>
             <li className='navbar__dropdown-links navbar__dropdown--nav navbar__underline' key={`viewListing`}><Link className='navbar__dropdown--nav' to={`/users/${user.id}/listings`}>Your Listings</Link></li>
-            <li className='navbar__dropdown-links' key={`logout`} onClick={logout}>Log Out</li>
+            <li className='navbar__dropdown-links navbar__dropdown-links-logout' key={`logout`} onClick={logout}>Log Out</li>
           </ul>
         )
       }

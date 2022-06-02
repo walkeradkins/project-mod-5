@@ -52,3 +52,9 @@
   text-decoration: underline;
   color: black;
 }
+
+.navbar__dropdown-links-logout:hover {
+  cursor: pointer;
+  border-bottom-left-radius: .5em;
+  border-bottom-right-radius: .5em;
+}

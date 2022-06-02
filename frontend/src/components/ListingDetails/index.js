@@ -36,9 +36,9 @@ const ListingDetails = ({ user }) => {
 
 
   return (
-    <div>
-      <h2>{name}</h2>
-      <h4>{city}, {state}, {country}</h4>
+    <div className='booking__display-header container'>
+      <h2 className='booking__display-header-name'>{name}</h2>
+      <h4 className='booking__display-header-location'>{city}, {state}, {country}</h4>
       <DetailPhotoDisplay listing={selectedListing}/>
       <BookingCard listing={selectedListing} user={user}/>
     </div>

@@ -18,16 +18,26 @@ const DetailPhotoDisplay = ({ listing }) => {
           className='listing-photos__main-image card__image'
           style={{ backgroundImage: `url( ${firstImage} )` }} />
       </div>
-      <div className='listing-photos__sub col-6'>
-        <ul className='row'>
-          {displayFour.map(image => {
-            return (<li key={image.id} className='col-6'>
-              <figure
-                className='listing-photos__sub-image card__image'
-                style={{ backgroundImage: `url( ${image.url} )` }} />
-            </li>)
-          }
-          )}
+      <div className=' col-6'>
+        <ul className='row listing-photos__sub'>
+          <li className='listing__photos-sub' ><figure
+            className='listing-photos__image listing-photos__photo1'
+            style={{ backgroundImage: `url( ${displayFour[0].url} )` }} /></li>
+          <li className='listing__photos-sub'>
+            <figure
+              className='listing-photos__image listing-photos__photo2'
+              style={{ backgroundImage: `url( ${displayFour[1].url } )` }} />
+          </li>
+          <li className='listing__photos-sub'>
+            <figure
+              className='listing-photos__image listing-photos__photo3'
+              style={{ backgroundImage: `url( ${displayFour[2].url} )` }} />
+          </li>
+          <li className='listing__photos-sub'>
+            <figure
+              className='listing-photos__image listing-photos__photo4'
+              style={{ backgroundImage: `url( ${displayFour[3].url} )` }} />
+          </li>
         </ul>
       </div>
     </div>
