@@ -7,6 +7,7 @@ import { ValidationError } from '../../utils/validationError';
 import { createNewListing } from '../../store/listings'
 import ErrorMessage from '../ErrorMessage/'
 import ImageForm from '../ImageForm';
+import { countries } from '../utils';
 
 const ListingForm = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -47,8 +48,9 @@ const ListingForm = () => {
     try {
       newListing = await dispatch(createNewListing(payload));
     } catch (error) {
+      console.log('error here:: ', error)
       if (error instanceof ValidationError) setErrorMessages(error.errors)
-      else setErrorMessages({ overall: error.toString().slice(7) });
+      else setErrorMessages({ overall: error.toString()});
     }
 
     if (newListing) {
@@ -75,11 +77,15 @@ const ListingForm = () => {
     !accepted ?
       (<div className='listing-container container'>
         <h1 className='header-title'>Open your door to hosting</h1>
+        {console.log(errorMessages.overall)}
+        <ErrorMessage message={errorMessages.overall} />
         <form className='create-listing' onSubmit={handleSubmit}>
           <div className='listing-form'>
           <input
             className='listing-form__input'
             type='text'
+            minLength='3'
+            maxLength='50'
             placeholder='Address'
             required
             value={address}
@@ -89,6 +95,8 @@ const ListingForm = () => {
             className='listing-form__input'
             type='text'
             placeholder='City'
+            minLength='3'
+            maxLength='50'
             required
             value={city}
             onChange={(e) => setCity(e.target.value)}
@@ -97,22 +105,31 @@ const ListingForm = () => {
             className='listing-form__input'
             type='text'
             placeholder='State/Province'
+            minLength='3'
+            maxLength='50'
             required
             value={state}
             onChange={(e) => setState(e.target.value)}
           />
-          <input
+          <select
             className='listing-form__input'
-            type='text'
-            placeholder='Country'
-            required
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-          />
+          >
+            <option value='' selected disabled hidden>Country</option>
+            {countries.map(country => {
+              return <option
+              key={country}
+              value={country}
+              >{country}</option>
+            })}
+          </select>
           <input
             className='listing-form__input'
             type='text'
             placeholder='Name'
+            minLength='3'
+            maxLength='150'
             required
             value={name}
             onChange={(e) => setName(e.target.value)}

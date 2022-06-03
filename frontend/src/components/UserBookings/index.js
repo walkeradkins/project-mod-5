@@ -18,6 +18,10 @@ const UserBookings = ({ user }) => {
     dispatch(getBookings());
   }, [dispatch]);
 
+
+  if (!listings.listings.length) return null;
+  if (!userBookings) return null;
+
   if (!userBookings.length) {
     return (
       <>
@@ -26,8 +30,6 @@ const UserBookings = ({ user }) => {
       </>
     )
   }
-  if (!listings) return null;
-  if (!userBookings) return null;
 
   if (user.id !== +id) {
     return (

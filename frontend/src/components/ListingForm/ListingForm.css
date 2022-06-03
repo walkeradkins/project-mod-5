@@ -17,6 +17,10 @@
   border: .5px solid #C8C8C8;
 }
 
+.listing-form__input:focus {
+  outline: none
+}
+
 .listing-form__btn {
   max-width: 50%;
 }
