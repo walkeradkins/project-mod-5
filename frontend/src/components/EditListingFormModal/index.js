@@ -5,7 +5,6 @@ import './EditListingFormModal.css'
 
 
 function EditListingFormModal({showModal, setShowModal}) {
-  // const [showModal, setShowModal] = useState(false);
 
   return (
     <>
