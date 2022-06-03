@@ -51,7 +51,7 @@ router.get('/', asyncHandler(async (_req, res) => {
   return res.json(listings);
 }));
 
-router.get('/:id', asyncHandler(async (req, res) => {
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = parseInt(req.params.id, 10);
   const listing = await Listing.findByPk(id, {
     include: {
@@ -94,7 +94,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
   return res.json(listing);
 }));
 
-router.put('/:id', validateListing, asyncHandler(async function (req, res, next) {
+router.put('/:id(\\d+)', validateListing, asyncHandler(async function (req, res, next) {
   const id = parseInt(req.params.id);
   await Listing.update(req.body, {
     where: { id }
@@ -103,7 +103,7 @@ router.put('/:id', validateListing, asyncHandler(async function (req, res, next)
   return res.json(listing);
 }))
 
-router.delete('/:id', asyncHandler(async function (req, res) {
+router.delete('/:id(\\d+)', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
   const listing = await Listing.findByPk(id);
   if (listing) {
@@ -114,7 +114,7 @@ router.delete('/:id', asyncHandler(async function (req, res) {
   }
 }));
 
-router.post('/:id/images', asyncHandler(async function (req, res, next) {
+router.post('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
   if (req.body.newImages) {
     req.body.newImages.forEach(async item => {
       await Image.create(item);
@@ -128,7 +128,7 @@ router.post('/:id/images', asyncHandler(async function (req, res, next) {
   }
 }));
 
-router.put('/:id/images', asyncHandler(async function (req, res, next) {
+router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
   // console.log('put', req.body)
   req.body.updatedPhotos.forEach(async item => {
     await Image.update(item, {

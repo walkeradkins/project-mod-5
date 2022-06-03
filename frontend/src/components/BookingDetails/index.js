@@ -24,11 +24,13 @@ const BookingDetails = ({ user }) => {
 
   console.log('listings:: ', listings.listings.length)
   console.log('bookings:: ', bookings.bookings.length)
+
   if (!bookings.bookings.length) return null;
   if (!listings.listings.length) return null;
 
   const currentBooking = bookings[id];
   const currentListing = listings[currentBooking.listingId];
+  if (!currentListing.Images) return null;
 
   const { city, name, state, country, Images, price } = currentListing;
   const { startDate, endDate } = currentBooking;

@@ -18,7 +18,6 @@ const SearchBar = () => {
 
   const handleSearch = () => {
     history.push(`/listings/${location}`)
-
   };
 
   return (
