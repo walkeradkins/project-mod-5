@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 import logo from '../images/wherebnb.png'
+import LandingImage from '../LandingImage';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -26,14 +27,17 @@ function Navigation({ isLoaded }) {
     );
   } else {
     sessionLinks = (
-      <>
-        <LoginFormModal />
-        <SignupFormModal />
-      </>
+      <div>
+        <div>
+          <LoginFormModal />
+          <SignupFormModal />
+        </div>
+      </div>
     );
   }
 
   return (
+    <>
     <nav className='navbar'>
       <header className='navbar__header'>
         <NavLink className='navbar__logo' exact to="/">
@@ -43,6 +47,11 @@ function Navigation({ isLoaded }) {
       </header>
       {isLoaded && sessionLinks}
     </nav>
+    {!sessionUser &&
+    <div>
+      <LandingImage />
+      </div>}
+    </>
   );
 }
 
