@@ -47,38 +47,3 @@
 .navbar__host:hover {
   background-color: #F6F6F6;
 }
-
-.navbar__search {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.navbar__search-input {
-  padding: .85em 8em .85em 2em;
-  border-radius: 2em;
-  border: #E2E2E2 1px solid;
-  box-shadow: 0 3px 3px rgba(33,33,33,.2);
-  transition: box-shadow .3s;
-}
-
-.navbar__search-input:focus {
-  outline: none;
-}
-
-.navbar__search-input:hover {
-  box-shadow: 0 5px 7px rgba(33,33,33,.2);
-}
-
-.navbar__search-icon {
-  font-size: 1.25em;
-  border-radius: 50%;
-  padding: .25em;
-  background-color: #FF5A5F;
-  color: white;
-  position: relative;
-  right: 2em;
-}
-.navbar__search-icon:hover {
-  cursor: pointer;
-}

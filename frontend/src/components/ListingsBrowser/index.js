@@ -17,7 +17,7 @@ const ListingsBrowser = () => {
 
   return (
     sessionUser &&
-    <div className='container'>
+    <div className='container listings-browser__container'>
       <ul className='row'>
         {listings.map(listing => {
           return (

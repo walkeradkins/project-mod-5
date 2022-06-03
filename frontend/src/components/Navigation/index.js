@@ -7,6 +7,8 @@ import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 import logo from '../images/wherebnb.png'
 import LandingImage from '../LandingImage';
+import SearchBar from '../SearchBar';
+import Logo from '../Logo';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -15,10 +17,7 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <div className='navbar__search'>
-          <input className='navbar__search-input' />
-          <span className="material-symbols-outlined navbar__search-icon">search</span>
-        </div>
+        <SearchBar />
         <div className='navbar__user'>
           <NavLink to='/listings' className='navbar__host'>Become a Host</NavLink>
           <ProfileButton user={sessionUser} />
@@ -40,9 +39,8 @@ function Navigation({ isLoaded }) {
     <>
     <nav className='navbar'>
       <header className='navbar__header'>
-        <NavLink className='navbar__logo' exact to="/">
-          <img src={logo} className='navbar__logo-image' />
-          wherebnb
+        <NavLink exact to="/">
+          <Logo />
         </NavLink>
       </header>
       {isLoaded && sessionLinks}

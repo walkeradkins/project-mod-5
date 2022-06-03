@@ -42,7 +42,7 @@ const UserBookings = ({ user }) => {
   }
 
   return (
-    <>
+    <div className='container'>
       <h2 className='header-title'>Trips</h2>
       <ul className='row'>
         {userBookings.map(booking =>
@@ -51,7 +51,7 @@ const UserBookings = ({ user }) => {
           </li>
         )}
       </ul>
-    </>
+    </div>
   )
 }
 
