@@ -13,6 +13,7 @@ import UserListings from "./components/UserListings";
 import UserBookings from "./components/UserBookings";
 import BookingDetails from "./components/BookingDetails";
 import PrivateRoute from "./components/PrivateRoute";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ function App() {
               <BookingDetails bookings={bookings} listings={listings} user={sessionUser} />
             </Route>
             <Route>
-              <h2>Page Not Found</h2>
+              <PageNotFound />
             </Route>
           </Switch>
         </PrivateRoute>

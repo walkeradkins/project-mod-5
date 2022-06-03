@@ -2,17 +2,28 @@ import './EditImageForm.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getListings } from '../../store/listings';
 import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
 import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 
 
-const EditImageForm = ({ listing }) => {
+const EditImageForm = ({ listing, setShowEditModal }) => {
+  const sessionUser = useSelector(state => state.session.user);
   const { id, Images } = listing
+  const [updated, setUpdated] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([...Images])
+
+  const userListings = useSelector(state => state.listings.listings.filter(listing => {
+    return listing.userId === sessionUser.id;
+  }));
+
+  useEffect(() => {
+    dispatch(getListings())
+  }, [updated]);
 
   let handleChange = (i, e) => {
     let newFormValues = [...imageURLs];
@@ -68,57 +79,43 @@ const EditImageForm = ({ listing }) => {
       // TODO error handle
     }
 
-    if (updatedImages) {
-      reset();
-      history.push(`/listings/${id}`)
-    }
+    setUpdated(true)
+    history.push(`/users/${sessionUser.id}/listings`)
+    setShowEditModal(false)
   }
   const reset = () => {
     setImageURLs([{ url: "" }]);
   }
 
   return (
-    // <form onSubmit={handleSubmit} autoComplete="off">
-    //   {imageURLs.map((element, index) => (
-    //     <div key={index}>
-    //       <figure className='booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
-    //       <input
-    //         placeholder='Image URL'
-    //         type="text"
-    //         name="url"
-    //         value={element.url || ""}
-    //         onChange={e => handleChange(index, e)}
-    //       />
-    //     </div>
-    //   ))}
-    //   <div>
-    //     <button type="button" onClick={() => addFormFields()}>Add Another Photo</button>
-    //     <button type="submit">Submit</button>
-    //   </div>
-    // </form>
-    <form onSubmit={handleSubmit} autoComplete="off">
-      {imageURLs.map((element, index) => (
-        <div className='booking-link__container' key={index}>
-          <figure className='booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
-          <input
-            placeholder='Image URL'
-            className='booking_link__input'
-            type="text"
-            required
-            name="url"
-            value={element.url || ""}
-            onChange={e => handleChange(index, e)}
-          />
-          {index > 4 ?
-            <button type="button" className=" booking-link__button btn" onClick={() => removeFormFields(index)}>Remove</button>
-            : null}
+    <>
+      <h1 className='header-title'>Edit Your Images</h1>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        {imageURLs.map((element, index) => (
+          <div className='edit-listing-container' key={index}>
+            <span className='edit-listing__input-container'>
+              <figure className='booking-link__image edit-booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
+              <input
+                placeholder='Image URL'
+                className='booking_link__input edit-booking_link__input'
+                type="text"
+                required
+                name="url"
+                value={element.url || ""}
+                onChange={e => handleChange(index, e)}
+              />
+              {index > 4 ?
+                <button type="button" className="remove-booking-link__button btn" onClick={() => removeFormFields(index)}>X</button>
+                : null}
+            </span>
+          </div>
+        ))}
+        <div className='edit-booking-link__button-container'>
+          <button className='booking-link__button btn' type="button" onClick={() => addFormFields()}>Add Another Photo</button>
+          <button className='booking-link__button btn' type="submit" disabled={imageURLs.length < 5}>Submit</button>
         </div>
-      ))}
-      <div className='booking-link__button-container'>
-        <button className='booking-link__button btn' type="button" onClick={() => addFormFields()}>Add Another Photo</button>
-        <button className='booking-link__button btn' type="submit" disabled={imageURLs.length < 5}>Submit</button>
-      </div>
-    </form>
+      </form>
+    </>
   )
 }
 

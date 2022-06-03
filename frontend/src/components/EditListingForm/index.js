@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { ValidationError } from '../../utils/validationError';
 import { editListing } from '../../store/listings'
 import EditImageForm from '../EditImageForm'
+import { countries } from '../utils';
 
-const EditListingForm = ({ listing, visible, setVisible, user }) => {
+const EditListingForm = ({ listing, visible, showEditModal, setShowEditModal, user }) => {
 
   const dispatch = useDispatch();
   // const listings = useSelector(state => state.listings);
@@ -22,8 +23,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
   const [cleaningFee, updateCleaningFee] = useState(listing.cleaningFee);
   const [serviceFee, updateServiceFee] = useState(listing.serviceFee);
   const [accepted, setAccepted] = useState(false);
+  // const [showEditModal, setShowEditModal] = useState(true)
 
-  if (!visible) return null
+  if (!showEditModal) return null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,19 +52,20 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
     if (updatedListing) {
       setErrorMessages({});
       setAccepted(true)
+      setShowEditModal(true)
       // setId(newListing.id)
       // reset()
     }
   }
 
   return (
-    visible && !accepted ? (
+    showEditModal && !accepted ? (
       <div className='edit-listing-container container'>
         <h1 className='header-title'>Edit Your Listing</h1>
         <form className='edit-listing' onSubmit={handleSubmit}>
           <div className='edit-listing-form'>
-            <label className='edit-listing__input-label'>
-              Address
+            <span className='edit-listing__input-container'>
+              <p>Address</p>
               <input
                 className='edit-listing__input'
                 type='text'
@@ -70,9 +73,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={address}
                 onChange={(e) => updateAddress(e.target.value)}
               />
-            </label>
-            <label>
-              City
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>City</p>
               <input
                 className='edit-listing__input'
                 type='text'
@@ -80,9 +83,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={city}
                 onChange={(e) => updateCity(e.target.value)}
               />
-            </label>
-            <label>
-              State
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>State</p>
               <input
                 className='edit-listing__input'
                 type='text'
@@ -90,19 +93,25 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={state}
                 onChange={(e) => updateState(e.target.value)}
               />
-            </label>
-            <label>
-              country
-              <input
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>Country</p>
+              <select
                 className='edit-listing__input'
-                type='text'
-                required
                 value={country}
                 onChange={(e) => updateCountry(e.target.value)}
-              />
-            </label>
-            <label>
-              Name
+              >
+                <option value={country} selected>{country}</option>
+                {countries.map(country => {
+                  return <option
+                    key={country}
+                    value={country}
+                  >{country}</option>
+                })}
+              </select>
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>Name</p>
               <input
                 className='edit-listing__input'
                 type='text'
@@ -110,9 +119,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={name}
                 onChange={(e) => updateName(e.target.value)}
               />
-            </label>
-            <label>
-              Price
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>Price</p>
               <input
                 className='edit-listing__input'
                 type='number'
@@ -120,9 +129,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={price}
                 onChange={(e) => updatePrice(e.target.value)}
               />
-            </label>
-            <label>
-              Cleaning Fee
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>Cleaning Fee</p>
               <input
                 className='edit-listing__input'
                 type='number'
@@ -130,9 +139,9 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={cleaningFee}
                 onChange={(e) => updateCleaningFee(e.target.value)}
               />
-            </label>
-            <label>
-              Service Fee
+            </span>
+            <span className='edit-listing__input-container'>
+              <p>Service Fee</p>
               <input
                 className='edit-listing__input'
                 type='number'
@@ -140,17 +149,17 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
                 value={serviceFee}
                 onChange={(e) => updateServiceFee(e.target.value)}
               />
-            </label>
+            </span>
             <div className='edit-listing__btn-container'>
               <button className='edit-listing-form__btn btn' type="submit">Save and Edit Photos</button>
-              <button className='edit-listing-form__btn btn' onClick={() => setVisible(false)}>Cancel</button>
+              <button className='edit-listing-form__btn btn' onClick={() => setShowEditModal(false)}>Cancel</button>
             </div>
           </div>
         </form>
       </div>)
       :
       (
-        <EditImageForm listing={listing} />
+        <EditImageForm setShowEditModal={setShowEditModal} listing={listing} />
       )
   )
 };

@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
+  min-width: 30em;
 }
 
 .edit-listing-form {
@@ -13,9 +14,10 @@
 .edit-listing__input {
   margin: .25em;
   padding: 1em;
-  max-width: 100%;
+  min-width: 23em;
   border-radius: .50em;
   border: .5px solid #C8C8C8;
+  text-align: right;
 }
 
 .edit-listing-form__btn {
@@ -31,4 +33,10 @@
 .edit-listing__btn-container {
   display: flex;
   flex-direction: column;
+}
+
+.edit-listing__input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

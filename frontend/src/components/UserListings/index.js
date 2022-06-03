@@ -8,6 +8,9 @@ import EditListingForm from '../EditListingForm';
 import DeleteListingForm from '../DeleteListingForm';
 import NoListingsCard from '../NotListingsCard';
 import UnauthorizedUser from '../UnauthorizedUser';
+import EditListingFormModal from '../EditListingFormModal';
+import { Modal } from '../../context/Modal';
+
 
 const UserListings = ({ listings, user }) => {
   const dispatch = useDispatch()
@@ -15,9 +18,10 @@ const UserListings = ({ listings, user }) => {
   const [deleteForm, setDeleteForm] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
   const [deletedListing, setDeletedListing] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+
   const { id } = useParams();
-
-
 
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === user.id;
@@ -25,7 +29,7 @@ const UserListings = ({ listings, user }) => {
 
   useEffect(() => {
     dispatch(getListings())
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (selectedListing)
@@ -62,8 +66,18 @@ const UserListings = ({ listings, user }) => {
 
   if (user.id !== +id) {
     return (
-     <UnauthorizedUser type={'listing'} userId={user.id}/>
+      <UnauthorizedUser type={'listing'} userId={user.id} />
     )
+  }
+
+  const handleEditClick = (listing) => {
+    setSelectedListing(listing);
+    setShowEditModal(true);
+  }
+
+  const handleDeleteClick = (listing) => {
+    setDeletedListing(listing);
+    setShowDeleteModal(true);
   }
 
   return (
@@ -81,13 +95,32 @@ const UserListings = ({ listings, user }) => {
                   />
                   <div className='user-listing__btn-container'>
                     <button
-                      onClick={() => setDeletedListing(listing)}
+                      onClick={() => handleDeleteClick(listing)}
                       className='btn user-listing__btn'
                     >Remove Listing</button>
                     <button
-                      onClick={() => setSelectedListing(listing)}
+                      // onClick={() => setSelectedListing(listing)}
+                      onClick={() => handleEditClick(listing)}
                       className='btn user-listing__btn'
                     >Edit Listing</button>
+                    {showEditModal && (
+                      <Modal onClose={() => setShowEditModal(false)}>
+                        <EditListingForm
+                          listing={selectedListing}
+                          showEditModal={showEditModal}
+                          setShowEditModal={setShowEditModal}
+                          user={user} />
+                      </Modal>
+                    )}
+                    {showDeleteModal && (
+                      <Modal onClose={() => setShowDeleteModal(false)}>
+                        <DeleteListingForm
+                          listing={deletedListing}
+                          showDeleteModal={showDeleteModal}
+                          setShowDeleteModal={setShowDeleteModal}
+                          user={user} />
+                      </Modal>
+                    )}
                   </div>
                 </li>
               )
@@ -95,15 +128,15 @@ const UserListings = ({ listings, user }) => {
           </ul>
         </div>
         <div className='user-listings__edit-forms'>
-          {editForm &&
+          {/* {editForm &&
             <div>
               <EditListingForm
                 listing={selectedListing}
                 visible={editForm}
                 setVisible={setEditForm}
                 user={user} />
-            </div>}
-          {deleteForm &&
+            </div>} */}
+          {/* {deleteForm &&
             <div>
               <DeleteListingForm
                 listing={deletedListing}
@@ -112,7 +145,7 @@ const UserListings = ({ listings, user }) => {
                 user={user}
               />
             </div>
-          }
+          } */}
         </div>
       </div>
     </div>)
