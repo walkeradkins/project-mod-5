@@ -4,7 +4,7 @@ import listingsReducer, { deleteListing, getListings } from '../../store/listing
 import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
-const DeleteListingForm = ({ listing, visible, setVisible, user }) => {
+const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteModal, user }) => {
   const [deleted, setDeleted] = useState(false);
   // const [showConfirmation, setShowConfirmation] = useState(false)
   const dispatch = useDispatch();
@@ -26,14 +26,14 @@ const DeleteListingForm = ({ listing, visible, setVisible, user }) => {
       //
     }
     setDeleted(true);
-    setVisible(false);
+    setShowDeleteModal(false);
     history.push(`/users/${user.id}/listings`)
   };
 
   return (
     <div className='delete-listing__form'>
       <h3 className='delete-listing__title'>Remove {listing.name} from your listings?</h3>
-      <button className='delete-listing__btn btn' onClick={() => setVisible(false)}>Cancel</button>
+      <button className='delete-listing__btn btn' onClick={() => setShowDeleteModal(false)}>Cancel</button>
       <button className='delete-listing__btn btn' onClick={() => handleDelete(listing.id)}>Yes, Remove!</button>
     </div>
   )

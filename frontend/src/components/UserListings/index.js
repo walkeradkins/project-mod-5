@@ -18,7 +18,8 @@ const UserListings = ({ listings, user }) => {
   const [deleteForm, setDeleteForm] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
   const [deletedListing, setDeletedListing] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const { id } = useParams();
 
@@ -69,9 +70,14 @@ const UserListings = ({ listings, user }) => {
     )
   }
 
-  const handleClick = (listing) => {
+  const handleEditClick = (listing) => {
     setSelectedListing(listing);
-    setShowModal(true);
+    setShowEditModal(true);
+  }
+
+  const handleDeleteClick = (listing) => {
+    setDeletedListing(listing);
+    setShowDeleteModal(true);
   }
 
   return (
@@ -89,20 +95,29 @@ const UserListings = ({ listings, user }) => {
                   />
                   <div className='user-listing__btn-container'>
                     <button
-                      onClick={() => setDeletedListing(listing)}
+                      onClick={() => handleDeleteClick(listing)}
                       className='btn user-listing__btn'
                     >Remove Listing</button>
                     <button
                       // onClick={() => setSelectedListing(listing)}
-                      onClick={() => handleClick(listing)}
+                      onClick={() => handleEditClick(listing)}
                       className='btn user-listing__btn'
                     >Edit Listing</button>
-                    {showModal && (
-                      <Modal onClose={() => setShowModal(false)}>
+                    {showEditModal && (
+                      <Modal onClose={() => setShowEditModal(false)}>
                         <EditListingForm
                           listing={selectedListing}
-                          showModal={showModal}
-                          setShowModal={setShowModal}
+                          showEditModal={showEditModal}
+                          setShowEditModal={setShowEditModal}
+                          user={user} />
+                      </Modal>
+                    )}
+                    {showDeleteModal && (
+                      <Modal onClose={() => setShowDeleteModal(false)}>
+                        <DeleteListingForm
+                          listing={deletedListing}
+                          showDeleteModal={showDeleteModal}
+                          setShowDeleteModal={setShowDeleteModal}
                           user={user} />
                       </Modal>
                     )}
@@ -121,7 +136,7 @@ const UserListings = ({ listings, user }) => {
                 setVisible={setEditForm}
                 user={user} />
             </div>} */}
-          {deleteForm &&
+          {/* {deleteForm &&
             <div>
               <DeleteListingForm
                 listing={deletedListing}
@@ -130,7 +145,7 @@ const UserListings = ({ listings, user }) => {
                 user={user}
               />
             </div>
-          }
+          } */}
         </div>
       </div>
     </div>)

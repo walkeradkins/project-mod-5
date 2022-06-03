@@ -7,7 +7,7 @@ import { editListing } from '../../store/listings'
 import EditImageForm from '../EditImageForm'
 import { countries } from '../utils';
 
-const EditListingForm = ({ listing, visible, showModal, setShowModal, user }) => {
+const EditListingForm = ({ listing, visible, showEditModal, setShowEditModal, user }) => {
 
   const dispatch = useDispatch();
   // const listings = useSelector(state => state.listings);
@@ -23,9 +23,9 @@ const EditListingForm = ({ listing, visible, showModal, setShowModal, user }) =>
   const [cleaningFee, updateCleaningFee] = useState(listing.cleaningFee);
   const [serviceFee, updateServiceFee] = useState(listing.serviceFee);
   const [accepted, setAccepted] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(true)
+  // const [showEditModal, setShowEditModal] = useState(true)
 
-  if (!showModal) return null
+  if (!showEditModal) return null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,15 +52,14 @@ const EditListingForm = ({ listing, visible, showModal, setShowModal, user }) =>
     if (updatedListing) {
       setErrorMessages({});
       setAccepted(true)
-      setShowModal(true)
-      console.log('showEditModal', showEditModal)
+      setShowEditModal(true)
       // setId(newListing.id)
       // reset()
     }
   }
 
   return (
-    showModal && !accepted ? (
+    showEditModal && !accepted ? (
       <div className='edit-listing-container container'>
         <h1 className='header-title'>Edit Your Listing</h1>
         <form className='edit-listing' onSubmit={handleSubmit}>
@@ -153,14 +152,14 @@ const EditListingForm = ({ listing, visible, showModal, setShowModal, user }) =>
             </span>
             <div className='edit-listing__btn-container'>
               <button className='edit-listing-form__btn btn' type="submit">Save and Edit Photos</button>
-              <button className='edit-listing-form__btn btn' onClick={() => setShowModal(false)}>Cancel</button>
+              <button className='edit-listing-form__btn btn' onClick={() => setShowEditModal(false)}>Cancel</button>
             </div>
           </div>
         </form>
       </div>)
       :
       (
-        <EditImageForm setShowModal={setShowModal} listing={listing} />
+        <EditImageForm setShowEditModal={setShowEditModal} listing={listing} />
       )
   )
 };

@@ -9,7 +9,7 @@ import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 
 
-const EditImageForm = ({ listing, setShowModal }) => {
+const EditImageForm = ({ listing, setShowEditModal }) => {
   const sessionUser = useSelector(state => state.session.user);
   const { id, Images } = listing
   const [updated, setUpdated] = useState(false);
@@ -81,7 +81,7 @@ const EditImageForm = ({ listing, setShowModal }) => {
 
     setUpdated(true)
     history.push(`/users/${sessionUser.id}/listings`)
-    setShowModal(false)
+    setShowEditModal(false)
   }
   const reset = () => {
     setImageURLs([{ url: "" }]);

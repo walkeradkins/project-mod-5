@@ -4,14 +4,14 @@ import EditListingForm from '../EditListingForm';
 import './EditListingFormModal.css'
 
 
-function EditListingFormModal({showModal, setShowModal}) {
+function EditListingFormModal({showEditModal, setShowEditModal}) {
 
   return (
     <>
-      <button className='edit-listing-btn__modal btn' onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <EditListingForm setShowModal={setShowModal} showModal={showModal}/>
+      <button className='edit-listing-btn__modal btn' onClick={() => setShowEditModal(true)}>Log In</button>
+      {showEditModal && (
+        <Modal onClose={() => setShowEditModal(false)}>
+          <EditListingForm setShowEditModal={setShowEditModal} showEditModal={showEditModal}/>
         </Modal>
       )}
     </>
