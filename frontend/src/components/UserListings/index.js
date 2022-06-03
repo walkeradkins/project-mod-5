@@ -22,15 +22,13 @@ const UserListings = ({ listings, user }) => {
 
   const { id } = useParams();
 
-
-
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === user.id;
   }));
 
   useEffect(() => {
     dispatch(getListings())
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (selectedListing)

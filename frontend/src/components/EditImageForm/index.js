@@ -2,6 +2,7 @@ import './EditImageForm.css'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { getListings } from '../../store/listings';
 import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
 import { editImages, createNewImages } from '../../store/images'
@@ -11,9 +12,18 @@ import ErrorMessage from '../ErrorMessage/'
 const EditImageForm = ({ listing, setShowModal }) => {
   const sessionUser = useSelector(state => state.session.user);
   const { id, Images } = listing
+  const [updated, setUpdated] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([...Images])
+
+  const userListings = useSelector(state => state.listings.listings.filter(listing => {
+    return listing.userId === sessionUser.id;
+  }));
+
+  useEffect(() => {
+    dispatch(getListings())
+  }, [updated]);
 
   let handleChange = (i, e) => {
     let newFormValues = [...imageURLs];
@@ -69,11 +79,9 @@ const EditImageForm = ({ listing, setShowModal }) => {
       // TODO error handle
     }
 
-    if (updatedImages) {
-      reset();
-      setShowModal(false)
-      history.push(`/users/${sessionUser.id}/listings`)
-    }
+    setUpdated(true)
+    history.push(`/users/${sessionUser.id}/listings`)
+    setShowModal(false)
   }
   const reset = () => {
     setImageURLs([{ url: "" }]);
