@@ -31,8 +31,8 @@ const ReservationDetailsCard = ({ listing, user, booking }) => {
             <p className='reservation__text-value'>{totalDays}</p>
         </li>
         <li className='reservation__detail-booking'>
-            <p className='reservation__text'>Total Price</p>
-            <p className='reservation__text-value'>{totalPrice}</p>
+            <p className='reservation__text'>Total Price(USD)</p>
+            <p className='reservation__text-value'>${totalPrice}</p>
         </li>
         <li className='reservation__detail-booking'>
             <p className='reservation__text'>Address</p>

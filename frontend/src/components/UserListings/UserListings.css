@@ -1,0 +1,24 @@
+.user-listings__main {
+  display: flex;
+}
+
+.user-listings__cards {
+  margin: .2em .5em;
+  padding: .2em;
+  max-width: 50%;
+  border-radius: .50em;
+  border: .5px solid #C8C8C8;
+}
+
+.user-listing__btn {
+  align-self: center
+}
+.user-listing__btn-container {
+ display: flex;
+  margin-bottom: 1em;
+}
+
+.user-listing__btn {
+  margin: 1em;
+  padding: .5em
+}

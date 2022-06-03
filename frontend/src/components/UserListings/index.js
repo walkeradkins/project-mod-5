@@ -27,7 +27,7 @@ const UserListings = ({ listings, user }) => {
   useEffect(() => {
     if (selectedListing)
       setEditForm(true)
-      setDeleteForm(false)
+    setDeleteForm(false)
   }, [selectedListing])
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const UserListings = ({ listings, user }) => {
   useEffect(() => {
     if (deletedListing)
       setDeleteForm(true)
-      setEditForm(false)
+    setEditForm(false)
   }, [deletedListing])
 
   useEffect(() => {
@@ -51,8 +51,8 @@ const UserListings = ({ listings, user }) => {
   if (!userListings.length) {
     return (
       <>
-       <h2 className='notrips header-title'>Listings</h2>
-      <NoListingsCard />
+        <h2 className='notrips header-title'>Listings</h2>
+        <NoListingsCard />
       </>
     )
   }
@@ -64,49 +64,59 @@ const UserListings = ({ listings, user }) => {
         <ul>
           <li><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
           <li><Link to='/'>Back to all listings</Link></li>
-      </ul>
+        </ul>
       </div >
     )
   }
-return (
-  <div>
-    <h1 className='header-title'>Listings</h1>
-    <ul className='row'>
-      {userListings.map(listing => {
-        return (
-          listing.Images.length &&
-          <li className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={listing.id} >
-            <ListingCard listing={listing}
-              isSelected={selectedListing && listing.id === selectedListing.id}
-            />
-            <button
-              onClick={() => setDeletedListing(listing)}
-            >Remove Listing</button>
-            <button
-              onClick={() => setSelectedListing(listing)}
-            >Edit Listing</button>
-          </li>
-        )
-      })}
-    </ul>
-    {editForm &&
-      <div>
-        <EditListingForm
-          listing={selectedListing}
-          visible={editForm}
-          setVisible={setEditForm}
-          user={user} />
-      </div>}
-    {deleteForm &&
-      <div>
-        <DeleteListingForm
-        listing={deletedListing}
-        visible={deleteForm}
-        setVisible={setDeleteForm}
-        user={user}
-        />
+  return (
+    <div className='container'>
+      <h1 className='header-title'>Listings</h1>
+      <div className='user-listings__main'>
+        <div className='user-listings__listings-display'>
+          <ul className='row'>
+            {userListings.map(listing => {
+              return (
+                listing.Images.length &&
+                <li className="col-sm-6 col-md-4 user-listings__cards" key={listing.id} >
+                  <ListingCard listing={listing}
+                    isSelected={selectedListing && listing.id === selectedListing.id}
+                  />
+                  <div className='user-listing__btn-container'>
+                    <button
+                      onClick={() => setDeletedListing(listing)}
+                      className='btn user-listing__btn'
+                    >Remove Listing</button>
+                    <button
+                      onClick={() => setSelectedListing(listing)}
+                      className='btn user-listing__btn'
+                    >Edit Listing</button>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+        <div className='user-listings__edit-forms'>
+          {editForm &&
+            <div>
+              <EditListingForm
+                listing={selectedListing}
+                visible={editForm}
+                setVisible={setEditForm}
+                user={user} />
+            </div>}
+          {deleteForm &&
+            <div>
+              <DeleteListingForm
+                listing={deletedListing}
+                visible={deleteForm}
+                setVisible={setDeleteForm}
+                user={user}
+              />
+            </div>
+          }
+        </div>
       </div>
-    }
-  </div>)
+    </div>)
 }
 export default UserListings

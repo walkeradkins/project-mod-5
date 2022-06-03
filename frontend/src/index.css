@@ -29,6 +29,27 @@
   margin: .5em
 }
 
+.input-field {
+  padding: .85em 8em .85em 2em;
+  border-radius: 2em;
+  border: #E2E2E2 1px solid;
+  box-shadow: 0 3px 3px rgba(33,33,33,.2);
+  transition: box-shadow .3s;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.form__card {
+  border-radius: .5em;
+  box-shadow: 0 3px 7px rgba(33,33,33,.2);
+  margin: 1em;
+  position: relative;
+  background-color: white;
+  padding: .5em;
+}
+
 .header-subtitle {
   font-family: 'Montserrat', sans-serif;
   margin: .85em;
@@ -47,6 +68,7 @@
   max-width: 1440px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 4em;
 }
 
 .row{

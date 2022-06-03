@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
 
 
+
 const LoginFormPage = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -28,28 +29,31 @@ const LoginFormPage = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, index) => <li key={index}>{error}</li>)}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type='text'
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
+      <div className='login-form'>
+        <ul>
+          {errors.map((error, index) => <li key={index}>{error}</li>)}
+        </ul>
+        <label>
+          Username or Email
+          <input
+            type='text'
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Log In</button>
+      </div>
+
     </form>
   )
 }

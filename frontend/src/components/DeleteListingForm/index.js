@@ -31,10 +31,10 @@ const DeleteListingForm = ({ listing, visible, setVisible, user }) => {
   };
 
   return (
-    <div>
-      <h3>Are you sure that you want to delete this listing?</h3>
-      <button onClick={() => setVisible(false)}>Cancel</button>
-      <button onClick={() => handleDelete(listing.id)}>Yes, Delete</button>
+    <div className='delete-listing__form'>
+      <h3 className='delete-listing__title'>Remove {listing.name} from your listings?</h3>
+      <button className='delete-listing__btn btn' onClick={() => setVisible(false)}>Cancel</button>
+      <button className='delete-listing__btn btn' onClick={() => handleDelete(listing.id)}>Yes, Remove!</button>
     </div>
   )
 }
