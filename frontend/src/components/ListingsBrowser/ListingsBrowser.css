@@ -1,4 +1,4 @@
-/* .listings {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-} */
+.listings-browser__container {
+  padding-left: 5em;
+  padding-right: 5em;
+}

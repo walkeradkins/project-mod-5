@@ -6,7 +6,7 @@ import { ValidationError } from '../../utils/validationError';
 import { editListing } from '../../store/listings'
 import EditImageForm from '../EditImageForm'
 
-const EditListingForm = ({ listing, visible, setVisible, user }) => {
+const EditListingForm = ({ listing, visible, showModal, setShowModal, user }) => {
 
   const dispatch = useDispatch();
   // const listings = useSelector(state => state.listings);
@@ -23,7 +23,7 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
   const [serviceFee, updateServiceFee] = useState(listing.serviceFee);
   const [accepted, setAccepted] = useState(false);
 
-  if (!visible) return null
+  if (!showModal) return null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
   }
 
   return (
-    visible && !accepted ? (
+     showModal && !accepted ? (
       <div className='edit-listing-container container'>
         <h1 className='header-title'>Edit Your Listing</h1>
         <form className='edit-listing' onSubmit={handleSubmit}>
@@ -143,7 +143,7 @@ const EditListingForm = ({ listing, visible, setVisible, user }) => {
             </label>
             <div className='edit-listing__btn-container'>
               <button className='edit-listing-form__btn btn' type="submit">Save and Edit Photos</button>
-              <button className='edit-listing-form__btn btn' onClick={() => setVisible(false)}>Cancel</button>
+              <button className='edit-listing-form__btn btn' onClick={() => setShowModal(false)}>Cancel</button>
             </div>
           </div>
         </form>

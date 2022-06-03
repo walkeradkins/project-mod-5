@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  padding: 1.5em 7em;
+
   font-family: 'Montserat', sans-serif;
   position: sticky;
   top: 0;

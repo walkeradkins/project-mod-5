@@ -8,6 +8,9 @@ import EditListingForm from '../EditListingForm';
 import DeleteListingForm from '../DeleteListingForm';
 import NoListingsCard from '../NotListingsCard';
 import UnauthorizedUser from '../UnauthorizedUser';
+import EditListingFormModal from '../EditListingFormModal';
+import { Modal } from '../../context/Modal';
+
 
 const UserListings = ({ listings, user }) => {
   const dispatch = useDispatch()
@@ -15,6 +18,8 @@ const UserListings = ({ listings, user }) => {
   const [deleteForm, setDeleteForm] = useState(false);
   const [selectedListing, setSelectedListing] = useState(null);
   const [deletedListing, setDeletedListing] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   const { id } = useParams();
 
 
@@ -62,8 +67,13 @@ const UserListings = ({ listings, user }) => {
 
   if (user.id !== +id) {
     return (
-     <UnauthorizedUser type={'listing'} userId={user.id}/>
+      <UnauthorizedUser type={'listing'} userId={user.id} />
     )
+  }
+
+  const handleClick = (listing) => {
+    setSelectedListing(listing);
+    setShowModal(true);
   }
 
   return (
@@ -85,9 +95,19 @@ const UserListings = ({ listings, user }) => {
                       className='btn user-listing__btn'
                     >Remove Listing</button>
                     <button
-                      onClick={() => setSelectedListing(listing)}
+                      // onClick={() => setSelectedListing(listing)}
+                      onClick={() => handleClick(listing)}
                       className='btn user-listing__btn'
                     >Edit Listing</button>
+                    {showModal && (
+                      <Modal onClose={() => setShowModal(false)}>
+                        <EditListingForm
+                          listing={selectedListing}
+                          showModal={showModal}
+                          setShowModal={setShowModal}
+                          user={user} />
+                      </Modal>
+                    )}
                   </div>
                 </li>
               )
@@ -95,14 +115,14 @@ const UserListings = ({ listings, user }) => {
           </ul>
         </div>
         <div className='user-listings__edit-forms'>
-          {editForm &&
+          {/* {editForm &&
             <div>
               <EditListingForm
                 listing={selectedListing}
                 visible={editForm}
                 setVisible={setEditForm}
                 user={user} />
-            </div>}
+            </div>} */}
           {deleteForm &&
             <div>
               <DeleteListingForm
