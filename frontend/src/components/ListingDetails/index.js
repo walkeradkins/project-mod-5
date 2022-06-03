@@ -13,7 +13,7 @@ const ListingDetails = ({ user }) => {
   const dispatch = useDispatch();
   let selectedListing = useSelector(state => state.listings[id])
   const listingsArray = useSelector(state => state.listings.listings)
-  console.log('selecteListing without Images:: ', selectedListing)
+
   if (!selectedListing) {
     selectedListing = JSON.parse(localStorage.getItem('currentListing'))
   }
@@ -30,10 +30,7 @@ const ListingDetails = ({ user }) => {
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
   },[dispatch]);
 
-
-  console.log('selectedListing:: ', selectedListing);
   const { city, state, name, country, Images, price } = selectedListing;
-
 
   return (
     <div className='booking__display-header container'>

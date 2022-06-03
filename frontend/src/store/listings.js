@@ -65,7 +65,6 @@ export const createNewListing = (payload) => async dispatch => {
       let error;
       if (response.status === 422) {
         error = await response.json();
-        console.log('errors here', response.statusText)
         throw new ValidationError(error.errors, response.statusText);
       } else {
         let errorJSON;

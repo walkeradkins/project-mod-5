@@ -6,6 +6,7 @@ import { getListings } from '../../store/listings';
 import { getBookings } from '../../store/bookings';
 import { useParams, Link } from 'react-router-dom';
 import NoTripsCard from '../NoTripsCard'
+import UnauthorizedUser from '../UnauthorizedUser';
 
 const UserBookings = ({ user }) => {
   const { id } = useParams();
@@ -25,21 +26,15 @@ const UserBookings = ({ user }) => {
   if (!userBookings.length) {
     return (
       <>
-       <h2 className='notrips header-title'>Trips</h2>
-      <NoTripsCard />
+        <h2 className='notrips header-title'>Trips</h2>
+        <NoTripsCard />
       </>
     )
   }
 
   if (user.id !== +id) {
     return (
-      <div>
-        <p className='header-title'>Looks like these aren't your trips...</p>
-        <ul>
-          <li><Link to={`/users/${user.id}/bookings`}>Your Bookings</Link></li>
-          <li><Link to='/'>Back to all listings</Link></li>
-        </ul>
-      </div >
+      <UnauthorizedUser type={'booking'} userId={user.id} />
     )
   }
 

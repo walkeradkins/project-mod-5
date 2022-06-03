@@ -12,6 +12,7 @@ import ListingForm from "./components/ListingForm";
 import UserListings from "./components/UserListings";
 import UserBookings from "./components/UserBookings";
 import BookingDetails from "./components/BookingDetails";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,26 +35,31 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route exact path={'/'}>
-            <ListingsBrowser />
-          </Route>
-          <Route path={'/listings/:id'}>
-            <ListingDetails user={sessionUser} listings={listings}/>
-          </Route>
-          <Route path={'/listings'}>
-            <ListingForm />
-          </Route>
-          <Route exact path={'/users/:id/listings'}>
-            <UserListings listings={listings.listings} user={sessionUser}/>
-          </Route>
-          <Route exact path={'/users/:id/bookings'}>
-            <UserBookings user={sessionUser}/>
-          </Route>
-          <Route exact path={'/users/:id/bookings/:id'}>
-            <BookingDetails bookings={bookings} listings={listings} user={sessionUser}/>
-          </Route>
-        </Switch>
+        <PrivateRoute>
+          <Switch>
+            <Route exact path={'/'}>
+              <ListingsBrowser />
+            </Route>
+            <Route path={'/listings/:id'}>
+              <ListingDetails user={sessionUser} listings={listings} />
+            </Route>
+            <Route path={'/listings'}>
+              <ListingForm />
+            </Route>
+            <Route exact path={'/users/:id/listings'}>
+              <UserListings listings={listings.listings} user={sessionUser} />
+            </Route>
+            <Route exact path={'/users/:id/bookings'}>
+              <UserBookings user={sessionUser} />
+            </Route>
+            <Route exact path={'/users/:userId/bookings/:id'}>
+              <BookingDetails bookings={bookings} listings={listings} user={sessionUser} />
+            </Route>
+            <Route>
+              <h2>Page Not Found</h2>
+            </Route>
+          </Switch>
+        </PrivateRoute>
       )}
     </>
   );

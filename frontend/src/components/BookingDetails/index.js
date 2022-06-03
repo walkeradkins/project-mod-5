@@ -1,5 +1,5 @@
 import './BookingDetails.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { getTravelDates } from '../utils'
 import CancelBooking from '../CancelBooking';
 import { useState, useEffect } from 'react';
@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getListings } from '../../store/listings';
 import { getBookings } from '../../store/bookings';
 import PhotoCarousel from '../Carousel';
+import UnauthorizedUser from '../UnauthorizedUser';
 
 const BookingDetails = ({ user }) => {
-  const { id } = useParams();
+  const { userId, id } = useParams();
+
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.bookings)
   const listings = useSelector(state => state.listings);
@@ -22,9 +24,11 @@ const BookingDetails = ({ user }) => {
     dispatch(getBookings());
   }, [dispatch]);
 
-  console.log('listings:: ', listings.listings.length)
-  console.log('bookings:: ', bookings.bookings.length)
-
+  if (+userId !== +user.id) {
+    return (
+      <UnauthorizedUser type={'booking'} userId={user.id} />
+    )
+  }
   if (!bookings.bookings.length) return null;
   if (!listings.listings.length) return null;
 
@@ -39,6 +43,7 @@ const BookingDetails = ({ user }) => {
   const toggleCancel = () => {
     setDisplayCancelForm(prev => !prev);
   }
+
 
   return (
     <div className='booking__details container'>

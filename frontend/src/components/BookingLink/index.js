@@ -7,7 +7,7 @@ const BookingLink = ({ listing, booking, user }) => {
   const { id } = user;
 
   const dateString = getTravelDates(booking.startDate, booking.endDate);
-
+  if (!listing.Images) return null;
 
   return (
     <Link to={`/users/${id}/bookings/${booking.id}`}>

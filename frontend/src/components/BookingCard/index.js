@@ -2,15 +2,18 @@ import './BookingCard.css'
 import Calendar from 'react-calendar';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import 'react-calendar/dist/Calendar.css';
 import { ValidationError } from '../../utils/validationError';
 import { createNewBooking } from '../../store/bookings'
 
 
 const BookingCard = ({ listing, user }) => {
-  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
+
   const history = useHistory();
+  const dispatch = useDispatch();
+
 
   const formatDate = (dateString) => {
     const day = dateString.getDate();
@@ -30,6 +33,7 @@ const BookingCard = ({ listing, user }) => {
   let { price, cleaningFee, serviceFee } = listing
   price = parseInt(price);
   const [errorMessages, setErrorMessages] = useState({});
+  const [isUsersListing, setIsUsersListing] = useState(listing.userId == user.id)
   const [openCalendar, setOpenCalendar] = useState(false)
   const [date, setDate] = useState();
   const [checkIn, setCheckIn] = useState(today)
@@ -40,10 +44,10 @@ const BookingCard = ({ listing, user }) => {
   const [priceBeforeFees, setPriceBeforeFees] = useState((3 * +price))
   const [totalPrice, setTotalPrice] = useState((3 * +price) + cleaningFee + serviceFee);
   const [totalGuests, setTotalGuests] = useState(1);
-
   const handleClick = () => {
     setOpenCalendar(prev => !prev);
   }
+
 
   const countDays = (firstDate, secondDate) => {
     const days = Math.round((secondDate - firstDate) / (1000 * 60 * 60 * 24)) - 1;
@@ -78,7 +82,7 @@ const BookingCard = ({ listing, user }) => {
       totalPrice,
       totalGuests: +totalGuests
     }
-    console.log('payload:: ', payload)
+
     let newBooking;
 
     try {
@@ -90,13 +94,13 @@ const BookingCard = ({ listing, user }) => {
     }
 
     if (newBooking) {
-      console.log('here:: ', newBooking)
       setErrorMessages({});
       history.push(`/users/${user.id}/bookings`)
     }
   }
 
   return (
+    sessionUser &&
     <>
       <form className='booking' onSubmit={handleSubmit}>
         <span className='booking__header'>
@@ -138,7 +142,11 @@ const BookingCard = ({ listing, user }) => {
               <option>5</option>
             </select>
           </label>
-          <button className='btn btn-reserve' type='submit'>Reserve</button>
+          {!isUsersListing &&
+          <button className='btn btn-reserve' type='submit'>Reserve</button>}
+          {isUsersListing &&
+          <button className='booking__text btn' disabled='true'>This is how your listing appears to users</button>
+          }
           <p className='booking__text-charge'>You won't actually be charged</p>
           <ul>
             <li className='booking__text'>

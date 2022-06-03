@@ -7,7 +7,7 @@ import { editListing } from '../../store/listings'
 import EditImageForm from '../EditImageForm'
 
 const EditListingForm = ({ listing, visible, setVisible, user }) => {
-  console.log(listing)
+
   const dispatch = useDispatch();
   // const listings = useSelector(state => state.listings);
   const history = useHistory();

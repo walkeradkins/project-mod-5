@@ -77,7 +77,6 @@ const ListingForm = () => {
     !accepted ?
       (<div className='listing-container container'>
         <h1 className='header-title'>Open your door to hosting</h1>
-        {console.log(errorMessages.overall)}
         <ErrorMessage message={errorMessages.overall} />
         <form className='create-listing' onSubmit={handleSubmit}>
           <div className='listing-form'>
@@ -95,7 +94,7 @@ const ListingForm = () => {
             className='listing-form__input'
             type='text'
             placeholder='City'
-            minLength='3'
+            minLength='2'
             maxLength='50'
             required
             value={city}
@@ -105,7 +104,7 @@ const ListingForm = () => {
             className='listing-form__input'
             type='text'
             placeholder='State/Province'
-            minLength='3'
+            minLength='2'
             maxLength='50'
             required
             value={state}

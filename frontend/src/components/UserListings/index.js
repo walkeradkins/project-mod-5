@@ -1,5 +1,5 @@
 import './UserListings.css'
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getListings } from '../../store/listings'
@@ -7,6 +7,7 @@ import ListingCard from '../ListingCard';
 import EditListingForm from '../EditListingForm';
 import DeleteListingForm from '../DeleteListingForm';
 import NoListingsCard from '../NotListingsCard';
+import UnauthorizedUser from '../UnauthorizedUser';
 
 const UserListings = ({ listings, user }) => {
   const dispatch = useDispatch()
@@ -15,6 +16,8 @@ const UserListings = ({ listings, user }) => {
   const [selectedListing, setSelectedListing] = useState(null);
   const [deletedListing, setDeletedListing] = useState(null);
   const { id } = useParams();
+
+
 
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === user.id;
@@ -59,15 +62,10 @@ const UserListings = ({ listings, user }) => {
 
   if (user.id !== +id) {
     return (
-      <div>
-        <p className='header-title'>Looks like these aren't your listings...</p>
-        <ul>
-          <li><Link to={`/users/${user.id}/listings`}>Your Listings</Link></li>
-          <li><Link to='/'>Back to all listings</Link></li>
-        </ul>
-      </div >
+     <UnauthorizedUser type={'listing'} userId={user.id}/>
     )
   }
+
   return (
     <div className='container'>
       <h1 className='header-title'>Listings</h1>
