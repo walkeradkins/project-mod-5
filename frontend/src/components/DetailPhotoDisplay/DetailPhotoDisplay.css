@@ -1,15 +1,16 @@
 .listing-photos {
-  display: flex;
-
-  /* float: left; */
+  margin-left: 3em;
+  margin-right: 3em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .listing-photos__main {
-
   margin: .25em;
 }
 
 .listing-photos__sub {
+  display: flex;
   flex-wrap: wrap;
 }
 
@@ -19,7 +20,7 @@
 
 .listing__photos-sub {
   float: left;
-  padding-top: .25em;
+  padding: .25em;
   max-width: 50%;
   height: auto;
   flex: 0 0 50%;

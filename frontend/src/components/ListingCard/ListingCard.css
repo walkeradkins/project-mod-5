@@ -31,7 +31,6 @@
   margin: 0;
   background-size: cover;
   background-position: center;
-  border-radius: .60em;
 }
 
 .card__image::after{
@@ -40,7 +39,6 @@
   content: '';
 }
 
-
-.photo__carousel{
-  /* border: 1px red solid */
+.card__image{
+  overflow: hidden;
 }

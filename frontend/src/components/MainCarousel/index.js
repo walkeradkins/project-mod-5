@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom'
 const MainCarousel = ({ images, id }) => {
 
   return (
-    <div>
-      <Carousel className='main__carousel' infiniteLoop='true' showThumbs={false}>
+    <div className='tryHere'>
+      <Carousel
+        className='main__carousel'
+        infiniteLoop='true'
+        showThumbs={false}
+        showStatus={false}
+        transitionTime={250}
+        >
         {images.map(image =>
           <div className='image'>
             <Link to={`/listings/${id}`} className='card__link'>
-            <figure className='card__image' style={{ backgroundImage: `url( ${image.url} )` }} />
+              <figure className='card__image' style={{ backgroundImage: `url( ${image.url} )` }} />
             </Link>
           </div>
         )}

@@ -2,7 +2,7 @@ import './ListingCard.css'
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import PhotoCarousel from '../Carousel';
+import MainCarousel from '../MainCarousel';
 
 
 const ListingCard = ({ listing }) => {
@@ -16,9 +16,9 @@ const ListingCard = ({ listing }) => {
 
   return (
     <div className='card card__carousel'>
+        <MainCarousel images={Images} id={id}/>
+        {/* <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )` }} /> */}
       <Link to={`/listings/${id}`} className='card__link'>
-        {/* <PhotoCarousel images={Images} /> */}
-        <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )` }} />
         <div className='card__location'>
           <p className='card__text card__location'>{location}</p>
         </div>
