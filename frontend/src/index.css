@@ -66,7 +66,7 @@
 
 
 .container{
-  max-width: 1350px;
+  max-width: 1650px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 2em;
@@ -138,10 +138,12 @@
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding-left: 3em;
+  padding-right: 2em;
 }
 
 .grid-item {
-  margin: 1em;
+  margin: .5em;
 }
 /* x-sm */
 @media screen and ( min-width: 376px ){
@@ -181,4 +183,5 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
+
 }

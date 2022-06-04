@@ -9,7 +9,7 @@ const ListingCard = ({ listing }) => {
   const { id, city, state, name, country, Images, price } = listing;
 
   const displayLocation = (listing) => {
-    return (listing.country === 'USA') ? `${listing.city}, ${listing.state}` : `${listing.city}, ${listing.country}`;
+    return (listing.country === 'United States of America' || listing.country === 'USA') ? `${listing.city}, ${listing.state}` : `${listing.city}, ${listing.country}`;
   }
 
   const location = displayLocation(listing);

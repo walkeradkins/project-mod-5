@@ -49,7 +49,6 @@ const ListingForm = () => {
     try {
       newListing = await dispatch(createNewListing(payload));
     } catch (error) {
-      console.log('error here:: ', error)
       if (error instanceof ValidationError) setErrorMessages(error.errors)
       else setErrorMessages({ overall: error.toString() });
     }

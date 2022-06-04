@@ -14,7 +14,7 @@ const MainCarousel = ({ images, id }) => {
         transitionTime={250}
         >
         {images.map(image =>
-          <div className='image'>
+          <div className='image' key={id}>
             <Link to={`/listings/${id}`} className='card__link'>
               <figure className='card__image' style={{ backgroundImage: `url( ${image.url} )` }} />
             </Link>

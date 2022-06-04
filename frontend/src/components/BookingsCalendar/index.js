@@ -12,7 +12,6 @@ const BookingsCalendar = () => {
   return (
     <div>
       <Calendar minDate={new Date()} selectRange  onChange={onChange} value={date} />
-      {console.log(date.toString())}
     </div>
   )
 }

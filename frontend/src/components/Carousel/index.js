@@ -13,7 +13,7 @@ const PhotoCarousel = ({ images }) => {
         transitionTime={250}
       >
         {images.map(image =>
-          <div className='image'>
+          <div className='image' key={image.url}>
             <figure className='card__image' style={{ backgroundImage: `url( ${image.url} )` }} />
           </div>
         )}

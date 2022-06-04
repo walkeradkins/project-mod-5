@@ -27,7 +27,6 @@ const SearchBar = () => {
       .split(' ')
       .join('');
 
-    console.log('altered string: ', alteredLocation)
 
     if (sentLocation) {
       history.push(`/search/${alteredLocation}`)
@@ -36,16 +35,18 @@ const SearchBar = () => {
   };
 
   return (
-    <div className='navbar__search'>
+    <form onSubmit={handleSearch}>
+      <div className='navbar__search'>
+        <input
+          className='navbar__search-input'
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder='Search destinations'
+        />
+        <span onClick={handleSearch} className="material-symbols-outlined navbar__search-icon">search</span>
 
-      <input
-        className='navbar__search-input'
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
-      <span onClick={handleSearch} className="material-symbols-outlined navbar__search-icon">search</span>
-
-    </div>
+      </div>
+    </form>
   )
 }
 

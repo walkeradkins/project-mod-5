@@ -16,7 +16,6 @@ const CitySearch = () => {
 
   let {location} = useParams();
   location = location.toLowerCase();
-  console.log('city here: ', location)
   const sessionUser = useSelector(state => state.session.user);
   const filteredListings = useSelector(state => state.listings.listings.filter(listing => {
     return alterString(listing.city) === location

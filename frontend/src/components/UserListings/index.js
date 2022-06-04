@@ -55,18 +55,18 @@ const UserListings = ({ listings, user }) => {
     }
   }, [deleteForm])
 
+  if (user.id !== +id) {
+    return (
+      <UnauthorizedUser type={'listing'} userId={user.id} />
+    )
+  }
+
   if (!userListings.length) {
     return (
       <>
         <h2 className='notrips header-title'>Listings</h2>
         <NoListingsCard />
       </>
-    )
-  }
-
-  if (user.id !== +id) {
-    return (
-      <UnauthorizedUser type={'listing'} userId={user.id} />
     )
   }
 
