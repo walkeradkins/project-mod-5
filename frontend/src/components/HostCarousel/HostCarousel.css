@@ -1,0 +1,50 @@
+
+.host__container {
+  position: relative
+}
+
+.host__info {
+  position: absolute;
+  bottom: 0;
+  padding: 3em;
+  color: white;
+}
+
+.host__text1 {
+  font-family: 'Just Another Hand', cursive;
+}
+
+.host__text2 {
+  font-family: 'Freehand', cursive;
+}
+
+.host__text3 {
+  font-family: 'Cedarville Cursive', cursive;
+}
+
+.host__name {
+  font-size: 3em;
+  padding: .5em;
+}
+
+.host__location {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+}
+
+.host__image {
+  width: 100%;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.host__image::after{
+  display: block;
+  padding-top: 100%;
+  content: '';
+}
+
+.host__image{
+  overflow: hidden;
+}

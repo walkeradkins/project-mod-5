@@ -82,7 +82,7 @@ const UserListings = ({ listings, user }) => {
 
   return (
     <div className='container'>
-      <h1 className='header-title'>Listings</h1>
+      <h1 className='header-title'>Your Listings</h1>
       {/* <div className='user-listings__main'> */}
       <ul className='user-listings__grid'>
         {userListings.map(listing => {

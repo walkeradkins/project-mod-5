@@ -1,12 +1,32 @@
+.listing-form__image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 50em;
+  /* margin: 3em; */
+}
+
 .booking-link__container {
   display: flex;
+  position: relative;
+  justify-content: space-around;
   align-items: center;
-  justify-content: flex-start;
+  min-width: 100%;
+}
+
+.booking-link__image {
+  border-radius: .50em;
+  border: .5px solid #C8C8C8;
+}
+
+.listing-form__image-title {
+  text-align: center;
 }
 
 .booking_link__input {
-  height: 50%;
-  width: 50%;
+  padding: 1em;
+  width: 75%;
   padding: 1em;
   border-radius: .50em;
   border: .5px solid #C8C8C8;
@@ -19,9 +39,17 @@
 .booking-link__button-container {
   display: flex;
   flex-direction: column;
-  max-width: 25%;
   margin: 1.5em;
+  margin-bottom: 3em;
+  min-width: 50%;
   align-self: center
+}
+
+.remove-booking-link-listing__button {
+  position: absolute;
+  padding: .75em;
+  right: 1.85em;
+  border-radius: .5em;
 }
 
 .booking-link__button {

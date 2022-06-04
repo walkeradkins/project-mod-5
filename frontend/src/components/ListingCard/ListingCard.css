@@ -26,6 +26,15 @@
   color: #393939;
 }
 
+.card__value-container {
+  display: flex;
+}
+
+.card__value {
+ font-weight: 600;
+ margin-right: .25em;
+}
+
 .card__image {
   width: 100%;
   margin: 0;
