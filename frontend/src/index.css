@@ -26,7 +26,8 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 1.75em;
   font-weight: 600;
-  margin: .5em
+  margin: .5em;
+  margin-top: 1em;
 }
 
 .input-field {

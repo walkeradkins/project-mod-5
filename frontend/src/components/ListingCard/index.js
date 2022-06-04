@@ -15,10 +15,10 @@ const ListingCard = ({ listing }) => {
   const location = displayLocation(listing);
 
   return (
-    <div className='card card__carousel main-photo'>
-      <PhotoCarousel images={Images} />
+    <div className='card card__carousel'>
       <Link to={`/listings/${id}`} className='card__link'>
-        {/* <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )` }} /> */}
+        {/* <PhotoCarousel images={Images} /> */}
+        <figure className='card__image' style={{ backgroundImage: `url( ${Images[0].url} )` }} />
         <div className='card__location'>
           <p className='card__text card__location'>{location}</p>
         </div>
