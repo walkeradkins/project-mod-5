@@ -29,7 +29,7 @@ const UserListings = ({ listings, user }) => {
 
   useEffect(() => {
     dispatch(getListings())
-  }, [dispatch]);
+  }, [dispatch, showEditModal, showDeleteModal]);
 
   useEffect(() => {
     if (selectedListing)
@@ -38,10 +38,10 @@ const UserListings = ({ listings, user }) => {
   }, [selectedListing])
 
   useEffect(() => {
-    if (!editForm) {
+    if (!showEditModal) {
       setSelectedListing(null);
     }
-  }, [editForm])
+  }, [showEditModal])
 
   useEffect(() => {
     if (deletedListing)
@@ -83,60 +83,58 @@ const UserListings = ({ listings, user }) => {
   return (
     <div className='container'>
       <h1 className='header-title'>Listings</h1>
-      <div className='user-listings__main'>
-        <div className='user-listings__listings-display'>
-          <ul className='row'>
-            {userListings.map(listing => {
-              return (
-                listing.Images.length &&
-                <li className="col-sm-6 col-md-4 user-listings__cards" key={listing.id} >
-                  <ListingCard listing={listing}
-                    isSelected={selectedListing && listing.id === selectedListing.id}
-                  />
-                  <div className='user-listing__btn-container'>
-                    <button
-                      onClick={() => handleDeleteClick(listing)}
-                      className='btn user-listing__btn'
-                    >Remove Listing</button>
-                    <button
-                      // onClick={() => setSelectedListing(listing)}
-                      onClick={() => handleEditClick(listing)}
-                      className='btn user-listing__btn'
-                    >Edit Listing</button>
-                    {showEditModal && (
-                      <Modal onClose={() => setShowEditModal(false)}>
-                        <EditListingForm
-                          listing={selectedListing}
-                          showEditModal={showEditModal}
-                          setShowEditModal={setShowEditModal}
-                          user={user} />
-                      </Modal>
-                    )}
-                    {showDeleteModal && (
-                      <Modal onClose={() => setShowDeleteModal(false)}>
-                        <DeleteListingForm
-                          listing={deletedListing}
-                          showDeleteModal={showDeleteModal}
-                          setShowDeleteModal={setShowDeleteModal}
-                          user={user} />
-                      </Modal>
-                    )}
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-        <div className='user-listings__edit-forms'>
-          {/* {editForm &&
+      {/* <div className='user-listings__main'> */}
+      <ul className='user-listings__grid'>
+        {userListings.map(listing => {
+          return (
+            listing.Images.length &&
+            <li className="user-listings__cards" key={listing.id} >
+              <ListingCard listing={listing}
+                isSelected={selectedListing && listing.id === selectedListing.id}
+              />
+              <div className='user-listing__btn-container'>
+                <button
+                  onClick={() => handleDeleteClick(listing)}
+                  className='btn user-listing__btn'
+                >Remove Listing</button>
+                <button
+                  // onClick={() => setSelectedListing(listing)}
+                  onClick={() => handleEditClick(listing)}
+                  className='btn user-listing__btn'
+                >Edit Listing</button>
+                {showEditModal && (
+                  <Modal onClose={() => setShowEditModal(false)}>
+                    <EditListingForm
+                      listing={selectedListing}
+                      showEditModal={showEditModal}
+                      setShowEditModal={setShowEditModal}
+                      user={user} />
+                  </Modal>
+                )}
+                {showDeleteModal && (
+                  <Modal onClose={() => setShowDeleteModal(false)}>
+                    <DeleteListingForm
+                      listing={deletedListing}
+                      showDeleteModal={showDeleteModal}
+                      setShowDeleteModal={setShowDeleteModal}
+                      user={user} />
+                  </Modal>
+                )}
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+      {/* <div className='user-listings__edit-forms'>
+          {editForm &&
             <div>
               <EditListingForm
                 listing={selectedListing}
                 visible={editForm}
                 setVisible={setEditForm}
                 user={user} />
-            </div>} */}
-          {/* {deleteForm &&
+            </div>}
+          {deleteForm &&
             <div>
               <DeleteListingForm
                 listing={deletedListing}
@@ -145,9 +143,9 @@ const UserListings = ({ listings, user }) => {
                 user={user}
               />
             </div>
-          } */}
-        </div>
-      </div>
+          }
+        </div> */}
+      {/* </div> */}
     </div>)
 }
 export default UserListings

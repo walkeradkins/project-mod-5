@@ -43,3 +43,7 @@
 .card__carousel > .carousel {
   border: red 2px solid;
 }
+
+.photo__carousel{
+  border: 1px red solid
+}

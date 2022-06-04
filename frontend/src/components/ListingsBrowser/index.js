@@ -17,19 +17,16 @@ const ListingsBrowser = () => {
 
   return (
     sessionUser &&
-    <div className='container listings-browser__container'>
-      <ul className='row'>
-        {listings.map(listing => {
-          return (
-            listing.Images.length &&
-            <li className="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2" key={listing.id} >
-              <ListingCard listing={listing} />
-            </li>
-          )
-        })}
-      </ul>
-    </div>
-
+    <ul className='container grid-container'>
+      {listings.map(listing => {
+        return (
+          listing.Images.length &&
+          <li className="grid-item" key={listing.id} >
+            <ListingCard listing={listing} />
+          </li>
+        )
+      })}
+    </ul>
   )
 }
 

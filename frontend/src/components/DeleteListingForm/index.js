@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteModal, user }) => {
+
+  // console.log('listing here', listing)
   const [deleted, setDeleted] = useState(false);
   // const [showConfirmation, setShowConfirmation] = useState(false)
   const dispatch = useDispatch();
@@ -15,9 +17,15 @@ const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteMod
 
   const history = useHistory();
 
+
   useEffect(() => {
     dispatch(getListings())
   }, [deleted]);
+
+  if (!showDeleteModal) return null;
+  if (!listing) {
+    return null
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -31,6 +39,7 @@ const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteMod
   };
 
   return (
+    showDeleteModal &&
     <div className='delete-listing__form'>
       <h3 className='delete-listing__title'>Remove {listing.name} from your listings?</h3>
       <button className='delete-listing__btn btn' onClick={() => setShowDeleteModal(false)}>Cancel</button>

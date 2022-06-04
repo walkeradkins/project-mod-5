@@ -8,7 +8,6 @@ import EditImageForm from '../EditImageForm'
 import { countries } from '../utils';
 
 const EditListingForm = ({ listing, visible, showEditModal, setShowEditModal, user }) => {
-
   const dispatch = useDispatch();
   // const listings = useSelector(state => state.listings);
   const history = useHistory();
@@ -101,7 +100,7 @@ const EditListingForm = ({ listing, visible, showEditModal, setShowEditModal, us
                 value={country}
                 onChange={(e) => updateCountry(e.target.value)}
               >
-                <option value={country} selected>{country}</option>
+                <option value={country} defaultValue>{country}</option>
                 {countries.map(country => {
                   return <option
                     key={country}
