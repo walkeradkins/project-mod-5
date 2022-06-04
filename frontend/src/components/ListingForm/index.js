@@ -8,6 +8,7 @@ import { createNewListing } from '../../store/listings'
 import ErrorMessage from '../ErrorMessage/'
 import ImageForm from '../ImageForm';
 import { countries } from '../utils';
+import HostCarousel from '../HostCarousel';
 
 const ListingForm = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -48,9 +49,8 @@ const ListingForm = () => {
     try {
       newListing = await dispatch(createNewListing(payload));
     } catch (error) {
-      console.log('error here:: ', error)
       if (error instanceof ValidationError) setErrorMessages(error.errors)
-      else setErrorMessages({ overall: error.toString()});
+      else setErrorMessages({ overall: error.toString() });
     }
 
     if (newListing) {
@@ -74,97 +74,103 @@ const ListingForm = () => {
   }
 
   return (
-    !accepted ?
-      (<div className='listing-container container'>
-        <h1 className='header-title'>Open your door to hosting</h1>
-        <ErrorMessage message={errorMessages.overall} />
-        <form className='create-listing' onSubmit={handleSubmit}>
-          <div className='listing-form'>
-          <input
-            className='listing-form__input'
-            type='text'
-            minLength='3'
-            maxLength='50'
-            placeholder='Address'
-            required
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <input
-            className='listing-form__input'
-            type='text'
-            placeholder='City'
-            minLength='2'
-            maxLength='50'
-            required
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <input
-            className='listing-form__input'
-            type='text'
-            placeholder='State/Province'
-            minLength='2'
-            maxLength='50'
-            required
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-          <select
-            className='listing-form__input'
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          >
-            <option value='' selected disabled hidden>Country</option>
-            {countries.map(country => {
-              return <option
-              key={country}
-              value={country}
-              >{country}</option>
-            })}
-          </select>
-          <input
-            className='listing-form__input'
-            type='text'
-            placeholder='Name'
-            minLength='3'
-            maxLength='150'
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type='number'
-            className='listing-form__input'
-            placeholder='Price / Night'
-            required
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <input
-            type='number'
-            className='listing-form__input'
-            placeholder='One time cleaning fee'
-            required
-            value={cleaningFee}
-            onChange={(e) => setCleaningFee(e.target.value)}
-          />
-          <input
-            type='number'
-            className='listing-form__input'
-            placeholder='One time service fee'
-            required
-            value={serviceFee}
-            onChange={(e) => setServiceFee(e.target.value)}
-          />
-          <button className='btn listing-form__btn' type="submit">Upload Images</button>
-          </div>
-        </form>
-      </div>) :
-      <div className='listing-form__image-container container'>
-        <p className='header-title listing-form__header'>Please add at least five images of your home</p>
-        <ImageForm listingId={id} user={sessionUser}/>
+    <div className='listing-form__page'>
+      <div className='listing-form__header container'>
+        <div className='listing-form__header-left'>
+          <h1 className='listing-form__header-title'>Open your door to hosting</h1>
+        </div>
+        <div className='listing-form__header-right'>
+          <HostCarousel />
+        </div>
       </div>
+      {!accepted ?
+        (<div className='listing-container container'>
+          <ErrorMessage message={errorMessages.overall} />
+          <form className='create-listing' onSubmit={handleSubmit}>
+            <div className='listing-form'>
+              <input
+                className='listing-form__input'
+                type='text'
+                minLength='3'
+                maxLength='50'
+                placeholder='Address'
+                required
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+              <input
+                className='listing-form__input'
+                type='text'
+                placeholder='City'
+                minLength='2'
+                maxLength='50'
+                required
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <input
+                className='listing-form__input'
+                type='text'
+                placeholder='State/Province'
+                minLength='2'
+                maxLength='50'
+                required
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+              <select
+                className='listing-form__input'
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Country</option>
+                {countries.map(country => {
+                  return <option
+                    key={country}
+                    value={country}
+                  >{country}</option>
+                })}
+              </select>
+              <input
+                className='listing-form__input'
+                type='text'
+                placeholder='Name'
+                minLength='3'
+                maxLength='150'
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type='number'
+                className='listing-form__input'
+                placeholder='Price / Night'
+                required
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+              <input
+                type='number'
+                className='listing-form__input'
+                placeholder='One time cleaning fee'
+                required
+                value={cleaningFee}
+                onChange={(e) => setCleaningFee(e.target.value)}
+              />
+              <input
+                type='number'
+                className='listing-form__input'
+                placeholder='One time service fee'
+                required
+                value={serviceFee}
+                onChange={(e) => setServiceFee(e.target.value)}
+              />
+              <button className='btn listing-form__btn' type="submit">Upload Images</button>
+            </div>
+          </form>
+        </div>) :
+        <ImageForm listingId={id} user={sessionUser} />}
+    </div>
   )
 }
 

@@ -14,8 +14,6 @@ const ListingDetails = ({ user }) => {
   let selectedListing = useSelector(state => state.listings[id])
   const listingsArray = useSelector(state => state.listings.listings)
 
-  console.log('selectedListing', selectedListing)
-
   if (!selectedListing) {
     selectedListing = JSON.parse(localStorage.getItem('currentListing'))
   }

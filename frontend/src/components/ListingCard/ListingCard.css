@@ -26,12 +26,20 @@
   color: #393939;
 }
 
+.card__value-container {
+  display: flex;
+}
+
+.card__value {
+ font-weight: 600;
+ margin-right: .25em;
+}
+
 .card__image {
   width: 100%;
   margin: 0;
   background-size: cover;
   background-position: center;
-  border-radius: .60em;
 }
 
 .card__image::after{
@@ -40,6 +48,6 @@
   content: '';
 }
 
-.card__carousel > .carousel {
-  border: red 2px solid;
+.card__image{
+  overflow: hidden;
 }

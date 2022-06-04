@@ -23,6 +23,15 @@ const UserBookings = ({ user }) => {
   if (!listings.listings.length) return null;
   if (!userBookings) return null;
 
+  if (user.id !== +id) {
+    return (
+      <>
+      {console.log('here')}
+      <UnauthorizedUser type={'booking'} userId={user.id} />
+      </>
+    )
+  }
+
   if (!userBookings.length) {
     return (
       <>
@@ -32,11 +41,6 @@ const UserBookings = ({ user }) => {
     )
   }
 
-  if (user.id !== +id) {
-    return (
-      <UnauthorizedUser type={'booking'} userId={user.id} />
-    )
-  }
 
   return (
     <div className='container'>

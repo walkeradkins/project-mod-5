@@ -13,6 +13,7 @@ import UserListings from "./components/UserListings";
 import UserBookings from "./components/UserBookings";
 import BookingDetails from "./components/BookingDetails";
 import PrivateRoute from "./components/PrivateRoute";
+import CitySearch from './components/CitySearch'
 import PageNotFound from "./components/PageNotFound";
 
 function App() {
@@ -41,11 +42,14 @@ function App() {
             <Route exact path={'/'}>
               <ListingsBrowser />
             </Route>
-            <Route path={'/listings/:id'}>
+            <Route exact path={'/listings/:id'}>
               <ListingDetails user={sessionUser} listings={listings} />
             </Route>
             <Route path={'/listings'}>
               <ListingForm />
+            </Route>
+            <Route exact path={'/search/:location'}>
+              <CitySearch />
             </Route>
             <Route exact path={'/users/:id/listings'}>
               <UserListings listings={listings.listings} user={sessionUser} />

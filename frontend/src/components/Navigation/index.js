@@ -45,7 +45,7 @@ function Navigation({ isLoaded }) {
       </header>
       {isLoaded && sessionLinks}
     </nav>
-    {!sessionUser &&
+    {!sessionUser && isLoaded &&
     <div>
       <LandingImage />
       </div>}
