@@ -1,17 +1,23 @@
 .navbar__profilebutton {
   background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: #E2E2E2 1px solid;
-  border-radius: 1.5em;
-  padding: .5em 3em .3em .7em;
+  border-radius: 2em;
   transition: box-shadow .3s;
+  min-width: 6em;
+  padding: .4em;
 }
 
 .navbar__profilebutton:hover{
   box-shadow: 0 3px 7px rgba(33,33,33,.2);
+  cursor: pointer;
 }
 
 .navbar__threelines {
   font-size: 1.5em;
+  font-weight: bold;
 }
 
 .navbar__profile-dropdown {

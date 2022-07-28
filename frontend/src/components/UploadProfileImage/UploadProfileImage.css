@@ -1,0 +1,13 @@
+.upload__profile-image {
+  width: 2.5em;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: green 1px solid;
+}
+
+.upload__profile-image::after {
+  display: block;
+  padding-top: 100%;
+  content: "";
+}

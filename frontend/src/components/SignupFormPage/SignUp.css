@@ -1,0 +1,58 @@
+.file__upload-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.file__upload-choose {
+  max-width: 35%;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: .85em;
+  color: grey;
+  margin: 1em 0;
+  border-radius: 2em;
+  border: #E2E2E2 1px solid;
+  box-shadow: 0 3px 3px rgba(33,33,33,.2);
+  transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: ;
+  min-width: 58%;
+  min-height: 3em;
+}
+
+.file__upload-choose:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.file__upload-choose-text {
+  cursor: pointer;
+  min-width: 100%;
+  padding: 0em 2em;
+}
+
+.file__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: .9em;
+}
+
+.file__name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.file__trashcan {
+  margin-left: 1em;
+  padding: .15em;
+  border-radius: .25em;
+  cursor:pointer;
+  transition: .3s;
+}
+
+.file__trashcan:hover {
+  background-color:rgb(241, 241, 241)
+}
