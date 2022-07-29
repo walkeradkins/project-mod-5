@@ -1,0 +1,9 @@
+.listing__desc-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.listing__desc-header {
+  font-size: 1.5em;
+  margin: 2em 0;
+}

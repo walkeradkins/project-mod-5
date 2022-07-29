@@ -5,8 +5,6 @@ import { useHistory } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 
 const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteModal, user }) => {
-
-  // console.log('listing here', listing)
   const [deleted, setDeleted] = useState(false);
   // const [showConfirmation, setShowConfirmation] = useState(false)
   const dispatch = useDispatch();

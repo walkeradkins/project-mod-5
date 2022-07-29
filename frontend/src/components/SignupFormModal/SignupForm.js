@@ -25,6 +25,7 @@ const SignupForm = () => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      console.log(image, 'image')
       return dispatch(sessionActions.signUp({
         email,
         username,
@@ -89,7 +90,7 @@ const SignupForm = () => {
       />
       <div className='file__upload-container'>
         {!image && <div className='file__upload-choose'>
-          <label for='file' className='file__upload-choose-text'><span>Upload Profile Image</span></label>
+          <label htmlFor='file' className='file__upload-choose-text'><span>Upload Profile Image</span></label>
           <input
             id="file"
             style={{ visibility: "hidden" }}
@@ -101,7 +102,7 @@ const SignupForm = () => {
           />
         </div>}
         {image && <div className='file__upload-choose'>
-          <label for='file' className='file__upload-choose-text'>Choose A New Image</label>
+          <label htmlFor='file' className='file__upload-choose-text'>Choose A New Image</label>
           <input
             id="file"
             style={{ visibility: "hidden" }}

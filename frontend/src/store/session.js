@@ -17,6 +17,7 @@ const removeUser = () => {
   };
 };
 
+
 // thunk action creator
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -82,6 +83,7 @@ export const signUp = (user) => async (dispatch) => {
   const data = await res.json();
   dispatch(setUser(data.user));
 };
+
 
 // log out user
 export const logout = () => async dispatch => {

@@ -14,7 +14,6 @@ const Avatar = ({ userImage, userName }) => {
       <div className='avatar__no-image' >{userName[0]}</div>
     )
   }
-  console.log(userImage)
   return (
     <div>
       {avatar}

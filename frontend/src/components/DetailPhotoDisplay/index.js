@@ -1,7 +1,6 @@
 import './DetailPhotoDisplay.css'
 
 const DetailPhotoDisplay = ({ listing }) => {
-  // console.log('Listing from PhotoDisplay:: ', listing)
   const { Images } = listing
 
   const firstImage = Images[0].url;
@@ -12,7 +11,7 @@ const DetailPhotoDisplay = ({ listing }) => {
   }
 
   return (
-    <div className='listing-photos container'>
+    <div className='listing-photos'>
       <div className='listing-photos__main'>
         <figure
           className='listing-photos__main-image card__image'

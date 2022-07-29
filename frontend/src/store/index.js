@@ -4,12 +4,15 @@ import sessionReducer from "./session";
 import listingsReducer from "./listings";
 import imagesReducer from "./images";
 import bookingsReducer from "./bookings";
+import { usersReducer } from "./users";
+import { useState } from "react";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   listings: listingsReducer,
   images: imagesReducer,
-  bookings: bookingsReducer
+  bookings: bookingsReducer,
+  users: usersReducer
 });
 
 let enhancer;

@@ -8,7 +8,6 @@ import Avatar from '../Avatar';
 
 const ProfileButton = ({ user }) => {
   const { profileImageUrl, username } = user
-  console.log(user)
   const dispatch = useDispatch();
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false)
