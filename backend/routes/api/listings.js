@@ -129,7 +129,6 @@ router.post('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
 }));
 
 router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
-  // console.log('put', req.body)
   req.body.updatedPhotos.forEach(async item => {
     await Image.update(item, {
       where: { id: item.id }

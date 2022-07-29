@@ -40,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 150]
       },
      },
+    description: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [3, 2000]
+      },
+     },
     price: {
       type:DataTypes.NUMERIC,
       allowNull: false
