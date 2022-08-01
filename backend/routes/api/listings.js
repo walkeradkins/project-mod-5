@@ -7,7 +7,7 @@ const ImagesRepository = require('../../db/images-repository')
 
 // const { getUserToken } = require("../auth");
 
-const { Listing, Image } = require('../../db/models');
+const { Listing, Image, Review, Booking } = require('../../db/models');
 const router = express.Router();
 
 const validateListing = [
@@ -44,9 +44,7 @@ const validateListing = [
 
 router.get('/', asyncHandler(async (_req, res) => {
   const listings = await Listing.findAll({
-    include: {
-      model: Image,
-    }
+    include: [Image, Review]
   })
   return res.json(listings);
 }));
@@ -59,7 +57,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
       where: {
         listingId: id
       }
-    }
+    },
   });
   return res.json(listing);
 }));
