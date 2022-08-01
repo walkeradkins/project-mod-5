@@ -1,17 +1,15 @@
 import './Avatar.css'
 
-const Avatar = ({ userImage, userName }) => {
-
+const Avatar = ({ userImage, userName, size }) => {
   let avatar;
-
   if (userImage) {
     avatar = (
       <figure className='avatar__image'
-        style={{ backgroundImage: `url( ${userImage}` }} />
+        style={{ backgroundImage: `url( ${userImage}`, width: size }} />
     )
   } else {
     avatar = (
-      <div className='avatar__no-image' >{userName[0]}</div>
+      <div className='avatar__no-image' style={{width: size, height: size}}>{userName[0]}</div>
     )
   }
   return (

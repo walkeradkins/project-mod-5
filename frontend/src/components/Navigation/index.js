@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../ProfileButton';
@@ -11,8 +11,16 @@ import SearchBar from '../SearchBar';
 import Logo from '../Logo';
 
 function Navigation({ isLoaded }) {
+  const url = window.location.href;
+  const [isListings, setIsListings] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   let sessionLinks;
+
+  useEffect(() => {
+    if (url.includes('listings')) setIsListings(true);
+    return () => setIsListings(false);
+  }, [url])
+
   if (sessionUser) {
     sessionLinks = (
       <>
@@ -34,20 +42,21 @@ function Navigation({ isLoaded }) {
     );
   }
 
+
   return (
     <>
-    <nav className='navbar'>
-      <header className='navbar__header'>
-        <NavLink exact to="/">
-          <Logo />
-        </NavLink>
-      </header>
-      {isLoaded && sessionLinks}
-    </nav>
-    {!sessionUser && isLoaded &&
-    <div>
-      <LandingImage />
-      </div>}
+      <nav className={isListings ? 'navbar__listings' : 'navbar'}>
+        <header className='navbar__header'>
+          <NavLink exact to="/">
+            <Logo />
+          </NavLink>
+        </header>
+        {isLoaded && sessionLinks}
+      </nav>
+      {!sessionUser && isLoaded &&
+        <div>
+          <LandingImage />
+        </div>}
     </>
   );
 }

@@ -25,7 +25,6 @@ const SignupForm = () => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      console.log(image, 'image')
       return dispatch(sessionActions.signUp({
         email,
         username,

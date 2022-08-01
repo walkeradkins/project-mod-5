@@ -5,5 +5,28 @@
 
 .listing__desc-header {
   font-size: 1.5em;
+  margin: 2em 0 1em;
+}
+
+.listing__desc-underline {
+  border-bottom: 1px gainsboro solid;
   margin: 2em 0;
+  max-width: 95%;
+}
+
+.listing__desc-header-container {
+  display: flex;
+  justify-content: space-between;;
+  align-items: center;
+  position: relative;
+}
+
+.listing__desc-header-container-right {
+  position: absolute;
+  right: 2em;
+  top: 3em;
+}
+
+.listing__desc-text {
+  max-width: 90%;
 }

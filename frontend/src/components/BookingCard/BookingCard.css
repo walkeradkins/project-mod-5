@@ -1,6 +1,6 @@
 .booking {
   font-family: 'Montserrat', sans-serif;
-  min-width: 15em;
+  min-width: 20em;
   min-height: 27em;
   max-width: 25%;
   padding: 1em .5em 1em .5em;
@@ -61,10 +61,13 @@
 
 .booking__header {
   display: flex;
+  justify-content: space-around;
 }
 
 .btn.btn-reserve {
-  padding: 1em 6em;
+  padding: 1em 0;
+  margin-left: 1em;
+  width: 90%;
 }
 
 .booking__text-lastline {

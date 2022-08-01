@@ -39,7 +39,7 @@ const ProfileButton = ({ user }) => {
         <span className="material-symbols-outlined navbar__threelines" >
           menu
         </span>
-        <Avatar userImage={profileImageUrl} userName={username}/>
+        <Avatar userImage={profileImageUrl} userName={username} size={'1.5em'}/>
       </button>
       {
         showMenu && (

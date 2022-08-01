@@ -1,45 +1,46 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-body{
-  font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
 * {
   text-decoration: none;
   list-style-type: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .btn {
-  background-color:  #FF5A5F;
+  background-color: #ff5a5f;
   color: white;
   font-weight: 600;
-  padding: .75em 2em;
+  padding: 0.75em 2em;
   border: transparent;
-  border-radius: .5em;
+  border-radius: 0.5em;
 }
 
 .btn:hover {
-  background-color: #FF3339;
+  background-color: #ff3339;
   cursor: pointer;
 }
 .header-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.75em;
   font-weight: 600;
-  margin: .5em;
   margin-top: 1em;
 }
 
 .input-field {
-  padding: .85em 8em .85em 2em;
+  padding: 0.85em 8em 0.85em 2em;
   border-radius: 2em;
-  border: #E2E2E2 1px solid;
-  box-shadow: 0 3px 3px rgba(33,33,33,.2);
-  transition: box-shadow .3s;
+  border: #e2e2e2 1px solid;
+  box-shadow: 0 3px 3px rgba(33, 33, 33, 0.2);
+  transition: box-shadow 0.3s;
 }
 
 .input-field:focus {
@@ -47,36 +48,35 @@ body{
 }
 
 .form__card {
-  border-radius: .5em;
-  box-shadow: 0 3px 7px rgba(33,33,33,.2);
+  border-radius: 0.5em;
+  box-shadow: 0 3px 7px rgba(33, 33, 33, 0.2);
   margin: 1em;
   position: relative;
   background-color: white;
-  padding: .5em;
+  padding: 0.5em;
 }
 
 .header-subtitle {
-  font-family: 'Montserrat', sans-serif;
-  margin: .85em;
-  padding: .5em;
+  font-family: "Montserrat", sans-serif;
+  margin: 0.85em 0;
+  padding: 0.5em 0;
 }
 .btn:focus {
   outline: none;
 }
 
 .underline {
-  border-bottom: #E2E2E2 1px solid;
+  border-bottom: #e2e2e2 1px solid;
 }
 
-
-.container{
+.container {
   max-width: 1650px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 2em;
 }
 
-.row{
+.row {
   display: flex;
   flex-wrap: wrap;
   padding-right: 0;
@@ -95,46 +95,51 @@ body{
 .col-9,
 .col-10,
 .col-11,
-.col-12{
+.col-12 {
   float: left;
   padding-right: 10px;
   padding-left: 10px;
 }
-.col{
+.col {
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
 }
-.col-1{
+.col-1 {
   max-width: 8.3333333333333%;
   flex: 0 0 8.3333333333333%;
 }
-.col-2{
+.col-2 {
   max-width: 16.6666666666667%;
   flex: 0 0 16.6666666666667%;
 }
-.col-3{
+.col-3 {
   max-width: 25%;
   flex: 0 0 25%;
 }
-.col-4{
+.col-4 {
   max-width: 33.3333333333333%;
   flex: 0 0 33.3333333333333%;
 }
-.col-5{
+.col-5 {
   max-width: 41.6666666666667%;
   flex: 0 0 41.6666666666667%;
 }
-.col-6{
+.col-6 {
   max-width: 50%;
   flex: 0 0 50%;
 }
-.col-7{}
-.col-8{}
-.col-9{}
-.col-10{}
-.col-11{}
-.col-12{
+.col-7 {
+}
+.col-8 {
+}
+.col-9 {
+}
+.col-10 {
+}
+.col-11 {
+}
+.col-12 {
   max-width: 100%;
   flex: 0 0 100%;
 }
@@ -147,26 +152,25 @@ body{
 }
 
 .grid-item {
-  margin: .5em;
+  margin: 0.5em;
 }
 /* x-sm */
-@media screen and ( min-width: 376px ){
+@media screen and (min-width: 376px) {
   .grid-container {
     /* display: grid; */
     grid-template-columns: 1fr;
   }
 }
 
-@media screen and ( min-width: 550px ){
+@media screen and (min-width: 550px) {
   .grid-container {
     /* display: grid; */
     grid-template-columns: 1fr 1fr;
   }
 }
 
-
 /* md */
-@media screen and ( min-width: 950px ){
+@media screen and (min-width: 950px) {
   .grid-container {
     /* display: grid; */
     grid-template-columns: 1fr 1fr 1fr;
@@ -174,17 +178,29 @@ body{
 }
 
 /* lg */
-@media screen and ( min-width: 1120px ){
+@media screen and (min-width: 1120px) {
   .grid-container {
     /* display: grid; */
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  .listing__container {
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
 
 /* xl */
-@media screen and ( min-width: 1600px ){
+@media screen and (min-width: 1600px) {
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .listing__container {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
