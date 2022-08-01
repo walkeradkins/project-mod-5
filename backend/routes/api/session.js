@@ -12,7 +12,7 @@ const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please provide a valid email or username.'),
+    .withMessage('Please provide a valid email.'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.'),
@@ -27,7 +27,7 @@ router.post(
     const { credential, password } = req.body;
 
     const user = await User.login({ credential, password });
-
+    console.log('-------------------', user)
     if (!user) {
       const err = new Error('Login failed');
       err.status = 401;

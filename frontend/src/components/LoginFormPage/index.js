@@ -34,7 +34,7 @@ const LoginFormPage = () => {
           {errors.map((error, index) => <li key={index}>{error}</li>)}
         </ul>
         <label>
-          Username or Email
+          Email
           <input
             type='text'
             value={credential}

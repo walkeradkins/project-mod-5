@@ -30,6 +30,7 @@ export const login = (user) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(setUser(data.user));
+  console.log('data', data)
   return response;
 };
 
@@ -56,9 +57,10 @@ export const restoreUser = () => async dispatch => {
 //   return response;
 // };
 export const signUp = (user) => async (dispatch) => {
-  const { images, image, username, email, password } = user;
+  const { images, image, firstName, lastName, email, password } = user;
   const formData = new FormData();
-  formData.append("username", username);
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName);
   formData.append("email", email);
   formData.append("password", password);
 

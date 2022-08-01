@@ -13,7 +13,8 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
 
@@ -27,7 +28,8 @@ const SignupForm = () => {
       setErrors([]);
       return dispatch(sessionActions.signUp({
         email,
-        username,
+        firstName,
+        lastName,
         password,
         image
       })).catch(async (res) => {
@@ -66,9 +68,17 @@ const SignupForm = () => {
       <input
         className='input-field login-form__input'
         type='text'
-        placeholder='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder='First Name'
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        required
+      />
+      <input
+        className='input-field login-form__input'
+        type='text'
+        placeholder='Last Name'
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
         required
       />
       <input

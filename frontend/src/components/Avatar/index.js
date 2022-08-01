@@ -1,6 +1,6 @@
 import './Avatar.css'
 
-const Avatar = ({ userImage, userName, size }) => {
+const Avatar = ({ userImage, firstName, size }) => {
   let avatar;
   if (userImage) {
     avatar = (
@@ -9,7 +9,7 @@ const Avatar = ({ userImage, userName, size }) => {
     )
   } else {
     avatar = (
-      <div className='avatar__no-image' style={{width: size, height: size}}>{userName[0]}</div>
+      <div className='avatar__no-image' style={{width: size, height: size}}>{firstName[0]}</div>
     )
   }
   return (

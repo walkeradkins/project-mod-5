@@ -4,8 +4,8 @@ import Avatar from '../Avatar';
 const ListingDescription = ({ listing, users }) => {
   const { userId, city, state, name, country, Images, Reviews, price, description } = listing;
   if (!Object.keys(users).length) return null
-  const { username, profileImageUrl } = users[userId];
-
+  const { firstName, lastName, profileImageUrl } = users[userId];
+  console.log(users, 'PPPPPPPPPPPP')
   let displayDescription;
   if (description.length > 350) displayDescription = `${description.slice(0, 350)}...`;
   else displayDescription = description;
@@ -19,7 +19,7 @@ const ListingDescription = ({ listing, users }) => {
 
   const displayReview = (review) => {
     const { description, userId } = review;
-    const { username, profileImageUrl } = users[userId];
+    const { firstName, lastName, profileImageUrl } = users[userId];
     console.log(description)
   }
 
@@ -27,11 +27,11 @@ const ListingDescription = ({ listing, users }) => {
     <div className='listing__desc-container'>
       <div className='listing__desc-header-container'>
         <div className='listing__desc-header-container-left'>
-          <h2 className='listing__desc-header'>(Type of Home) hosted by {username}</h2>
+          <h2 className='listing__desc-header'>(Type of Home) hosted by {firstName}</h2>
           <span className='listing__desc-header-details'>Guests &#8226; bedrooms &#8226; beds &#8226; baths</span>
         </div>
         <div className='listing__desc-header-container-right'>
-          <Avatar userName={username} userImage={profileImageUrl} size={'2em'} />
+          <Avatar firstName={firstName} userImage={profileImageUrl} size={'2em'} />
         </div>
       </div>
       <div className='listing__desc-underline' />
