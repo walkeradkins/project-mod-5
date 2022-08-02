@@ -134,4 +134,36 @@ router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
   })
   return res.json(req.body.updatedPhotos);
 }));
+
+router.post('/:id(\\d+)/review', asyncHandler(async function (req, res, next) {
+  const {
+    userId,
+    listingId,
+    stars,
+    cleanliness,
+    communication,
+    checkin,
+    accuracy,
+    location,
+    value,
+    description,
+    date
+  } = req.body
+
+  const review = await Review.create({
+    userId,
+    listingId,
+    stars,
+    cleanliness,
+    communication,
+    checkin,
+    accuracy,
+    location,
+    value,
+    description,
+    date
+  })
+  return res.json(review);
+}));
+
 module.exports = router;

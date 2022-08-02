@@ -1,0 +1,49 @@
+.listing__desc-reviews-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2em;
+}
+
+.listing__desc-review-header {
+  display: flex;
+  align-items: center;
+}
+
+.listing__desc-review-details-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1em;
+  line-height: 1.25em;
+}
+
+.listing__desc-review-user {
+  font-weight: 500;
+}
+
+.listing__desc-review-date {
+  color: rgb(66, 66, 66);
+  font-size: .85em;
+}
+
+.listing__desc-review-desc {
+  margin: 1.5em 0;
+  line-height: 1.5em;
+}
+
+.listing__desc-reviews-button-container {
+  display: flex;
+}
+
+.review__button {
+  margin: 1em 1em 1em 0;
+  font-weight: 500;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 1em;
+  border-radius: .25em;
+  transition: .3s;
+}
+
+.review__button:hover {
+  background-color: rgb(234, 234, 234)
+}

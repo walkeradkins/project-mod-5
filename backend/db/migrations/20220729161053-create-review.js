@@ -19,6 +19,30 @@ module.exports = {
         references: { model: 'Listings'}
       },
       stars: {
+        type: Sequelize.FLOAT(1, 2),
+        allowNull: false,
+      },
+      cleanliness: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      communication: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      checkin: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      accuracy: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      location: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      value: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

@@ -5,7 +5,6 @@ const ListingDescription = ({ listing, users }) => {
   const { userId, city, state, name, country, Images, Reviews, price, description } = listing;
   if (!Object.keys(users).length) return null
   const { firstName, lastName, profileImageUrl } = users[userId];
-  console.log(users, 'PPPPPPPPPPPP')
   let displayDescription;
   if (description.length > 350) displayDescription = `${description.slice(0, 350)}...`;
   else displayDescription = description;
@@ -15,12 +14,6 @@ const ListingDescription = ({ listing, users }) => {
   let rating;
   if (reviews.length) {
     rating = reviews.reduce((a, b) => a.stars + b.stars) / reviews.length;
-  }
-
-  const displayReview = (review) => {
-    const { description, userId } = review;
-    const { firstName, lastName, profileImageUrl } = users[userId];
-    console.log(description)
   }
 
   return (
@@ -40,9 +33,6 @@ const ListingDescription = ({ listing, users }) => {
           {displayDescription}
         </div>
         <div className='listing__desc-underline' />
-      </div>
-      <div className='listing__desc-reviews-container'>
-        {reviews.map(review => displayReview(review))}
       </div>
     </div>
   );

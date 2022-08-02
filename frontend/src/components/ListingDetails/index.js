@@ -8,13 +8,16 @@ import { getListings } from '../../store/listings';
 import DetailPhotoDisplay from '../DetailPhotoDisplay';
 import ListingDescription from '../ListingDescription';
 import BookingCard from '../BookingCard';
+import Reviews from '../Reviews';
 
 const ListingDetails = ({ user, users }) => {
   const { id } = useParams();
-  const [isImages, setIsImages] = useState(true)
+  const [isImages, setIsImages] = useState(true);
+  const [review, setReview] = useState('');
   const dispatch = useDispatch();
-  let selectedListing = useSelector(state => state.listings[id])
-  const listingsArray = useSelector(state => state.listings.listings)
+  let selectedListing = useSelector(state => state.listings[id]);
+  const listingsArray = useSelector(state => state.listings.listings);
+  const newReviews = useSelector(state => state.reviews);
 
   if (!selectedListing) {
     selectedListing = JSON.parse(localStorage.getItem('currentListing'))
@@ -22,22 +25,25 @@ const ListingDetails = ({ user, users }) => {
 
   if (!selectedListing.Images) {
     selectedListing = listingsArray.find(listing => {
-      return listing.id == id;
+    return listing.id == id;
     })
   }
   const reviews = selectedListing.Reviews;
 
   let rating;
+
   if (reviews.length) {
-    rating = reviews.reduce((a, b) => a.stars + b.stars) / reviews.length;
+    const average = reviews.map(ele => ele.stars).reduce((a, b) => a + b) / reviews.length;
+    rating = parseFloat(average.toFixed(2));
   }
 
   useEffect(() => {
     dispatch(getListings());
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
-  }, [dispatch]);
+  }, [dispatch, review]);
 
-  const { city, state, name, country, Images, price, } = selectedListing;
+  const { userId, city, state, name, country, Images, price, } = selectedListing;
+  const homeOwner = users[userId];
 
   return (
     <div className='listing__container'>
@@ -64,6 +70,7 @@ const ListingDetails = ({ user, users }) => {
         <ListingDescription listing={selectedListing} users={users} />
         <BookingCard listing={selectedListing} user={user} />
       </div>
+      <Reviews props={{ selectedListing, users, newReviews, homeOwner, user, setReview }}/>
     </div>
   )
 }
