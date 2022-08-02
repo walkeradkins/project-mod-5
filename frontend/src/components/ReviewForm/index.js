@@ -4,7 +4,6 @@ import { getListings } from '../../store/listings';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import Rating from '../Rating';
-import ProgressBar from "@ramonak/react-progress-bar";
 import TextareaAutosize from 'react-textarea-autosize';
 import { getHumanMonth } from '../utils';
 import { createNewReview } from '../../store/reviews'

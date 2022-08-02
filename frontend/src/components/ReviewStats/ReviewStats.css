@@ -1,0 +1,24 @@
+.review__stat-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 4em;
+  margin-top: 1em;
+}
+
+.review__stat-bar-container {
+  align-items: center;
+  display: flex;
+}
+
+.stats__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 2em 0;
+}
+
+.review__stat-amount {
+  font-size: .75em;
+  font-weight: 500;
+  margin: 0 1em;
+}

@@ -70,7 +70,7 @@ const ListingDetails = ({ user, users }) => {
         <ListingDescription listing={selectedListing} users={users} />
         <BookingCard listing={selectedListing} user={user} />
       </div>
-      <Reviews props={{ selectedListing, users, newReviews, homeOwner, user, setReview }}/>
+      <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
     </div>
   )
 }

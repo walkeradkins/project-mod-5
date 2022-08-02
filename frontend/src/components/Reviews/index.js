@@ -1,9 +1,10 @@
 import './Reviews.css';
 import Avatar from '../Avatar';
 import ReviewForm from '../ReviewForm';
+import ReviewStats from '../ReviewStats';
 
 const Reviews = ({ props }) => {
-  const { users, selectedListing, homeOwner, user, setReview, newReviews } = props
+  const { users, selectedListing, homeOwner, user, setReview, newReviews, rating } = props
   if (!Object.keys(users).length) return null
   const { Reviews } = selectedListing
   const reviews = Reviews;
@@ -14,23 +15,12 @@ const Reviews = ({ props }) => {
     reviewsObj[review.id] = review
   })
 
-  console.log('reviewsObj', reviewsObj)
-
   if (Object.keys(newReviews).length) {
     for (let i in newReviews) {
-      console.log(i)
       if (!reviewsObj[i]) {
         reviews.push(newReviews[i])
-        console.log('get here')
       }
     }
-  }
-
-  console.log('reviews- AFFTER', reviews)
-
-
-  const handleReview = () => {
-
   }
 
   const displayReview = (review, index) => {
@@ -53,14 +43,22 @@ const Reviews = ({ props }) => {
 
   return (
     <>
+      {selectedListing.Reviews.length > 0 &&
+        <span className='reviews__header'>
+          <p className="material-symbols-outlined">star</p>
+          <p>{rating}</p>
+          <p>&#8226;</p>
+          <p>{reviews.length} reviews</p>
+        </span>}
+      {selectedListing.Reviews.length > 0 && <ReviewStats listing={selectedListing} />}
       <div className='listing__desc-reviews-container'>
         {reviews.map((review, index) => displayReview(review, index))}
       </div>
       <div className='listing__desc-reviews-button-container'>
         {reviews.length > 6 &&
-        <div className='review__button review__button-showall'>Show all {reviews.length} reviews</div>
+          <div className='review__button review__button-showall'>Show all {reviews.length} reviews</div>
         }
-        <ReviewForm homeOwner={homeOwner} listing={selectedListing} user={user} setReview={setReview}/>
+        <ReviewForm homeOwner={homeOwner} listing={selectedListing} user={user} setReview={setReview} />
       </div>
     </>
   );
