@@ -7,7 +7,7 @@ const ImagesRepository = require('../../db/images-repository')
 
 // const { getUserToken } = require("../auth");
 
-const { Listing, Image } = require('../../db/models');
+const { Listing, Image, Review, Booking } = require('../../db/models');
 const router = express.Router();
 
 const validateListing = [
@@ -44,9 +44,7 @@ const validateListing = [
 
 router.get('/', asyncHandler(async (_req, res) => {
   const listings = await Listing.findAll({
-    include: {
-      model: Image,
-    }
+    include: [Image, Review]
   })
   return res.json(listings);
 }));
@@ -59,7 +57,7 @@ router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
       where: {
         listingId: id
       }
-    }
+    },
   });
   return res.json(listing);
 }));
@@ -77,7 +75,13 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     name,
     price,
     cleaningFee,
-    serviceFee
+    serviceFee,
+    description,
+    type,
+    guests,
+    bedrooms,
+    beds,
+    baths,
   } = req.body;
 
   const listing = await Listing.create({
@@ -89,7 +93,13 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     name,
     price,
     cleaningFee,
-    serviceFee
+    serviceFee,
+    description,
+    type,
+    guests,
+    bedrooms,
+    beds,
+    baths,
   });
   return res.json(listing);
 }));
@@ -129,7 +139,6 @@ router.post('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
 }));
 
 router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
-  // console.log('put', req.body)
   req.body.updatedPhotos.forEach(async item => {
     await Image.update(item, {
       where: { id: item.id }
@@ -137,4 +146,36 @@ router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
   })
   return res.json(req.body.updatedPhotos);
 }));
+
+router.post('/:id(\\d+)/review', asyncHandler(async function (req, res, next) {
+  const {
+    userId,
+    listingId,
+    stars,
+    cleanliness,
+    communication,
+    checkin,
+    accuracy,
+    location,
+    value,
+    description,
+    date
+  } = req.body
+
+  const review = await Review.create({
+    userId,
+    listingId,
+    stars,
+    cleanliness,
+    communication,
+    checkin,
+    accuracy,
+    location,
+    value,
+    description,
+    date
+  })
+  return res.json(review);
+}));
+
 module.exports = router;

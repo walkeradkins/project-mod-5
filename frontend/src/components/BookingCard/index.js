@@ -30,7 +30,7 @@ const BookingCard = ({ listing, user }) => {
   const futureDate = new Date(day.setDate(day.getDate() + 3));
   const initialCheckOutDate = formatDate(futureDate)
 
-  let { price, cleaningFee, serviceFee } = listing
+  let { price, cleaningFee, serviceFee, guests } = listing
   price = parseInt(price);
   const [errorMessages, setErrorMessages] = useState({});
   const [isUsersListing, setIsUsersListing] = useState(listing.userId == user.id)
@@ -48,6 +48,8 @@ const BookingCard = ({ listing, user }) => {
     setOpenCalendar(prev => !prev);
   }
 
+  const guestAmount = [];
+  for (let i = 1; i <= guests; i++) guestAmount.push(i);
 
   const countDays = (firstDate, secondDate) => {
     const days = Math.round((secondDate - firstDate) / (1000 * 60 * 60 * 24)) - 1;
@@ -135,17 +137,13 @@ const BookingCard = ({ listing, user }) => {
               onChange={(e) => setTotalGuests(e.target.value)}
               value={totalGuests}
             >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+              {guestAmount.map(i => <option>{i}</option>)}
             </select>
           </label>
           {!isUsersListing &&
-          <button className='btn btn-reserve' type='submit'>Reserve</button>}
+            <button className='btn btn-reserve' type='submit'>Reserve</button>}
           {isUsersListing &&
-          <button className='booking__text btn' disabled='true'>This is how your listing appears to users</button>
+            <button className='booking__text btn' disabled='true'>This is how your listing appears to users</button>
           }
           <p className='booking__text-charge'>You won't actually be charged</p>
           <ul>

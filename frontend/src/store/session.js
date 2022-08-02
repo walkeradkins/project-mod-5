@@ -17,6 +17,7 @@ const removeUser = () => {
   };
 };
 
+
 // thunk action creator
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
@@ -55,9 +56,10 @@ export const restoreUser = () => async dispatch => {
 //   return response;
 // };
 export const signUp = (user) => async (dispatch) => {
-  const { images, image, username, email, password } = user;
+  const { images, image, firstName, lastName, email, password } = user;
   const formData = new FormData();
-  formData.append("username", username);
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName);
   formData.append("email", email);
   formData.append("password", password);
 
@@ -82,6 +84,7 @@ export const signUp = (user) => async (dispatch) => {
   const data = await res.json();
   dispatch(setUser(data.user));
 };
+
 
 // log out user
 export const logout = () => async dispatch => {

@@ -34,6 +34,24 @@ export const getTravelDates = (start, end) => {
   };
 };
 
+export const getHumanMonth = (index) => {
+  const months = {
+    0: 'January',
+    1: 'February',
+    2: 'March',
+    3: 'April',
+    4: 'May',
+    5: 'June',
+    6: 'July',
+    7: 'August',
+    8: 'September',
+    9: 'October',
+    10: 'November',
+    11: 'December'
+  }
+  return months[index.toString()]
+}
+
 export const getHumanDate = (start) => {
   const startArr = start.split('-');
   const months = {
@@ -310,3 +328,116 @@ export const countries = [
 	"Zimbabwe",
 	"Åland Islands"
 ];
+
+
+export const amenities = [
+  {
+    label: "Bathroom",
+    options: [
+      { label: "Bathtub", value: "bathtub" },
+      { label: "Hair dryer", value: "hairDryer" },
+      { label: "Shampoo", value: "shampoo" },
+      { label: "Hot water", value: "hotWater" },
+    ]
+  },
+  {
+    label: "Bedroom and laundry",
+    options: [
+      { label: "Washer", value: "washer" },
+      { label: "Dryer", value: "dryer" },
+      { label: "Essentials", value: "essentials" },
+      { label: "Hangers", value: "hangers" },
+      { label: "Bed linens", value: "bedLinens" },
+    ]
+  },
+  {
+    label: "Entertainment",
+    options: [
+      { label: "TV", value: "tv" },
+      { label: "Home Theatre", value: "homeTheatre" },
+    ]
+  },
+  {
+    label: "Heating and cooling",
+    options: [
+      { label: "Air conditioning", value: "airConditioning" },
+      { label: "Indoor fireplace", value: "firePlace" },
+      { label: "Heating", value: "heating" },
+    ]
+  },
+  {
+    label: "Internet and office",
+    options: [
+      { label: "Wifi", value: "wifi" },
+      { label: "Home office", value: "homeOffice" },
+    ]
+  },
+  {
+    label: "Kitchen and dining",
+    options: [
+      { label: "Kitchen", value: "kitchen" },
+      { label: "Refridgerator", value: "refridgerator" },
+      { label: "Microwave", value: "microwave" },
+      { label: "Cooking Basics", value: "cookingBasics" },
+      { label: "Dishwasher", value: "dishWasher" },
+      { label: "Coffee Maker", value: "coffeMaker" },
+    ]
+  },
+  {
+    label: "Services",
+    options: [
+      { label: "Pets Allowed", value: "petsAllowed" },
+      { label: "Long term stays allowed", value: "longTerm" },
+      { label: "Parking", value: "parking" },
+      { label: "Self check-in", value: "selfCheckIn" },
+      { label: "Keypad", value: "keyPad" },
+      { label: "Coffee Maker", value: "coffeMaker" },
+    ]
+  },
+  {
+    label: "Outfoor",
+    options: [
+      { label: "Private patio or balcony", value: "patio" },
+      { label: "Private backyard - Fully fenced", value: "backyard" },
+      { label: "BBQ gril", value: "bbqGrill" },
+      { label: "Swimming Pool", value: "swimmingPool" },
+      { label: "Hot tub", value: "hotTub" },
+      { label: "Waterfront", value: "waterFront" },
+    ]
+  },
+];
+
+export const amenitiesObj = {
+  bathtub: ['bathtub', 'Bathtub'],
+  shampoo: ['shower', 'Shampoo'],
+  hotWater: ['faucet', 'Hot water'],
+  hairDryer: ['air', 'Hair dryer'],
+  essentials: ['inventory', 'Essentials'],
+  hangers: ['checkroom', 'Hangers'],
+  bedLinens: ['bed', 'Bed linens'],
+  homeTheatre: ['theaters', 'Home theatre'],
+  airConditioning: ['ac_unit', 'Air conditioned'],
+  firePlace: ['fireplace', 'Fireplace'],
+  heating: ['hvac', 'Heating'],
+  wifi: ['wifi', 'Wifi'],
+  homeOffice: ['computer', 'Home office'],
+  kitchen: ['countertops', 'Kitchen'],
+  washer: ['local_laundry_service', 'Washing machine'],
+  dryer: ['local_laundry_service', 'Dryer'],
+  refridgerator: ['kitchen', 'Fridge'],
+  microwave: ['microwave_gen', 'Microwave'],
+  cookingBasics: ['restaurant', 'Cooking basics'],
+  dishWasher: ['dishwasher_gen', 'Dishwasher'],
+  petsAllowed: ['pets', 'Pets allowed'],
+  longTerm: ['event_available', 'Long-term stay Ok'],
+  parking: ['directions_car', 'Parking'],
+  selfCheckIn: ['done_outline', 'Self check-in'],
+  keyPad: ['keyboard', 'Key pad entry'],
+  coffeMaker: ['coffee_maker', 'Coffee maker'],
+  patio: ['deck', 'Patio or balcony'],
+  backyard: ['fence', 'Fenced yard'],
+  bbqGrill: ['outdoor_grill', 'BBQ grill'],
+  swimmingPool: ['pool', 'Swimming pool'],
+  hotTub: ['hot_tub', 'Hot tub'],
+  waterFront: ['water', 'Water front'],
+}

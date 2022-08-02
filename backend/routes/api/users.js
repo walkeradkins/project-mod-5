@@ -12,14 +12,14 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
-  check('username')
+  check('firstName')
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
+    .withMessage('Please provide a first name with at least 1 character.'),
+  check('lastName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 4 })
+    .withMessage('Please provide a last name with at least 1 character.'),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
@@ -27,15 +27,24 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+router.get('/', asyncHandler(async (_req, res) => {
+  const users = await User.findAll();
+  return res.json(users)
+}))
+
 router.post(
   '/',
   singleMulterUpload("image"),
   validateSignup,
   asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
-    const profileImageUrl = await singlePublicFileUpload(req.file)
-    console.log('ok ok ok ok ok ok ok ok ok ok ', profileImageUrl)
-    const user = await User.signup({ email, username, password, profileImageUrl });
+    const { email, password, firstName, lastName } = req.body;
+    let profileImageUrl;
+    if (req.file) {
+      profileImageUrl = await singlePublicFileUpload(req.file)
+    } else {
+      profileImageUrl = null;
+    }
+    const user = await User.signup({ email, firstName, lastName, password, profileImageUrl });
 
     await setTokenCookie(res, user);
 

@@ -2,12 +2,28 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-/* .booking__display-header-name {
-  font-size: 1.75em;
-  font-weight: 600;
-  margin: .5em
-} */
+.booking__display-rating-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: .85em;
+}
 
-/* .booking__display-header-location {
-  margin: .75em
-} */
+.booking__display-rating-container > p {
+  margin-right: .25em;
+}
+
+.booking__display-rating-amount {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.booking__display-rating-text {
+  font-weight: 500;
+}
+
+.listing__desc-bookingcard {
+  display: grid;
+  line-height: 1.5em;
+  grid-template-columns: 3fr 1fr;
+}

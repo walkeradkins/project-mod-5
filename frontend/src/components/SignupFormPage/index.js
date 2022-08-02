@@ -10,7 +10,8 @@ const SignUpPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return (
@@ -23,7 +24,8 @@ const SignUpPage = () => {
       setErrors([]);
       return dispatch(sessionActions.signUp({
         email,
-        username,
+        firstName,
+        lastName,
         password
       })).catch(async (res) => {
         const data = await res.json();
@@ -48,11 +50,20 @@ const SignUpPage = () => {
         />
       </label>
       <label>
-        Username
+        First Name
         <input
           type='text'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Last Name
+        <input
+          type='text'
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
           required
         />
       </label>

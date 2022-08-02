@@ -1,9 +1,9 @@
 .listing-photos {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-left: 3em;
-  padding-right: 3em;
-  max-width: 1350px;
+  /* padding-left: 3em;
+  padding-right: 3em; */
+  /* max-width: 1350px; */
 }
 
 .listing-photos__main {

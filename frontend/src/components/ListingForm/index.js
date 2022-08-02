@@ -7,12 +7,13 @@ import { ValidationError } from '../../utils/validationError';
 import { createNewListing } from '../../store/listings'
 import ErrorMessage from '../ErrorMessage/'
 import ImageForm from '../ImageForm';
-import { countries } from '../utils';
+import { countries, amenities } from '../utils';
 import HostCarousel from '../HostCarousel';
+import Select from 'react-select';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const ListingForm = () => {
   const sessionUser = useSelector(state => state.session.user);
-  // const listings = useSelector(state => state.listings);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -23,11 +24,38 @@ const ListingForm = () => {
   const [country, setCountry] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
+  const [homeType, setHomeType] = useState('');
+  const [bedrooms, setBedrooms] = useState('');
+  const [beds, setBeds] = useState('');
+  const [baths, setBaths] = useState('');
+  const [totalGuests, setTotalGuests] = useState('');
   const [accepted, setAccepted] = useState(false);
   const [cleaningFee, setCleaningFee] = useState('');
   const [serviceFee, setServiceFee] = useState('');
-
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [description, setDescription] = useState('');
   const [id, setId] = useState('');
+
+  const homeTypes = [
+    'Entire Home',
+    'Entire Cabin',
+    'Entire Cottage',
+    'Private Room',
+    'Camper/RV',
+    'Island',
+    'Shared Room'
+  ]
+
+  const nums = [];
+  for (let i = 1; i <= 30; i++) nums.push(i);
+
+  const bathNums = [];
+  for (let j = 1; j <= 10; j += 0.5) bathNums.push(j);
+
+  const getAmenitiesString = () => {
+    let amenities = selectedOption.map(option => option.value);
+    return amenities.join();
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +69,14 @@ const ListingForm = () => {
       name,
       price,
       cleaningFee,
-      serviceFee
+      serviceFee,
+      type: homeType,
+      guests: totalGuests,
+      bedrooms,
+      beds,
+      description,
+      baths,
+      amenities: getAmenitiesString()
     };
 
     let newListing;
@@ -69,6 +104,12 @@ const ListingForm = () => {
     setName('');
     setPrice('');
     setAccepted('');
+    setHomeType('');
+    setTotalGuests('');
+    setBedrooms('');
+    setBeds('');
+    setBaths('');
+    setDescription('');
     setCleaningFee(0);
     setServiceFee(0);
   }
@@ -87,7 +128,7 @@ const ListingForm = () => {
         (<div className='listing-container container'>
           <ErrorMessage message={errorMessages.overall} />
           <form className='create-listing' onSubmit={handleSubmit}>
-            <div className='listing-form'>
+            <div className='listing-form__top'>
               <input
                 className='listing-form__input'
                 type='text'
@@ -141,9 +182,11 @@ const ListingForm = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
+            </div>
+            <div className='listing-form__middle'>
               <input
                 type='number'
-                className='listing-form__input'
+                className='listing-form__input-middle'
                 placeholder='Price / Night'
                 required
                 value={price}
@@ -151,7 +194,7 @@ const ListingForm = () => {
               />
               <input
                 type='number'
-                className='listing-form__input'
+                className='listing-form__input-middle'
                 placeholder='One time cleaning fee'
                 required
                 value={cleaningFee}
@@ -159,14 +202,108 @@ const ListingForm = () => {
               />
               <input
                 type='number'
-                className='listing-form__input'
+                className='listing-form__input-middle'
                 placeholder='One time service fee'
                 required
                 value={serviceFee}
                 onChange={(e) => setServiceFee(e.target.value)}
               />
-              <button className='btn listing-form__btn' type="submit">Upload Images</button>
+              <select
+                className='listing-form__input-middle'
+                value={homeType}
+                onChange={(e) => setHomeType(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Home Type</option>
+                {homeTypes.map(type => {
+                  return <option
+                    key={type}
+                    value={type}
+                  >{type}</option>
+                })}
+              </select>
+              <select
+                className='listing-form__input-middle'
+                value={totalGuests}
+                onChange={(e) => setTotalGuests(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Total Guests</option>
+                {nums.map((num, ind) => {
+                  if (ind < 30) {
+                    return <option
+                      key={num}
+                      value={num}
+                    >{num}</option>
+                  }
+                })}
+              </select>
+              <select
+                className='listing-form__input-middle'
+                value={bedrooms}
+                onChange={(e) => setBedrooms(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Bedrooms</option>
+                {nums.map((num, ind) => {
+                  if (ind < 15) {
+                    return <option
+                      key={num}
+                      value={num}
+                    >{num}</option>
+                  }
+                })}
+              </select>
+              <select
+                className='listing-form__input-middle'
+                value={beds}
+                onChange={(e) => setBeds(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Beds</option>
+                {nums.map((num, ind) => {
+                  if (ind < 15) {
+                    return <option
+                      key={num}
+                      value={num}
+                    >{num}</option>
+                  }
+                })}
+              </select>
+              <select
+                className='listing-form__input-middle'
+                value={baths}
+                onChange={(e) => setBaths(e.target.value)}
+              >
+                <option value='' defaultValue disabled hidden>Baths</option>
+                {bathNums.map((num, ind) => {
+                  return <option
+                    key={num}
+                    value={num}
+                  >{num}</option>
+                })}
+              </select>
             </div>
+            <div className='listing-form__amenities'>
+              <Select
+                defaultValue={selectedOption}
+                closeMenuOnSelect={false}
+                isMulti
+                placeholder='Ameneties...'
+                onChange={setSelectedOption}
+                options={amenities}
+              />
+            </div>
+            <div className='listing-form__bottom'>
+              <div className='listing-form__textarea-container'>
+                <TextareaAutosize
+                  className='listing-form__textarea'
+                  maxLength={2000}
+                  placeholder='Tell us about your home'
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  minRows={5}
+                />
+                <p className='rating__charcount'>{`${description.length}/2000`}</p>
+              </div>
+            </div>
+            <button className='btn listing-form__btn' type="submit">Upload Images</button>
           </form>
         </div>) :
         <ImageForm listingId={id} user={sessionUser} />}

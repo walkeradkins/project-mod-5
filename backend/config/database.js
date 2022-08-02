@@ -1,9 +1,9 @@
 const config = require('./index');
-
 const db = config.db;
+
 const username = db.username;
 const password = db.password;
-const profileImageUrl = db.profileImageUrl
+// const profileImageUrl = db.profileImageUrl
 const database = db.database;
 const host = db.host;
 
@@ -11,7 +11,7 @@ module.exports = {
   development: {
     username,
     password,
-    profileImageUrl,
+    // profileImageUrl,
     database,
     host,
     dialect: 'postgres',

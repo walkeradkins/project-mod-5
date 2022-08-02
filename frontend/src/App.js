@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import { getListings } from './store/listings'
 import { getBookings } from './store/bookings'
+import { getAllUsers } from "./store/users";
 import Navigation from "./components/Navigation";
 import ListingsBrowser from "./components/ListingsBrowser";
 import ListingDetails from "./components/ListingDetails";
@@ -26,12 +27,15 @@ function App() {
 
   const sessionUser = useSelector(state => state.session.user);
   const listings = useSelector(state => state.listings);
-  const bookings = useSelector(state => state.bookings)
+  const bookings = useSelector(state => state.bookings);
+  const users = useSelector(state => state.users);
 
   useEffect(() => {
     dispatch(getListings());
     dispatch(getBookings())
+    dispatch(getAllUsers())
   }, [dispatch]);
+
 
   return (
     <>
@@ -43,7 +47,7 @@ function App() {
               <ListingsBrowser />
             </Route>
             <Route exact path={'/listings/:id'}>
-              <ListingDetails user={sessionUser} listings={listings} />
+              <ListingDetails user={sessionUser} listings={listings} users={users}/>
             </Route>
             <Route path={'/listings'}>
               <ListingForm />

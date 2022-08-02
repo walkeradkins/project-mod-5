@@ -26,7 +26,6 @@ const UserBookings = ({ user }) => {
   if (user.id !== +id) {
     return (
       <>
-      {console.log('here')}
       <UnauthorizedUser type={'booking'} userId={user.id} />
       </>
     )

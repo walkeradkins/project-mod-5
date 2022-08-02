@@ -3,11 +3,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.5em 7em;
-
   font-family: 'Montserat', sans-serif;
   position: sticky;
+  min-width: 100%;
   top: 0;
-  /* margin-bottom: 3em; */
+  background-color: white;
+  border-bottom: #E2E2E2 1px solid;
+  z-index: 10;
+}
+
+.navbar__listings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5em 7em;
+  font-family: 'Montserat', sans-serif;
+  min-width: 100%;
+  top: 0;
   background-color: white;
   border-bottom: #E2E2E2 1px solid;
   z-index: 10;

@@ -13,7 +13,8 @@ const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
 
@@ -27,7 +28,8 @@ const SignupForm = () => {
       setErrors([]);
       return dispatch(sessionActions.signUp({
         email,
-        username,
+        firstName,
+        lastName,
         password,
         image
       })).catch(async (res) => {
@@ -66,9 +68,17 @@ const SignupForm = () => {
       <input
         className='input-field login-form__input'
         type='text'
-        placeholder='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        placeholder='First Name'
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
+        required
+      />
+      <input
+        className='input-field login-form__input'
+        type='text'
+        placeholder='Last Name'
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
         required
       />
       <input
@@ -89,7 +99,7 @@ const SignupForm = () => {
       />
       <div className='file__upload-container'>
         {!image && <div className='file__upload-choose'>
-          <label for='file' className='file__upload-choose-text'><span>Upload Profile Image</span></label>
+          <label htmlFor='file' className='file__upload-choose-text'><span>Upload Profile Image</span></label>
           <input
             id="file"
             style={{ visibility: "hidden" }}
@@ -101,7 +111,7 @@ const SignupForm = () => {
           />
         </div>}
         {image && <div className='file__upload-choose'>
-          <label for='file' className='file__upload-choose-text'>Choose A New Image</label>
+          <label htmlFor='file' className='file__upload-choose-text'>Choose A New Image</label>
           <input
             id="file"
             style={{ visibility: "hidden" }}

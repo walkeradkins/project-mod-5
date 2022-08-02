@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Listings', {
+    return queryInterface.createTable('Reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,64 +13,45 @@ module.exports = {
         allowNull: false,
         references: { model: 'Users'}
       },
-      address: {
-        type: Sequelize.STRING(50),
+      listingId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: 'Listings'}
+      },
+      stars: {
+        type: Sequelize.FLOAT(1, 2),
         allowNull: false,
       },
-      city: {
-        type: Sequelize.STRING(50),
+      cleanliness: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      state: {
-        type: Sequelize.STRING(50),
+      communication: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      country: {
-        type: Sequelize.STRING(50),
+      checkin: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      name: {
-        type: Sequelize.STRING(150),
+      accuracy: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      type: {
-        type: Sequelize.STRING(150),
+      location: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      value: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING(2000),
+        type: Sequelize.STRING(500),
         allowNull: false,
       },
-      amenities: {
-        type: Sequelize.STRING(2000),
-        allowNull: false,
-      },
-      price: {
-        type: Sequelize.NUMERIC,
-        allowNull: false,
-      },
-      cleaningFee: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      serviceFee: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      guests: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      bedrooms: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      beds: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      baths: {
-        type: Sequelize.FLOAT(1, 1),
+      date: {
+        type: Sequelize.STRING(100),
         allowNull: false,
       },
       createdAt: {
@@ -86,6 +67,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Listings');
+    return queryInterface.dropTable('Reviews');
   }
 };

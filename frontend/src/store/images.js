@@ -49,7 +49,6 @@ export const createNewImages = (payload, id) => async dispatch => {
 }
 
 export const editImages = (payload, id) => async dispatch => {
-  // console.log('editphots: ', payload)
   const response = await csrfFetch(`/api/listings/${id}/images`, {
     method: 'PUT',
     headers: {
