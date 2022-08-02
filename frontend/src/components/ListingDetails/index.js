@@ -9,6 +9,7 @@ import DetailPhotoDisplay from '../DetailPhotoDisplay';
 import ListingDescription from '../ListingDescription';
 import BookingCard from '../BookingCard';
 import Reviews from '../Reviews';
+import Map from '../Map';
 
 const ListingDetails = ({ user, users }) => {
   const { id } = useParams();
@@ -71,6 +72,7 @@ const ListingDetails = ({ user, users }) => {
         <BookingCard listing={selectedListing} user={user} />
       </div>
       <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
+      <Map />
     </div>
   )
 }

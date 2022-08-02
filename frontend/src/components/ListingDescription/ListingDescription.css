@@ -30,3 +30,39 @@
 .listing__desc-text {
   max-width: 90%;
 }
+
+.listing__desc-amenities-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.amenities__header {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-bottom: 1em;
+}
+
+.amenity__container {
+  font-size: 1em;
+  margin: .75em 0;
+  display: flex;
+}
+
+.amenity__container > span {
+  margin-right: .5em;
+}
+
+.amenity__button {
+  margin: 1em 1em 1em 0;
+  font-weight: 500;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 1em;
+  max-width: 14em;
+  border-radius: .25em;
+  transition: .3s;
+}
+
+.amenity__button:hover {
+  background-color: rgb(234, 234, 234)
+}

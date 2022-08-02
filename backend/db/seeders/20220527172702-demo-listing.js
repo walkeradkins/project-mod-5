@@ -11,9 +11,15 @@ module.exports = {
       country: 'USA',
       name: 'Garden Villa',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 550,
       cleaningFee: 50,
-      serviceFee: 100
+      serviceFee: 100,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 2,
@@ -23,9 +29,15 @@ module.exports = {
       country: 'Mexico',
       name: 'Rooftop apartment with pool!',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Private room',
+      guests: 2,
+      bedrooms: 1,
+      beds: 1,
+      baths: 1.5,
       price: 120,
       cleaningFee: 45,
-      serviceFee: 150
+      serviceFee: 150,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 3,
@@ -35,9 +47,15 @@ module.exports = {
       country: 'USA',
       name: 'Desert Hideout ',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 95,
       cleaningFee: 35,
-      serviceFee: 95
+      serviceFee: 95,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 3,
@@ -47,9 +65,15 @@ module.exports = {
       country: 'USA',
       name: 'Welcome to my mountain retreat!',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire cabin',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 250,
       cleaningFee: 55,
-      serviceFee: 80
+      serviceFee: 80,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 3,
@@ -59,9 +83,15 @@ module.exports = {
       country: 'Indonesia',
       name: 'Jungle home surrounded by nature!',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 5,
+      bedrooms: 3,
+      beds: 5,
+      baths: 3,
       price: 55,
       cleaningFee: 20,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -71,9 +101,15 @@ module.exports = {
       country: 'USA',
       name: 'Steps from the beach! Wonderful natural light',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 10,
+      bedrooms: 4,
+      beds: 8,
+      baths: 3,
       price: 120,
       cleaningFee: 200,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -83,9 +119,15 @@ module.exports = {
       country: 'Mexico',
       name: 'Magazine Cover Boho Modern Villa @ Costa Azul Surf',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 995,
       cleaningFee: 250,
-      serviceFee: 700
+      serviceFee: 700,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -95,9 +137,15 @@ module.exports = {
       country: 'USA',
       name: 'Kūono at Volcano',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 450,
       cleaningFee: 90,
-      serviceFee: 330
+      serviceFee: 330,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 7,
@@ -107,9 +155,15 @@ module.exports = {
       country: 'United States of America',
       name: 'Minimalist Modern Cabin - Amazing Views',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 225,
       cleaningFee: 85,
-      serviceFee: 170
+      serviceFee: 170,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 6,
@@ -119,9 +173,15 @@ module.exports = {
       country: 'France',
       name: 'Stone Cottage in the Grounds of a 16th-Century Castle',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 215,
       cleaningFee: 150,
-      serviceFee: 20
+      serviceFee: 20,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 2,
@@ -130,10 +190,16 @@ module.exports = {
       state: 'Western Cape',
       country: 'South Africa',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       name: 'Beau Manor',
       price: 9400,
       cleaningFee: 100,
-      serviceFee: 125
+      serviceFee: 125,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 3,
@@ -143,9 +209,15 @@ module.exports = {
       country: 'Norway',
       name: 'The WonderINN Mirrored Glass Cabin',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 433,
       cleaningFee: 27,
-      serviceFee: 309
+      serviceFee: 309,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -155,9 +227,15 @@ module.exports = {
       country: 'USA',
       name: 'Elegant Flat in Historic Lower Garden District',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 375,
       cleaningFee: 80,
-      serviceFee: 225
+      serviceFee: 225,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -167,9 +245,15 @@ module.exports = {
       country: 'Spain',
       name: 'Sunflower House',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 510,
       cleaningFee: 86,
-      serviceFee: 375
+      serviceFee: 375,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 1,
@@ -179,9 +263,15 @@ module.exports = {
       country: 'USA',
       name: 'Private Sage Canyon Cliff House near Mesa Verde.',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 328,
       cleaningFee: 78,
-      serviceFee: 242
+      serviceFee: 242,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 1,
@@ -191,9 +281,15 @@ module.exports = {
       country: 'France',
       name: 'Charming troglodyte house in the Loire Valley',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 120,
       cleaningFee: 200,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -203,9 +299,15 @@ module.exports = {
       country: 'United States of America',
       name: 'Beautiful Modern Home On SoCo w Full Office/3rdBR',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 303,
       cleaningFee: 99,
-      serviceFee: 313
+      serviceFee: 313,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -215,9 +317,15 @@ module.exports = {
       country: 'USA',
       name: 'Enjoy the Heated Pool at a Beautifully Designed Getaway',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 204,
       cleaningFee: 50,
-      serviceFee: 150
+      serviceFee: 150,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 1,
@@ -227,9 +335,15 @@ module.exports = {
       country: 'Mexico',
       name: 'Casa Buena Vista. Ocean view villa with own pool',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 100,
       cleaningFee: 200,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 5,
@@ -239,9 +353,15 @@ module.exports = {
       country: 'Guatemala',
       name: 'Lakeview Lodge',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 75,
       cleaningFee: 25,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 5,
@@ -251,9 +371,15 @@ module.exports = {
       country: 'Panama',
       name: 'Rustic cottage-Ocean views/walk to surfing/Jungle',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 150,
       cleaningFee: 25,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 7,
@@ -263,9 +389,15 @@ module.exports = {
       country: 'Singapore',
       name: 'T Luxury Home @ Orchard Road, 2 BR, Quiet, Terrace',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 290,
       cleaningFee: 100,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -275,9 +407,15 @@ module.exports = {
       country: 'USA',
       name: 'Olive Beach Bungalow',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 550,
       cleaningFee: 100,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 4,
@@ -287,9 +425,15 @@ module.exports = {
       country: 'Portugal',
       name: 'Beach House - Amazing front water spot',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Entire home',
+      guests: 8,
+      bedrooms: 4,
+      beds: 6,
+      baths: 3,
       price: 120,
       cleaningFee: 25,
-      serviceFee: 25
+      serviceFee: 25,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
     {
       userId: 1,
@@ -299,9 +443,15 @@ module.exports = {
       country: 'Brazil',
       name: 'Exceptional property private beach - rare',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.',
+      type: 'Private room',
+      guests: 2,
+      bedrooms: 1,
+      beds: 1,
+      baths: 1.5,
       price: 89,
       cleaningFee: 30,
-      serviceFee: 20
+      serviceFee: 20,
+      amenities: 'bathtub,shampoo,bedLinens,firePlace,homeOffice,longTerm,backyard,patio,bbqGrill,swimmingPool,waterFront,coffeMaker,selfCheckIn,wifi,hotWater,hairDryer,hotTub,parking,dishWasher,microwave,kitchen'
     },
    ], {});
   },

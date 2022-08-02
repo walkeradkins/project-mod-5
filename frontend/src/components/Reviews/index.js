@@ -60,6 +60,7 @@ const Reviews = ({ props }) => {
         }
         <ReviewForm homeOwner={homeOwner} listing={selectedListing} user={user} setReview={setReview} />
       </div>
+      <div className='listing__desc-underline'/>
     </>
   );
 }

@@ -33,7 +33,15 @@ module.exports = {
         type: Sequelize.STRING(150),
         allowNull: false,
       },
+      type: {
+        type: Sequelize.STRING(150),
+        allowNull: false,
+      },
       description: {
+        type: Sequelize.STRING(2000),
+        allowNull: false,
+      },
+      amenities: {
         type: Sequelize.STRING(2000),
         allowNull: false,
       },
@@ -47,6 +55,22 @@ module.exports = {
       },
       serviceFee: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      guests: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      bedrooms: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      beds: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      baths: {
+        type: Sequelize.FLOAT(1, 1),
         allowNull: false,
       },
       createdAt: {
