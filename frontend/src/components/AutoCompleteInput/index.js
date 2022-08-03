@@ -8,7 +8,6 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import { getAddressObject } from '../utils';
-import "@reach/combobox/styles.css";
 
 
 const PlacesAutocomplete = ({ setLocation }) => {
