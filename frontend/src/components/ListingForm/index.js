@@ -11,6 +11,7 @@ import { countries, amenities } from '../utils';
 import HostCarousel from '../HostCarousel';
 import Select from 'react-select';
 import TextareaAutosize from 'react-textarea-autosize';
+import PlacesAutocomplete from '../AutoCompleteInput'
 
 const ListingForm = () => {
   const sessionUser = useSelector(state => state.session.user);
@@ -18,10 +19,11 @@ const ListingForm = () => {
   const dispatch = useDispatch();
 
   const [errorMessages, setErrorMessages] = useState({});
+  const [location, setLocation] = useState({});
   const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [country, setCountry] = useState('');
+  // const [city, setCity] = useState('');
+  // const [state, setState] = useState('');
+  // const [country, setCountry] = useState('');
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [homeType, setHomeType] = useState('');
@@ -59,11 +61,14 @@ const ListingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { country, county, city, state, street, streetNumber } = location;
+    console.log('location:::: ', location)
+    const checkAddress = street ? `${streetNumber} ${street}` : `${street}`
 
     const payload = {
       userId: sessionUser.id,
-      address,
-      city,
+      address: checkAddress,
+      city: city ? city : county,
       state,
       country,
       name,
@@ -79,6 +84,7 @@ const ListingForm = () => {
       amenities: getAmenitiesString()
     };
 
+    console.log('payload::: ', payload)
     let newListing;
 
     try {
@@ -98,9 +104,9 @@ const ListingForm = () => {
   const reset = () => {
     setErrorMessages({})
     setAddress('');
-    setCity('');
-    setState('');
-    setCountry('');
+    // setCity('');
+    // setState('');
+    // setCountry('');
     setName('');
     setPrice('');
     setAccepted('');
@@ -129,7 +135,8 @@ const ListingForm = () => {
           <ErrorMessage message={errorMessages.overall} />
           <form className='create-listing' onSubmit={handleSubmit}>
             <div className='listing-form__top'>
-              <input
+              <PlacesAutocomplete setLocation={setLocation}/>
+              {/* <input
                 className='listing-form__input'
                 type='text'
                 minLength='3'
@@ -171,7 +178,7 @@ const ListingForm = () => {
                     value={country}
                   >{country}</option>
                 })}
-              </select>
+              </select> */}
               <input
                 className='listing-form__input'
                 type='text'

@@ -32,7 +32,7 @@ const ListingDescription = ({ listing, users }) => {
   }
 
   const amenitiesArray = amenities.split(',');
-
+  console.log(amenitiesArray)
   return (
     <div className='listing__desc-container'>
       <div className='listing__desc-header-container'>

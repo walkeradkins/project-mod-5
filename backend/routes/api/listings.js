@@ -82,6 +82,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     bedrooms,
     beds,
     baths,
+    amenities
   } = req.body;
 
   const listing = await Listing.create({
@@ -100,6 +101,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     bedrooms,
     beds,
     baths,
+    amenities,
   });
   return res.json(listing);
 }));
