@@ -1,6 +1,6 @@
 import './AutoCompleteInput.css'
 import usePlacesAutocomplete, {
-  getGeocode,
+  getGeocode, getLatLng
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import { getAddressObject } from '../utils';
@@ -22,6 +22,8 @@ const PlacesAutocomplete = ({ setLocation }) => {
   const getLocationDetails = async (location) => {
     const results = getGeocode({ address: location }).then((results) => {
       const res = getAddressObject(results[0])
+      const { lat, lng } = getLatLng(results[0])
+      res['coordinates'] = { lat, lng }
       setLocation(res)
       return res
     });
@@ -40,7 +42,7 @@ const PlacesAutocomplete = ({ setLocation }) => {
       () => {
         setValue(description, false);
         clearSuggestions();
-        return getLocationDetails(description)
+        getLocationDetails(description)
       };
 
   const renderSuggestions = () =>
@@ -92,13 +94,13 @@ const PlacesAutocomplete = ({ setLocation }) => {
 
 // const PlacesAutocomplete = ({ setLocation }) => {
 
-  // const getLocationDetails = async (location) => {
-  //   const results = getGeocode({ address: location }).then((results) => {
-  //     const res = getAddressObject(results[0])
-  //     setLocation(res)
-  //     return res
-  //   });
-  // }
+// const getLocationDetails = async (location) => {
+//   const results = getGeocode({ address: location }).then((results) => {
+//     const res = getAddressObject(results[0])
+//     setLocation(res)
+//     return res
+//   });
+// }
 
 //   const {
 //     ready,

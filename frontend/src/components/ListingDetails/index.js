@@ -43,9 +43,10 @@ const ListingDetails = ({ user, users }) => {
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
   }, [dispatch, review]);
 
-  const { userId, city, state, name, country, Images, price, address } = selectedListing;
+  const { userId, city, state, name, country, Images, price, address, coordinates } = selectedListing;
   const homeOwner = users[userId];
   const location = `${address} ${city} ${state} ${country}`;
+  const geoLocation = JSON.parse(coordinates)
 
   return (
     <div className='listing__container'>
@@ -74,7 +75,7 @@ const ListingDetails = ({ user, users }) => {
       </div>
       <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
       <p className='amenities__header'>Where you'll be</p>
-      <Map location={location} />
+      <Map location={geoLocation} />
       <div className='listing__desc-underline' />
     </div>
   )
