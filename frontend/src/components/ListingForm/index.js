@@ -61,7 +61,7 @@ const ListingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { country, county, city, state, street, streetNumber } = location;
+    const { country, county, city, state, street, streetNumber, coordinates } = location;
     const checkAddress = street ? `${streetNumber} ${street}` : `${street}`
 
     const payload = {
@@ -80,10 +80,10 @@ const ListingForm = () => {
       beds,
       description,
       baths,
+      coordinates: coordinates.toString(),
       amenities: getAmenitiesString()
     };
 
-    console.log('payload::: ', payload)
     let newListing;
 
     try {
