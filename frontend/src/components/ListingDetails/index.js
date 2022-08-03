@@ -14,6 +14,8 @@ import Map from '../Map';
 const ListingDetails = ({ user, users }) => {
   const { id } = useParams();
   const [isImages, setIsImages] = useState(true);
+  const [firstReview, setFirstReview] = useState(false)
+  const [reviewModal, setReviewModal] = useState(false)
   const [review, setReview] = useState('');
   const dispatch = useDispatch();
   let selectedListing = useSelector(state => state.listings[id]);
@@ -26,7 +28,7 @@ const ListingDetails = ({ user, users }) => {
 
   if (!selectedListing.Images) {
     selectedListing = listingsArray.find(listing => {
-    return listing.id == id;
+      return listing.id == id;
     })
   }
   const reviews = selectedListing.Reviews;
@@ -43,7 +45,18 @@ const ListingDetails = ({ user, users }) => {
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
   }, [dispatch, review]);
 
-  const { userId, city, state, name, country, Images, price, address, coordinates } = selectedListing;
+  const {
+    userId,
+    city,
+    state,
+    name,
+    country,
+    Images,
+    price,
+    address,
+    coordinates
+  } = selectedListing;
+
   const homeOwner = users[userId];
   const location = `${address} ${city} ${state} ${country}`;
   const geoLocation = JSON.parse(coordinates)
@@ -55,13 +68,23 @@ const ListingDetails = ({ user, users }) => {
         <div className='booking__display-rating-container'>
           <p className="material-symbols-outlined">star</p>
           <p className='booking__display-rating-text'>
-            {rating ? <p>{rating} &#8226;</p>: <a href='#'>Be the first to leave a review</a>}
+            {rating ?
+              <p>{rating} &#8226;</p> :
+              <p onClick={() => setFirstReview(true)}
+                className='rating__first-text'
+              >
+                Be the first to leave a review
+              </p>
+            }
           </p>
 
           <p className='booking__display-rating-amount'>
-            <a href='#'>
-              {rating ? `${reviews.length} reviews` : null}
-            </a>
+            <p
+            onClick={() => setReviewModal(true)}
+            className='rating__first-text'
+            >
+              {rating ? `${reviews.length} ${reviews.length > 1 ? 'reviews' : 'review'}` : null}
+            </p>
           </p>
           <p>&#8226;</p>
           <h4 className='booking__display-header-location header-subtitle'>{city}, {state}, {country}</h4>
@@ -73,7 +96,19 @@ const ListingDetails = ({ user, users }) => {
         <ListingDescription listing={selectedListing} users={users} />
         <BookingCard listing={selectedListing} user={user} />
       </div>
-      <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
+      <Reviews props={{
+        rating,
+        selectedListing,
+        users,
+        newReviews,
+        homeOwner,
+        user,
+        setReview,
+        firstReview,
+        setFirstReview,
+        reviewModal,
+        setReviewModal
+      }} />
       <p className='amenities__header'>Where you'll be</p>
       <Map location={geoLocation} />
       <div className='listing__desc-underline' />

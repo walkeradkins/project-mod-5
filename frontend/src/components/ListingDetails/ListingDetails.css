@@ -27,3 +27,16 @@
   line-height: 1.5em;
   grid-template-columns: 3fr 1fr;
 }
+
+.rating__first-text {
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: .25em;
+  border-radius: .15em;
+}
+
+.rating__first-text:hover {
+  background-color: rgb(235, 235, 235);
+}

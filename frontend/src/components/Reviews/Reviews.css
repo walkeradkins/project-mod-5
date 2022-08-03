@@ -60,8 +60,8 @@
 }
 
 .reviews-modal__container {
-  max-height: 70vh;
-  max-width: 60em;
+  height: 70vh;
+  width: 60em;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -87,7 +87,7 @@
 }
 
 .reviews-modal__reviews {
-  max-height: 65vh;
+  height: 65vh;
   overflow-y: auto;
 }
 

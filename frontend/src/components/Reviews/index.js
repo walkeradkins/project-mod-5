@@ -7,11 +7,24 @@ import { useState } from 'react'
 
 const Reviews = ({ props }) => {
   const [showModal, setShowModal] = useState(false)
-  const { users, selectedListing, homeOwner, user, setReview, newReviews, rating } = props
+  const {
+    users,
+    selectedListing,
+    homeOwner,
+    user,
+    setReview,
+    newReviews,
+    rating,
+    firstReview,
+    setFirstReview,
+    reviewModal,
+    setReviewModal
+  } = props
+
   if (!Object.keys(users).length) return null
+
   const { Reviews } = selectedListing
   const reviews = Reviews;
-
   const reviewsObj = {};
 
   reviews.forEach(review => {
@@ -24,6 +37,11 @@ const Reviews = ({ props }) => {
         reviews.push(newReviews[i])
       }
     }
+  }
+
+  const handleClose = () => {
+    setShowModal(false);
+    setReviewModal(false);
   }
 
   const displayReview = (review, index, modal) => {
@@ -54,7 +72,7 @@ const Reviews = ({ props }) => {
           <p className="material-symbols-outlined">star</p>
           <p>{rating}</p>
           <p>&#8226;</p>
-          <p>{reviews.length} reviews</p>
+          <p>{rating ? `${reviews.length} ${reviews.length > 1 ? 'reviews' : 'review'}` : null}</p>
         </span>}
       {selectedListing.Reviews.length > 0 && <ReviewStats listing={selectedListing} modal={false} />}
       <div className='listing__desc-reviews-container'>
@@ -67,24 +85,24 @@ const Reviews = ({ props }) => {
             onClick={() => setShowModal(true)}
           >Show all {reviews.length} reviews</div>
         }
-        {showModal &&
-          <Modal onClose={() => setShowModal(false)}>
+        {showModal || reviewModal &&
+          <Modal onClose={handleClose}>
             <div className='reviews-modal__container'>
               <div className='reviews-modal__header'>
                 <span
                   className="material-symbols-outlined reviews__close"
-                  onClick={() => setShowModal(false)}
+                  onClick={handleClose}
                 >
                   close
                 </span>
               </div>
               <div className='reviews-modal__grid'>
                 <div className='reviews-modal__ratings-container'>
-                  <span className='reviews__header' style={{fontSize: '2em', padding: '.5em 0'}}>
-                    <p className="material-symbols-outlined" style={{fontSize: '1.25em'}}>star</p>
+                  <span className='reviews__header' style={{ fontSize: '2em', padding: '.5em 0' }}>
+                    <p className="material-symbols-outlined" style={{ fontSize: '1.25em' }}>star</p>
                     <p>{rating}</p>
                     <p>&#8226;</p>
-                    <p>{reviews.length} reviews</p>
+                    <p>{rating ? `${reviews.length} ${reviews.length > 1 ? 'reviews' : 'review'}` : null}</p>
                   </span>
                   <div className='reviews-modal__ratings-container'>
                     <ReviewStats listing={selectedListing} modal={true} />
@@ -97,7 +115,14 @@ const Reviews = ({ props }) => {
             </div>
           </Modal>
         }
-        <ReviewForm homeOwner={homeOwner} listing={selectedListing} user={user} setReview={setReview} />
+        <ReviewForm
+          homeOwner={homeOwner}
+          listing={selectedListing}
+          user={user}
+          setReview={setReview}
+          firstReview={firstReview}
+          setFirstReview={setFirstReview}
+        />
       </div>
       <div className='listing__desc-underline' />
     </>

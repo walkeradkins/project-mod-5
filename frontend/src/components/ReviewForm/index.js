@@ -8,7 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { getHumanMonth } from '../utils';
 import { createNewReview } from '../../store/reviews'
 
-const ReviewForm = ({ homeOwner, listing, user, setReview }) => {
+const ReviewForm = ({ homeOwner, listing, user, setReview, firstReview, setFirstReview }) => {
   const dispatch = useDispatch();
   const [updated, setUpdated] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -83,14 +83,19 @@ const ReviewForm = ({ homeOwner, listing, user, setReview }) => {
     setReview('')
   }
 
+  const handleClose = () => {
+    setFirstReview(false);
+    setShowModal(false);
+  }
+
   return (
     <>
       <div
         className='review__button review__button-create'
         onClick={handleToggle}
       >Leave a review for {homeOwner.firstName}</div>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      {(showModal || firstReview) && (
+        <Modal onClose={handleClose}>
           <form className='review__form' onSubmit={handleSubmit}>
             <p className='rating__header'>How was your stay?</p>
             <Rating changeState={setCleanliness} label={'cleanliness'} />
@@ -113,7 +118,7 @@ const ReviewForm = ({ homeOwner, listing, user, setReview }) => {
             <div className='rating__button-container'>
               <button
                 className='rating__button rating__button-cancel'
-                onClick={() => setShowModal(false)}
+                onClick={handleClose}
               >
                 Cancel
               </button>
