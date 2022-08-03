@@ -73,7 +73,9 @@ const ListingDetails = ({ user, users }) => {
         <BookingCard listing={selectedListing} user={user} />
       </div>
       <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
+      <p className='amenities__header'>Where you'll be</p>
       <Map location={location} />
+      <div className='listing__desc-underline' />
     </div>
   )
 }
