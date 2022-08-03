@@ -43,8 +43,9 @@ const ListingDetails = ({ user, users }) => {
     localStorage.setItem('currentListing', JSON.stringify(selectedListing))
   }, [dispatch, review]);
 
-  const { userId, city, state, name, country, Images, price, } = selectedListing;
+  const { userId, city, state, name, country, Images, price, address } = selectedListing;
   const homeOwner = users[userId];
+  const location = `${address} ${city} ${state} ${country}`;
 
   return (
     <div className='listing__container'>
@@ -72,7 +73,7 @@ const ListingDetails = ({ user, users }) => {
         <BookingCard listing={selectedListing} user={user} />
       </div>
       <Reviews props={{ rating, selectedListing, users, newReviews, homeOwner, user, setReview }}/>
-      <Map />
+      <Map location={location} />
     </div>
   )
 }

@@ -395,7 +395,7 @@ export const amenities = [
     ]
   },
   {
-    label: "Outfoor",
+    label: "Outdoor",
     options: [
       { label: "Private patio or balcony", value: "patio" },
       { label: "Private backyard - Fully fenced", value: "backyard" },
@@ -420,6 +420,7 @@ export const amenitiesObj = {
   firePlace: ['fireplace', 'Fireplace'],
   heating: ['hvac', 'Heating'],
   wifi: ['wifi', 'Wifi'],
+  tv: ['tv', 'Television'],
   homeOffice: ['computer', 'Home office'],
   kitchen: ['countertops', 'Kitchen'],
   washer: ['local_laundry_service', 'Washing machine'],
@@ -440,4 +441,31 @@ export const amenitiesObj = {
   swimmingPool: ['pool', 'Swimming pool'],
   hotTub: ['hot_tub', 'Hot tub'],
   waterFront: ['water', 'Water front'],
+};
+
+export function getAddressObject(place) {
+  const address = {}
+
+  place.address_components.forEach(component => {
+    let { long_name, types } = component
+
+    if (types.includes('street_number')) {
+      address.streetNumber = long_name
+    } else if (types.includes('route')) {
+      address.street = long_name
+    } else if (types.includes('neighborhood')) {
+      address.neighborhood = long_name
+    } else if (types.includes('locality')) {
+      address.city = long_name
+    } else if (types.includes('administrative_area_level_2')) {
+      address.county = long_name
+    } else if (types.includes('administrative_area_level_1')) {
+      address.state = long_name
+    } else if (types.includes('country')) {
+      address.country = long_name
+    } else if (types.includes('postal_code')) {
+      address.zip = long_name
+    }
+  })
+  return address
 }
