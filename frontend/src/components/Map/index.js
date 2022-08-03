@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import mapStyles from './mapStyles';
 
 const Map = ({ location }) => {
-  console.log('Marker:: ', Marker['icon'])
   const [center, setCenter] = useState({})
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,

@@ -1,0 +1,23 @@
+.autocomplete__container {
+  position: relative;
+}
+
+.location-suggestion__dropdown {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  border: 1px gainsboro solid;
+  /* padding: .5em; */
+  border-radius: .25em;
+  top: 3.5em;
+}
+
+.autocomplete__suggestion {
+  padding: .45em;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.autocomplete__suggestion:hover {
+  background-color: rgb(238, 238, 238);
+}

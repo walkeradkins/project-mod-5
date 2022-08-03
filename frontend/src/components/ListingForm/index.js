@@ -62,7 +62,6 @@ const ListingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { country, county, city, state, street, streetNumber } = location;
-    console.log('location:::: ', location)
     const checkAddress = street ? `${streetNumber} ${street}` : `${street}`
 
     const payload = {
