@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/walkeradkins/project-mod-5/issues"
   },
-  "homepage": "https://github.com/walkeradkins/project-mod-5#readme"
+  "homepage": "https://github.com/walkeradkins/project-mod-5#readme",
+  "dependencies": {
+    "@reach/combobox": "^0.17.0"
+  }
 }
