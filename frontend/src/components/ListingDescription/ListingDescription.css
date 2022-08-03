@@ -42,6 +42,17 @@
   margin-bottom: 1em;
 }
 
+.close__amenities {
+  cursor: pointer;
+  transition: 0.3s;
+  padding: .15em;
+  border-radius: 50%;
+}
+
+.close__amenities:hover {
+  background-color: rgb(236, 236, 236);
+}
+
 .amenity__container {
   font-size: 1em;
   margin: .75em 0;
@@ -65,4 +76,48 @@
 
 .amenity__button:hover {
   background-color: rgb(234, 234, 234)
+}
+
+.all-amenities__container {
+  width: 50em;
+  padding: 0 1.5em 1.5em;
+  max-height: 80vh;
+  overflow: auto;
+  position: relative;
+}
+
+.all-amenity__container {
+  display: flex;
+  align-items: center;
+}
+
+.all-amenity__container > span {
+  margin-right: 1em;
+}
+
+.all-amenities__header {
+  position: sticky;
+  top: 0;
+  padding: 1em 0;
+  background-color: white;
+}
+
+.all-amenities__container::-webkit-scrollbar {
+  left: 100px;
+  background-color: transparent;
+  width: .6em;
+  border: 1em solid transparent;
+}
+
+.all-amenities__container::-webkit-scrollbar-track {
+  width: .5em;
+  background-color: rgba(179, 179, 179, 0.4);
+  border-radius: 20px;
+}
+
+.all-amenities__container::-webkit-scrollbar-thumb {
+  background-color: rgba(146, 146, 146, 0.4);
+  border-radius: 20px;
+  background-clip: content-box;
+  width: .5em;
 }

@@ -14,11 +14,11 @@ const validateSignup = [
     .withMessage('Please provide a valid email.'),
   check('firstName')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
+    .isLength({ min: 1 })
     .withMessage('Please provide a first name with at least 1 character.'),
   check('lastName')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
+    .isLength({ min: 1 })
     .withMessage('Please provide a last name with at least 1 character.'),
   check('password')
     .exists({ checkFalsy: true })

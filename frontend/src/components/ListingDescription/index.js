@@ -1,8 +1,12 @@
 import './ListingDescription.css'
 import Avatar from '../Avatar';
 import { amenitiesObj } from '../utils';
+import { Modal } from '../../context/Modal';
+import { useState } from 'react';
 
 const ListingDescription = ({ listing, users }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const {
     userId,
     Reviews,
@@ -66,8 +70,37 @@ const ListingDescription = ({ listing, users }) => {
           })}
         </div>
         {amenitiesArray.length > 10 &&
-          <div className='amenity__button'>Show all {amenitiesArray.length} amenities</div>
+          <div
+            className='amenity__button'
+            onClick={() => setShowModal(true)}
+          >Show all {amenitiesArray.length} amenities
+          </div>
         }
+        {showModal &&
+          <Modal onClose={() => setShowModal(false)}>
+            <div className='all-amenities__container'>
+              <div className='all-amenities__header'>
+                <span
+                  className="material-symbols-outlined close__amenities"
+                  onClick={() => setShowModal(false)}
+                >
+                  close
+                </span>
+              </div>
+              <p className='amenities__header '>What this place offers</p>
+              {amenitiesArray.map((item, i) => {
+                return (
+                  <>
+                    <div className='all-amenity__container'>
+                      <span className="material-symbols-outlined">{amenitiesObj[item][0]}</span>
+                      <span>{amenitiesObj[item][1]}</span>
+                    </div>
+                    <div className='listing__desc-underline' />
+                  </>
+                )
+              })}
+            </div>
+          </Modal>}
       </div>
       <div className='listing__desc-underline' />
     </div>
