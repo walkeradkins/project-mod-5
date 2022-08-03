@@ -22,7 +22,7 @@
 
 .listing__desc-review-date {
   color: rgb(66, 66, 66);
-  font-size: .85em;
+  font-size: 0.85em;
 }
 
 .listing__desc-review-desc {
@@ -40,12 +40,12 @@
   border: 1px solid black;
   cursor: pointer;
   padding: 1em;
-  border-radius: .25em;
-  transition: .3s;
+  border-radius: 0.25em;
+  transition: 0.3s;
 }
 
 .review__button:hover {
-  background-color: rgb(234, 234, 234)
+  background-color: rgb(234, 234, 234);
 }
 
 .reviews__header {
@@ -56,5 +56,49 @@
 }
 
 .reviews__header > p {
-  margin: 0 .25em 0 0;
+  margin: 0 0.25em 0 0;
+}
+
+.reviews-modal__container {
+  max-height: 70vh;
+  max-width: 60em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.reviews-modal__header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.reviews-modal__grid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.reviews-modal__ratings-container {
+  padding-left: 0.5em;
+}
+
+.reviews-modal__ratings {
+  margin: 0 1em;
+  display: flex;
+}
+
+.reviews-modal__reviews {
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.reviews__close {
+  border-radius: 50%;
+  padding: 0.15em;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: .5em;
+}
+
+.reviews__close:hover {
+  background-color: rgb(236, 236, 236);
 }
