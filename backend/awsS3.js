@@ -59,6 +59,7 @@ const singlePrivateFileUpload = async (file) => {
 const multiplePrivateFileUpload = async (files) => {
   return await Promise.all(
     files.map((file) => {
+      console.log('file', file)
       return singlePrivateFileUpload(file);
     })
   );
