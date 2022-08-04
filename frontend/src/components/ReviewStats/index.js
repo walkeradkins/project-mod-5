@@ -1,7 +1,7 @@
 import './ReviewStats.css'
 import ProgressBar from "@ramonak/react-progress-bar";
 
-const ReviewStats = ({ listing }) => {
+const ReviewStats = ({ listing, modal }) => {
   const { Reviews } = listing
   const reviews = Reviews;
 
@@ -31,14 +31,14 @@ const ReviewStats = ({ listing }) => {
   const displayStats = (key, index) => {
     return (
       <div className='review__stat-container' key={index}>
-        <p className='review__stat-label'>{key.charAt(0).toUpperCase() + key.slice(1)}</p>
+        <p className={modal ? 'review__stat-label-modal' : 'review__stat-label'}>{key.charAt(0).toUpperCase() + key.slice(1)}</p>
         <div className='review__stat-bar-container'>
           <ProgressBar
             completed={(ratings[key] / 5) * 100}
             bgColor='#1B1B1B'
             isLabelVisible={false}
             height='.25em'
-            width='10em'
+            width={modal ? '7em' : '10em'}
           />
           <p className='review__stat-amount'>{ratings[key]}</p>
         </div>
@@ -47,9 +47,9 @@ const ReviewStats = ({ listing }) => {
   }
 
   return (
-    <div className='stats__container'>
+    <div className={modal ? 'stats__modal' : 'stats__container'}>
       {Object.keys(ratings).map((key, index) =>
-        displayStats(key)
+        displayStats(key, index)
       )}
     </div>
   );

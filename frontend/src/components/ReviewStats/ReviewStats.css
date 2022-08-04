@@ -22,3 +22,7 @@
   font-weight: 500;
   margin: 0 1em;
 }
+
+.review__stat-label-modal {
+  font-size: .85em;
+}

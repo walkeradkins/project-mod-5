@@ -5,7 +5,7 @@ const Avatar = ({ userImage, firstName, size }) => {
   if (userImage) {
     avatar = (
       <figure className='avatar__image'
-        style={{ backgroundImage: `url( ${userImage}`, width: size }} />
+        style={{ backgroundImage: `url( ${userImage}`, width: size, height: size }} />
     )
   } else {
     avatar = (

@@ -103,9 +103,6 @@ const ListingForm = () => {
   const reset = () => {
     setErrorMessages({})
     setAddress('');
-    // setCity('');
-    // setState('');
-    // setCountry('');
     setName('');
     setPrice('');
     setAccepted('');

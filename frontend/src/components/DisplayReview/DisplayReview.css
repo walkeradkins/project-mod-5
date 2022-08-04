@@ -1,0 +1,7 @@
+.delete__review-container {
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1em;
+}
