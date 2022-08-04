@@ -5,7 +5,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 const { findCurrentUser } = require('../../utils/auth');
 const ImagesRepository = require('../../db/images-repository')
 
-// const { getUserToken } = require("../auth");
 
 const { Listing, Image, Review, Booking } = require('../../db/models');
 const router = express.Router();

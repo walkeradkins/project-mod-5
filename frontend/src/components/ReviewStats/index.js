@@ -49,7 +49,7 @@ const ReviewStats = ({ listing, modal }) => {
   return (
     <div className={modal ? 'stats__modal' : 'stats__container'}>
       {Object.keys(ratings).map((key, index) =>
-        displayStats(key)
+        displayStats(key, index)
       )}
     </div>
   );

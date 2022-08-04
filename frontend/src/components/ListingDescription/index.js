@@ -91,7 +91,7 @@ const ListingDescription = ({ listing, users }) => {
               {amenitiesArray.map((item, i) => {
                 return (
                   <>
-                    <div className='all-amenity__container'>
+                    <div className='all-amenity__container' key={i}>
                       <span className="material-symbols-outlined">{amenitiesObj[item][0]}</span>
                       <span>{amenitiesObj[item][1]}</span>
                     </div>

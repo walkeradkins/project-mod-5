@@ -20,6 +20,7 @@ const ReviewForm = ({ homeOwner, listing, user, setReview, firstReview, setFirst
   const [value, setValue] = useState(0);
   const [comments, setComments] = useState('');
   const [errors, setErrors] = useState(true);
+  const [isOwner, setIsOwner] = useState(user.id === listing.userId)
 
   const getDate = () => {
     const date = new Date();
@@ -90,10 +91,14 @@ const ReviewForm = ({ homeOwner, listing, user, setReview, firstReview, setFirst
 
   return (
     <>
-      <div
+      {!isOwner && <div
         className='review__button review__button-create'
         onClick={handleToggle}
-      >Leave a review for {homeOwner.firstName}</div>
+      >Leave a review for {homeOwner.firstName}</div>}
+      {isOwner && <div
+        className='review__button review__button-create'
+        disabled
+      >This is how your reviews appear</div>}
       {(showModal || firstReview) && (
         <Modal onClose={handleClose}>
           <form className='review__form' onSubmit={handleSubmit}>
