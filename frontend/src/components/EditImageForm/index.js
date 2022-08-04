@@ -42,6 +42,7 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   }
 
   let handleSubmit = async (e) => {
+    console.log('BITCH')
     e.preventDefault();
     imageURLs.map(imageURL => {
       imageURL['listingId'] = id;
@@ -69,7 +70,7 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
       try {
         newPhotos = await dispatch(createNewImages(newImagePayload, id))
       } catch (error) {
-        // TODO error handle
+
       }
     }
 
@@ -88,34 +89,35 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   }
 
   return (
-    <>
+    <div className='edit-image-container'>
       <h1 className='header-title'>Edit Your Images</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <div className='edit-images__container'>
         {imageURLs.map((element, index) => (
-          <div className='edit-listing-container' key={index}>
-            <span className='edit-listing__input-container'>
-              <figure className='booking-link__image edit-booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
-              <input
-                placeholder='Image URL'
-                className='booking_link__input edit-booking_link__input'
-                type="text"
-                required
-                name="url"
-                value={element.url || ""}
-                onChange={e => handleChange(index, e)}
-              />
-              {index > 4 ?
-                <button type="button" className="remove-booking-link__button btn" onClick={() => removeFormFields(index)}>X</button>
-                : null}
+          <div className='edit-image__container' key={index}>
+            <figure
+              className='edit__image'
+              style={{ backgroundImage: `url( ${element.url} )` }}
+            />
+            <span
+              className="material-symbols-outlined image__close"
+              onClick={() => removeFormFields(index)}
+            >
+              close
             </span>
           </div>
         ))}
-        <div className='edit-booking-link__button-container'>
-          <button className='booking-link__button btn' type="button" onClick={() => addFormFields()}>Add Another Photo</button>
-          <button className='booking-link__button btn' type="submit" disabled={imageURLs.length < 5}>Submit</button>
-        </div>
-      </form>
-    </>
+      </div>
+      <div className='edit-booking-link__button-container'>
+        <button
+          className={imageURLs.length < 5 ? 'disabled' : 'booking-link__button btn'}
+          onClick={handleSubmit}
+          type='button'
+          disabled={imageURLs.length < 5}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
   )
 }
 

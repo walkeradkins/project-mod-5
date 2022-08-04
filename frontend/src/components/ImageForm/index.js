@@ -43,9 +43,6 @@ const ImageForm = ({ listingId, user }) => {
   let handleSubmit = async (e) => {
     e.preventDefault();
     const imagesArray = Object.values(imageURLs);
-    // imageURLs.map(imageURL => {
-    //   imageURL['listingId'] = listingId;
-    // })
 
     const payload = {
       images: imagesArray,
@@ -88,7 +85,7 @@ const ImageForm = ({ listingId, user }) => {
           <div className='file__name-container'>
             <span className='file__name'>
               {Object.values(imageURLs).map((image, ind) =>
-                <span key={ind} className='booking__file'>
+                <span key={ind} className='booking__file-listing'>
                   <p>{image.name}</p>
                   <span
                     className="material-symbols-outlined file__trashcan"

@@ -1,21 +1,60 @@
+.edit-image-container {
+  border-radius: 0.5em;
+  min-height: 66vh;
+  background-color: white;
+  max-height: 60vh;
+  max-width: 41vw;
+  min-width: 41vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.edit-images__container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.edit-booking-link__image {
+  max-width: 5em;
+}
+
+.edit__image {
+  width: 10em;
+  margin: .25em;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.4em;
+}
+
+.edit__image::after {
+  display: block;
+  padding-top: 100%;
+  content: "";
+}
+
 .edit-booking-link__button-container {
   display: flex;
   flex-direction: column;
   position: relative;
-  padding-bottom: 7em;
 }
 
-.edit-booking_link__input {
-  min-width: 25em;
+.edit-image__container {
+  position: relative;
 }
 
-.remove-booking-link__button {
+.image__close {
   position: absolute;
-  padding: .75em;
-  right: 1em;
-  border-radius: .5em;
+  cursor: pointer;
+  top: .25em;
+  right: .25em;
+  color:rgba(57, 57, 57, 0.7);
+  font-weight: bold;
+  background-color: rgba(230, 230, 230, 0.6);
+  border-radius: 50%;
+  transition: 0.3s
 }
 
-.edit-booking-link__image {
-  max-width: 3.5em;
+.image__close:hover {
+  background-color: rgba(172, 172, 172, 0.7);
 }

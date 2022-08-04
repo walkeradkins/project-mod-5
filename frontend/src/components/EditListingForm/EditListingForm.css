@@ -3,10 +3,20 @@
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   min-width: 30em;
+  max-height: 60vh;
+  overflow: auto;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.edit__listing-header {
+  font-size: 1.75em;
+  font-weight: 500;
+  margin: .25em 0;
 }
 
 .edit-listing-form {
-  margin: 2em;
+  /* margin: 2em; */
   display: flex;
   flex-direction: column;
 }

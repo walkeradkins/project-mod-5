@@ -79,7 +79,7 @@ const ListingDetails = ({ user, users }) => {
             }
           </p>
           }
-          {user.id === userId &&
+          {user.id === userId && !reviews.length &&
             <p className='booking__display-rating-text'>No reviews on your listing yet!</p>
           }
           <p className='booking__display-rating-amount'>
