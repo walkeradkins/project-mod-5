@@ -59,7 +59,6 @@ const Reviews = ({ props }) => {
     }
   }
 
-  console.log('current reviews ', currentReviews)
   const handleClose = () => {
     setShowModal(false);
     setReviewModal(false);

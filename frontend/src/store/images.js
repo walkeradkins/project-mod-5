@@ -15,13 +15,26 @@ export const editedImages = updatedImages => ({
 });
 
 export const createNewImages = (payload, id) => async dispatch => {
+  const { images } = payload
+  const formData = new FormData();
+
+  console.log('images', images)
+
+  if (images && images.length !== 0) {
+    for (var i = 0; i < images.length; i++) {
+      formData.append("images", images[i]);
+      console.log('images[i]', images[i])
+    }
+  }
+
+  console.log('formData', formData.images)
   try {
     const response = await csrfFetch(`/api/listings/${id}/images`, {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
-      body: JSON.stringify(payload)
+      body: formData
     });
 
     if (!response.ok) {

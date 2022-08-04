@@ -67,6 +67,7 @@ const ListingDetails = ({ user, users }) => {
         <h2 className='booking__display-header-name header-title'>{name}</h2>
         <div className='booking__display-rating-container'>
           <p className="material-symbols-outlined">star</p>
+          {user.id !== userId &&
           <p className='booking__display-rating-text'>
             {rating ?
               <p>{rating} &#8226;</p> :
@@ -77,7 +78,10 @@ const ListingDetails = ({ user, users }) => {
               </p>
             }
           </p>
-
+          }
+          {user.id === userId &&
+            <p className='booking__display-rating-text'>No reviews on your listing yet!</p>
+          }
           <p className='booking__display-rating-amount'>
             <p
             onClick={() => setReviewModal(true)}

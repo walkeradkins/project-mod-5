@@ -55,3 +55,9 @@
 .booking-link__button {
   margin: .75em;
 }
+
+.booking__file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

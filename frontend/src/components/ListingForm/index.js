@@ -62,7 +62,8 @@ const ListingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { country, county, city, state, street, streetNumber, coordinates } = location;
-    const checkAddress = street ? `${streetNumber} ${street}` : `${street}`
+
+    const checkAddress = streetNumber ? `${streetNumber} ${street}` : `${street}`
 
     const payload = {
       userId: sessionUser.id,
@@ -80,7 +81,7 @@ const ListingForm = () => {
       beds,
       description,
       baths,
-      coordinates: coordinates.toString(),
+      coordinates: JSON.stringify(coordinates),
       amenities: getAmenitiesString()
     };
 
@@ -132,49 +133,6 @@ const ListingForm = () => {
           <form className='create-listing' onSubmit={handleSubmit}>
             <div className='listing-form__top'>
               <PlacesAutocomplete setLocation={setLocation}/>
-              {/* <input
-                className='listing-form__input'
-                type='text'
-                minLength='3'
-                maxLength='50'
-                placeholder='Address'
-                required
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
-              <input
-                className='listing-form__input'
-                type='text'
-                placeholder='City'
-                minLength='2'
-                maxLength='50'
-                required
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-              />
-              <input
-                className='listing-form__input'
-                type='text'
-                placeholder='State/Province'
-                minLength='2'
-                maxLength='50'
-                required
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-              />
-              <select
-                className='listing-form__input'
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                <option value='' defaultValue disabled hidden>Country</option>
-                {countries.map(country => {
-                  return <option
-                    key={country}
-                    value={country}
-                  >{country}</option>
-                })}
-              </select> */}
               <input
                 className='listing-form__input'
                 type='text'
