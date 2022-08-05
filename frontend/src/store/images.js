@@ -2,7 +2,9 @@ import { ValidationError } from "../utils/validationError"
 import { csrfFetch } from './csrf'
 
 export const CREATE_IMAGES = 'images/CREATE_IMAGES';
+export const CREATE_ONE = 'images/CREATE_ONE';
 export const EDIT_IMAGES = 'images/EDIT_IMAGES';
+export const DELETE_IMAGE = 'images/DELETE_IMAGES';
 
 export const createImages = newImages => ({
   type: CREATE_IMAGES,
@@ -13,6 +15,36 @@ export const editedImages = updatedImages => ({
   type: EDIT_IMAGES,
   updatedImages
 });
+
+export const createOne = image => ({
+  type: CREATE_ONE,
+  image
+});
+
+export const deleteOne = deletedImage => ({
+  type: DELETE_IMAGE,
+  deletedImage
+});
+
+// send one image
+export const uploadOneImage = (payload, id) => async dispatch => {
+  const { image } = payload
+  const formData = new FormData();
+
+  formData.append("image", image);
+
+  const res = await csrfFetch(`/api/listings/${id}/image`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData
+  });
+
+  const data = await res.json();
+  dispatch(createOne(data));
+}
+
 
 export const createNewImages = (payload, id) => async dispatch => {
   const { images } = payload
@@ -27,7 +59,6 @@ export const createNewImages = (payload, id) => async dispatch => {
     }
   }
 
-  console.log('formData', formData.images)
   try {
     const response = await csrfFetch(`/api/listings/${id}/images`, {
       method: 'POST',
@@ -77,6 +108,18 @@ export const editImages = (payload, id) => async dispatch => {
   }
 }
 
+export const deleteImage = (id) => async dispatch => {
+  const response = await csrfFetch(`/api/images/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (response.ok) {
+    const deletedImage = await response.json();
+    dispatch(deleteOne(deletedImage));
+    return deletedImage;
+  }
+}
+
 const imagesReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_IMAGES:
@@ -89,7 +132,6 @@ const imagesReducer = (state = {}, action) => {
         ...state
       };
     case EDIT_IMAGES:
-
       const editedImages = {}
       action.updatedImages.forEach(updatedImage => {
         editedImages[updatedImage.id] = updatedImage
@@ -98,6 +140,18 @@ const imagesReducer = (state = {}, action) => {
         ...editedImages,
         ...state
       };
+    case CREATE_ONE:
+      if (!state[action.image.id]) {
+        const newState = {
+          ...state,
+          [action.image.id]: action.image
+        }
+        return newState;
+      };
+    case DELETE_IMAGE:
+      const newState = { ...state };
+      delete newState[action.deletedImage.id];
+      return newState;
     default:
       return state;
   }

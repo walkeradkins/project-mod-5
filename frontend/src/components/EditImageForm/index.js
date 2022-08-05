@@ -7,7 +7,7 @@ import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
 import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
-
+import { uploadOneImage, deleteImage } from '../../store/images'
 
 const EditImageForm = ({ listing, setShowEditModal }) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -16,76 +16,60 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([...Images])
-
+  const [deletedImages, setDeletedImages] = useState([])
+  const updatedImages = useSelector(state => state.images)
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === sessionUser.id;
   }));
 
   useEffect(() => {
     dispatch(getListings())
+
   }, [updated]);
 
-  let handleChange = (i, e) => {
-    let newFormValues = [...imageURLs];
-    newFormValues[i][e.target.name] = e.target.value;
+  let handleChange = async (e) => {
+    const payload = {
+      image: e.target.files[0],
+      listingId: listing.id
+    }
+    console.log(e.target.files[0])
+    let newImage;
+    try {
+      newImage = await dispatch(uploadOneImage(payload, listing.id));
+    } catch (e) {
+      console.log(e)
+    }
+
+    console.log(updatedImages)
+    let newFormValues = [...imageURLs, ...Object.values(updatedImages)];
     setImageURLs(newFormValues);
   }
 
-  let addFormFields = () => {
-    setImageURLs([...imageURLs, { url: "" }])
-  }
-
-  const removeFormFields = (i) => {
+  const removeFormFields = async (e, i) => {
     let newFormValues = [...imageURLs];
+    const { id } = newFormValues[i]
+    const deletedImagesCopy = [...deletedImages]
+    deletedImagesCopy.push(id)
+    setDeletedImages(deletedImagesCopy);
     newFormValues.splice(i, 1);
     setImageURLs(newFormValues)
   }
 
   let handleSubmit = async (e) => {
-    console.log('BITCH')
     e.preventDefault();
-    imageURLs.map(imageURL => {
-      imageURL['listingId'] = id;
-    })
 
-    const newImages = []
-
-    imageURLs.forEach((image, index) => {
-      if (!image.id) {
-        newImages.push(image);
-      }
-    })
-
-    const updatedPhotos = imageURLs.filter(image => {
-      return (image.id);
-    })
-
-    const newImagePayload = { newImages }
-    const updatedPayload = { updatedPhotos }
-
-    let updatedImages;
-    let newPhotos;
-
-    if (newImages.length) {
-      try {
-        newPhotos = await dispatch(createNewImages(newImagePayload, id))
-      } catch (error) {
-
-      }
-    }
-
-    try {
-      updatedImages = await dispatch(editImages(updatedPayload, id))
-    } catch (error) {
-      // TODO error handle
-    }
-
+   for await (let id of deletedImages) {
+     await dispatch(deleteImage(id));
+   }
     setUpdated(true)
     history.push(`/users/${sessionUser.id}/listings`)
     setShowEditModal(false)
+    reset()
   }
+
   const reset = () => {
-    setImageURLs([{ url: "" }]);
+    setImageURLs([...Images]);
+    setDeletedImages([])
   }
 
   return (
@@ -100,12 +84,26 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
             />
             <span
               className="material-symbols-outlined image__close"
-              onClick={() => removeFormFields(index)}
+              onClick={(e) => removeFormFields(e, index)}
             >
               close
             </span>
           </div>
         ))}
+      </div>
+      <div className='file__upload-choose-listing'>
+        <label htmlFor='file' className='file__upload-choose-text-listing'>
+          <span>Upload New Image</span>
+        </label>
+        <input
+          id="file"
+          style={{ visibility: "hidden" }}
+          className='signup-form__input-file-listing'
+          type="file"
+          placeholder='Image'
+          onChange={(e) => handleChange(e)}
+          accept="image/*"
+        />
       </div>
       <div className='edit-booking-link__button-container'>
         <button

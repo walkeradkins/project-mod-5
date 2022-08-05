@@ -4,7 +4,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { findCurrentUser } = require('../../utils/auth');
 const ImagesRepository = require('../../db/images-repository');
-const { multipleMulterUpload, singleMulterUpload, multiplePublicFileUpload } = require('../../awsS3');
+const { multipleMulterUpload, singleMulterUpload, multiplePublicFileUpload, singlePublicFileUpload } = require('../../awsS3');
 
 
 
@@ -129,6 +129,8 @@ router.delete('/:id(\\d+)', asyncHandler(async function (req, res) {
   }
 }));
 
+// multiple image upload
+
 router.post('/:id(\\d+)/images',
   multipleMulterUpload("images"),
   asyncHandler(async function (req, res, next) {
@@ -141,6 +143,22 @@ router.post('/:id(\\d+)/images',
       });
     })
     return res.json(images);
+  }));
+
+// single image upload
+
+router.post('/:id(\\d+)/image',
+  singleMulterUpload("image"),
+  asyncHandler(async function (req, res, next) {
+    const id = parseInt(req.params.id);
+
+    const image = await singlePublicFileUpload(req.file)
+    const newImage = await Image.create({
+      url: image,
+      listingId: id
+    });
+    console.log('image-----------------', newImage.dataValues)
+    return res.json(newImage.dataValues);
   }));
 
 router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {

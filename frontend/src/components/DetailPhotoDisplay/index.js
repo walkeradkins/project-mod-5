@@ -2,7 +2,7 @@ import './DetailPhotoDisplay.css'
 
 const DetailPhotoDisplay = ({ listing }) => {
   const { Images } = listing
-
+  console.log('Images', Images)
   const firstImage = Images[0].url;
   const displayFour = []
 

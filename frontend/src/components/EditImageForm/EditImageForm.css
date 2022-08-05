@@ -3,8 +3,8 @@
   min-height: 66vh;
   background-color: white;
   max-height: 60vh;
-  max-width: 41vw;
-  min-width: 41vw;
+  max-width: 33em;
+  min-width: 33em;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -51,10 +51,11 @@
   color:rgba(57, 57, 57, 0.7);
   font-weight: bold;
   background-color: rgba(230, 230, 230, 0.6);
-  border-radius: 50%;
-  transition: 0.3s
+  border-radius: .15em;
+  transition: 0.15s
 }
 
 .image__close:hover {
   background-color: rgba(172, 172, 172, 0.7);
+  padding: .05em;
 }

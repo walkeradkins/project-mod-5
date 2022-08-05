@@ -26,16 +26,6 @@ const ImageForm = ({ listingId, user }) => {
     }))
   }
 
-  // const addFormFields = () => {
-  //   setImageURLs([...imageURLs, { url: "" }])
-  // }
-
-  // const removeFormFields = (i) => {
-  //   let newFormValues = [...imageURLs];
-  //   newFormValues.splice(i, 1);
-  //   setImageURLs(newFormValues)
-  // }
-
   useEffect(() => {
     dispatch(getListings())
   }, [created]);
@@ -49,7 +39,6 @@ const ImageForm = ({ listingId, user }) => {
       listingId: listingId
     };
 
-    console.log('paylod', payload)
     let images;
     try {
       images = await dispatch(createNewImages(payload, listingId))
