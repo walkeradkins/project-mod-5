@@ -87,7 +87,7 @@ const UserListings = ({ listings, user }) => {
       <ul className='user-listings__grid'>
         {userListings.map(listing => {
           return (
-            listing.Images.length &&
+            listing.Images.length > 0 &&
             <li className="user-listings__cards" key={listing.id} >
               <ListingCard listing={listing}
                 isSelected={selectedListing && listing.id === selectedListing.id}

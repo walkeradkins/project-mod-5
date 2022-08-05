@@ -59,8 +59,8 @@ const EditListingForm = ({ listing, visible, showEditModal, setShowEditModal, us
 
   return (
     showEditModal && !accepted ? (
-      <div className='edit-listing-container container'>
-        <h1 className='header-title'>Edit Your Listing</h1>
+      <div className='edit-listing-container'>
+        <h1 className='edit__listing-header'>Edit Your Listing</h1>
         <form className='edit-listing' onSubmit={handleSubmit}>
           <div className='edit-listing-form'>
             <span className='edit-listing__input-container'>

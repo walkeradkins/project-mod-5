@@ -34,7 +34,7 @@ const CitySearch = () => {
     <ul className='container grid-container'>
       {filteredListings.map(listing => {
         return (
-          listing.Images.length &&
+          listing.Images.length > 0&&
           <li className="grid-item" key={listing.id} >
             <ListingCard listing={listing} />
           </li>

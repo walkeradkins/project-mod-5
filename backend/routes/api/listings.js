@@ -3,7 +3,9 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { findCurrentUser } = require('../../utils/auth');
-const ImagesRepository = require('../../db/images-repository')
+const ImagesRepository = require('../../db/images-repository');
+const { multipleMulterUpload, singleMulterUpload, multiplePublicFileUpload, singlePublicFileUpload } = require('../../awsS3');
+
 
 
 const { Listing, Image, Review, Booking } = require('../../db/models');
@@ -78,6 +80,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     description,
     type,
     guests,
+    coordinates,
     bedrooms,
     beds,
     baths,
@@ -96,6 +99,7 @@ router.post('/', validateListing, asyncHandler(async function (req, res, next) {
     serviceFee,
     description,
     type,
+    coordinates,
     guests,
     bedrooms,
     beds,
@@ -125,19 +129,37 @@ router.delete('/:id(\\d+)', asyncHandler(async function (req, res) {
   }
 }));
 
-router.post('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
-  if (req.body.newImages) {
-    req.body.newImages.forEach(async item => {
-      await Image.create(item);
+// multiple image upload
+
+router.post('/:id(\\d+)/images',
+  multipleMulterUpload("images"),
+  asyncHandler(async function (req, res, next) {
+    const id = parseInt(req.params.id);
+    const images = await multiplePublicFileUpload(req.files)
+    images.forEach(async item => {
+      await Image.create({
+        url: item,
+        listingId: id
+      });
     })
-    return res.json(req.body.newImages);
-  } else {
-    req.body.imageURLs.forEach(async item => {
-      await Image.create(item);
-    })
-    return res.json(req.body.imageURLs);
-  }
-}));
+    return res.json(images);
+  }));
+
+// single image upload
+
+router.post('/:id(\\d+)/image',
+  singleMulterUpload("image"),
+  asyncHandler(async function (req, res, next) {
+    const id = parseInt(req.params.id);
+
+    const image = await singlePublicFileUpload(req.file)
+    const newImage = await Image.create({
+      url: image,
+      listingId: id
+    });
+    console.log('image-----------------', newImage.dataValues)
+    return res.json(newImage.dataValues);
+  }));
 
 router.put('/:id(\\d+)/images', asyncHandler(async function (req, res, next) {
   req.body.updatedPhotos.forEach(async item => {

@@ -7,7 +7,7 @@ import * as data from '../../data'
 import { ValidationError } from '../../utils/validationError';
 import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
-
+import { uploadOneImage, deleteImage } from '../../store/images'
 
 const EditImageForm = ({ listing, setShowEditModal }) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -16,106 +16,106 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([...Images])
-
+  const [deletedImages, setDeletedImages] = useState([])
+  const updatedImages = useSelector(state => state.images)
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === sessionUser.id;
   }));
 
   useEffect(() => {
     dispatch(getListings())
+
   }, [updated]);
 
-  let handleChange = (i, e) => {
-    let newFormValues = [...imageURLs];
-    newFormValues[i][e.target.name] = e.target.value;
+  let handleChange = async (e) => {
+    const payload = {
+      image: e.target.files[0],
+      listingId: listing.id
+    }
+    console.log(e.target.files[0])
+    let newImage;
+    try {
+      newImage = await dispatch(uploadOneImage(payload, listing.id));
+    } catch (e) {
+      console.log(e)
+    }
+
+    console.log(updatedImages)
+    let newFormValues = [...imageURLs, ...Object.values(updatedImages)];
     setImageURLs(newFormValues);
   }
 
-  let addFormFields = () => {
-    setImageURLs([...imageURLs, { url: "" }])
-  }
-
-  const removeFormFields = (i) => {
+  const removeFormFields = async (e, i) => {
     let newFormValues = [...imageURLs];
+    const { id } = newFormValues[i]
+    const deletedImagesCopy = [...deletedImages]
+    deletedImagesCopy.push(id)
+    setDeletedImages(deletedImagesCopy);
     newFormValues.splice(i, 1);
     setImageURLs(newFormValues)
   }
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    imageURLs.map(imageURL => {
-      imageURL['listingId'] = id;
-    })
 
-    const newImages = []
-
-    imageURLs.forEach((image, index) => {
-      if (!image.id) {
-        newImages.push(image);
-      }
-    })
-
-    const updatedPhotos = imageURLs.filter(image => {
-      return (image.id);
-    })
-
-    const newImagePayload = { newImages }
-    const updatedPayload = { updatedPhotos }
-
-    let updatedImages;
-    let newPhotos;
-
-    if (newImages.length) {
-      try {
-        newPhotos = await dispatch(createNewImages(newImagePayload, id))
-      } catch (error) {
-        // TODO error handle
-      }
-    }
-
-    try {
-      updatedImages = await dispatch(editImages(updatedPayload, id))
-    } catch (error) {
-      // TODO error handle
-    }
-
+   for await (let id of deletedImages) {
+     await dispatch(deleteImage(id));
+   }
     setUpdated(true)
     history.push(`/users/${sessionUser.id}/listings`)
     setShowEditModal(false)
+    reset()
   }
+
   const reset = () => {
-    setImageURLs([{ url: "" }]);
+    setImageURLs([...Images]);
+    setDeletedImages([])
   }
 
   return (
-    <>
+    <div className='edit-image-container'>
       <h1 className='header-title'>Edit Your Images</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <div className='edit-images__container'>
         {imageURLs.map((element, index) => (
-          <div className='edit-listing-container' key={index}>
-            <span className='edit-listing__input-container'>
-              <figure className='booking-link__image edit-booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
-              <input
-                placeholder='Image URL'
-                className='booking_link__input edit-booking_link__input'
-                type="text"
-                required
-                name="url"
-                value={element.url || ""}
-                onChange={e => handleChange(index, e)}
-              />
-              {index > 4 ?
-                <button type="button" className="remove-booking-link__button btn" onClick={() => removeFormFields(index)}>X</button>
-                : null}
+          <div className='edit-image__container' key={index}>
+            <figure
+              className='edit__image'
+              style={{ backgroundImage: `url( ${element.url} )` }}
+            />
+            <span
+              className="material-symbols-outlined image__close"
+              onClick={(e) => removeFormFields(e, index)}
+            >
+              close
             </span>
           </div>
         ))}
-        <div className='edit-booking-link__button-container'>
-          <button className='booking-link__button btn' type="button" onClick={() => addFormFields()}>Add Another Photo</button>
-          <button className='booking-link__button btn' type="submit" disabled={imageURLs.length < 5}>Submit</button>
-        </div>
-      </form>
-    </>
+      </div>
+      <div className='file__upload-choose-listing'>
+        <label htmlFor='file' className='file__upload-choose-text-listing'>
+          <span>Upload New Image</span>
+        </label>
+        <input
+          id="file"
+          style={{ visibility: "hidden" }}
+          className='signup-form__input-file-listing'
+          type="file"
+          placeholder='Image'
+          onChange={(e) => handleChange(e)}
+          accept="image/*"
+        />
+      </div>
+      <div className='edit-booking-link__button-container'>
+        <button
+          className={imageURLs.length < 5 ? 'disabled' : 'booking-link__button btn'}
+          onClick={handleSubmit}
+          type='button'
+          disabled={imageURLs.length < 5}
+        >
+          Submit
+        </button>
+      </div>
+    </div>
   )
 }
 

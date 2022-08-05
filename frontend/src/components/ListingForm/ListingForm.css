@@ -26,6 +26,7 @@
 .listing-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 4em;
 }
 
 .listing-form__top {
@@ -62,8 +63,7 @@
 }
 
 .listing-form__btn {
-  margin: 2em;
-  min-width: 35%;
+  min-width: 100%;
 }
 
 .listing-form__header {
@@ -92,8 +92,4 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.combobox__dropdown-text {
-
 }

@@ -1,27 +1,32 @@
-.file__upload-container {
+.file__upload-container-listing {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.file__upload-choose {
-  max-width: 35%;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-  font-size: .85em;
-  color: grey;
-  margin: 1em 0;
-  border-radius: 2em;
-  border: #E2E2E2 1px solid;
-  box-shadow: 0 3px 3px rgba(33,33,33,.2);
-  transition: .3s;
+.file__upload-choose-listing {
+  border: transparent;
+}
+
+.file__upload-choose-text-listing {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: ;
-  min-width: 58%;
-  min-height: 3em;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .85em;
+  border-radius: 0.5em;
+  background-color: #ff5a5f;
+  padding: 1em;
+}
+
+.file__upload-choose-text-listing:hover {
+  background-color: #fe3d43;
+
+}
+
+.signup-form__input-file-listing {
+  width: 10em;
 }
 
 .file__upload-choose:hover {

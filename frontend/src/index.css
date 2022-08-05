@@ -50,7 +50,6 @@ body {
 .form__card {
   border-radius: 0.5em;
   box-shadow: 0 3px 7px rgba(33, 33, 33, 0.2);
-  margin: 1em;
   position: relative;
   background-color: white;
   padding: 0.5em;
@@ -81,6 +80,14 @@ body {
   flex-wrap: wrap;
   padding-right: 0;
   padding-left: 0;
+}
+
+.disabled {
+  color: white;
+  border: none;
+  padding: .75em 0;
+  border-radius: .25em;
+  background-color: gainsboro;
 }
 
 .col,
