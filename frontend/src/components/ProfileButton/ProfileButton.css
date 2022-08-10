@@ -29,6 +29,7 @@
   right: 6.5em;
   top: 3.5em;
   background-color: white;
+  z-index: 100;
 }
 
 .navbar__dropdown-links,

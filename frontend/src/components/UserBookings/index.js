@@ -7,12 +7,20 @@ import { getBookings } from '../../store/bookings';
 import { useParams, Link } from 'react-router-dom';
 import NoTripsCard from '../NoTripsCard'
 import UnauthorizedUser from '../UnauthorizedUser';
+import BookingsBanner from '../BookingsBanner'
 
-const UserBookings = ({ user }) => {
+const UserBookings = ({ user, users }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   let listings = useSelector(state => state.listings);
-  let userBookings = useSelector(state => state.bookings.bookings)
+  let userBookings = useSelector(state => state.bookings.bookings);
+  const today = new Date().setHours(0, 0, 0, 0);
+
+  const pastBookings = userBookings.filter(({ endDate }) =>
+    new Date(endDate).setHours(0, 0, 0, 0) < today);
+
+  const futureBookings = userBookings.filter(({ endDate }) =>
+    new Date(endDate).setHours(0, 0, 0, 0) > today);
 
   useEffect(() => {
     dispatch(getListings());
@@ -26,7 +34,7 @@ const UserBookings = ({ user }) => {
   if (user.id !== +id) {
     return (
       <>
-      <UnauthorizedUser type={'booking'} userId={user.id} />
+        <UnauthorizedUser type={'booking'} userId={user.id} />
       </>
     )
   }
@@ -44,13 +52,33 @@ const UserBookings = ({ user }) => {
   return (
     <div className='container'>
       <h2 className='header-title'>Trips</h2>
-      <ul className='row'>
-        {userBookings.map(booking =>
-          <li key={booking.id}>
-            <BookingLink listing={listings[booking.listingId]} booking={booking} user={user} />
-          </li>
+      <BookingsBanner />
+      <p className='header-subtitle'>Where you're going</p>
+      <div className='bookings__grid'>
+        {futureBookings.map(booking =>
+          <div key={booking.id}>
+            <BookingLink
+              listing={listings[booking.listingId]}
+              booking={booking}
+              user={user}
+              users={users}
+            />
+          </div>
         )}
-      </ul>
+      </div>
+      <h2 className='header-subtitle'>Where you've been</h2>
+      <div className='bookings__grid'>
+        {pastBookings.map(booking =>
+          <div key={booking.id}>
+            <BookingLink
+              listing={listings[booking.listingId]}
+              booking={booking}
+              user={user}
+              users={users}
+            />
+          </div>
+        )}
+      </div>
     </div>
   )
 }

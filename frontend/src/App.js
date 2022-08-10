@@ -59,7 +59,7 @@ function App() {
               <UserListings listings={listings.listings} user={sessionUser} />
             </Route>
             <Route exact path={'/users/:id/bookings'}>
-              <UserBookings user={sessionUser} />
+              <UserBookings user={sessionUser} users={users}/>
             </Route>
             <Route exact path={'/users/:userId/bookings/:id'}>
               <BookingDetails bookings={bookings} listings={listings} user={sessionUser} />

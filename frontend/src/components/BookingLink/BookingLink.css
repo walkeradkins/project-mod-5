@@ -1,14 +1,16 @@
+.booking-link__container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1em 1em 1em 0;
+}
+
 .booking-link {
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Montserrat', sans-serif;
-  margin-left: 10em;
-  margin-bottom: 5em;
+  display: flex;
 }
 
 .booking-link__image {
   width: 5em;
-  margin: 1em;
+  margin-right: 1em;
   background-size: cover;
   background-position: center;
   border-radius: .4em;
@@ -20,16 +22,17 @@
   content: '';
 }
 
+.booking-link__text > p {
+  margin: .5em;
+}
+
 .booking-link__city {
   text-decoration: none;
-  max-width: 50%;
   color: black;
   font-weight: 600;
-  padding: .75em;
 }
 
 .booking-link__date {
   text-decoration: none;
   color: #474747;
-  padding: .75em;
 }

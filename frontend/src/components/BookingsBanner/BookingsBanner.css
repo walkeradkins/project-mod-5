@@ -1,0 +1,37 @@
+.bookings__container {
+  width: 100%;
+}
+
+.bookings__card {
+  display: flex;
+  justify-content: space-between;
+  max-height: 25em;
+  margin: 2em 0;
+  min-width: 50em;
+  border-radius: .75em;
+  border: #E2E2E2 1px solid;
+}
+
+.bookings__right {
+  max-height: 25em;
+  /* overflow: hidden; */
+  width: 75%;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+}
+
+.booking-banner__image {
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+  width: 100%;
+  height: 19em;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.booking-banner__image::after {
+  display: block;
+  padding-top: 100%;
+  content: '';
+}

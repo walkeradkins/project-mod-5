@@ -1,0 +1,9 @@
+.bookings__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.header-subtitle {
+  font-size: 1.25em;
+  font-weight: bold;
+}

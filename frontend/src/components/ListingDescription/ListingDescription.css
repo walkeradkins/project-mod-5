@@ -11,7 +11,7 @@
 .listing__desc-underline {
   border-bottom: 1px gainsboro solid;
   margin: 2em 0;
-  max-width: 95%;
+  max-width: 100%;
 }
 
 .listing__desc-header-container {
