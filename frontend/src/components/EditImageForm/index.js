@@ -32,7 +32,6 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
       image: e.target.files[0],
       listingId: listing.id
     }
-    console.log(e.target.files[0])
     let newImage;
     try {
       newImage = await dispatch(uploadOneImage(payload, listing.id));
@@ -40,7 +39,6 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
       console.log(e)
     }
 
-    console.log(updatedImages)
     let newFormValues = [...imageURLs, ...Object.values(updatedImages)];
     setImageURLs(newFormValues);
   }

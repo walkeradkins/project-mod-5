@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.delete('/:id(\\d+)', asyncHandler(async function (req, res) {
   const id = parseInt(req.params.id);
-  console.log('---------------', id)
   const image = await Image.findByPk(id);
   if (image) {
     await image.destroy();

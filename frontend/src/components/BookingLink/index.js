@@ -10,11 +10,6 @@ const BookingLink = ({ listing, booking, user, users }) => {
   const dateString = getTravelDates(booking.startDate, booking.endDate);
   if (!listing.Images) return null;
 
-  const today = new Date().setHours(0, 0, 0, 0);
-  const date = new Date(booking.endDate).setHours(0, 0, 0, 0);
-  console.log(date < today)
-
-
   return (
     <div className='booking-link__container'>
       <Link to={`/users/${id}/bookings/${booking.id}`}>

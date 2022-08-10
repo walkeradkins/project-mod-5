@@ -47,7 +47,7 @@ function App() {
               <ListingsBrowser />
             </Route>
             <Route exact path={'/listings/:id'}>
-              <ListingDetails user={sessionUser} listings={listings} users={users}/>
+              <ListingDetails user={sessionUser} listings={listings} users={users} />
             </Route>
             <Route path={'/listings'}>
               <ListingForm />
@@ -59,10 +59,14 @@ function App() {
               <UserListings listings={listings.listings} user={sessionUser} />
             </Route>
             <Route exact path={'/users/:id/bookings'}>
-              <UserBookings user={sessionUser} users={users}/>
+              <UserBookings user={sessionUser} users={users} />
             </Route>
             <Route exact path={'/users/:userId/bookings/:id'}>
-              <BookingDetails bookings={bookings} listings={listings} user={sessionUser} />
+              <BookingDetails
+                bookings={bookings}
+                listings={listings}
+                user={sessionUser}
+                users={users} />
             </Route>
             <Route>
               <PageNotFound />

@@ -30,6 +30,11 @@
   background-position: center;
 }
 
+.bookings__text {
+  word-wrap: wrap;
+  font-size: .9em;
+}
+
 .booking-banner__image::after {
   display: block;
   padding-top: 100%;

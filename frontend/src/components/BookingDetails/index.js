@@ -9,13 +9,17 @@ import { getListings } from '../../store/listings';
 import { getBookings } from '../../store/bookings';
 import PhotoCarousel from '../Carousel';
 import UnauthorizedUser from '../UnauthorizedUser';
+import Map from '../Map';
+import { Modal } from '../../context/Modal';
 
-const BookingDetails = ({ user }) => {
+const BookingDetails = ({ user, users }) => {
   const { userId, id } = useParams();
-
   const dispatch = useDispatch();
   const bookings = useSelector(state => state.bookings)
   const listings = useSelector(state => state.listings);
+  const URL = window.location.href.split('/');
+  const [showModal, setShowModal] = useState(false)
+  const [onBookings, setOnBookings] = useState(URL.length === 7 && URL[5] === 'bookings');
 
   const [displayCancelForm, setDisplayCancelForm] = useState(false)
 
@@ -23,6 +27,13 @@ const BookingDetails = ({ user }) => {
     dispatch(getListings());
     dispatch(getBookings());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (onBookings) {
+      document.body.style.overflow = "hidden";
+      return () => (document.body.style.overflowY = "initial");
+    }
+  }, [dispatch, onBookings]);
 
   if (+userId !== +user.id) {
     return (
@@ -36,33 +47,52 @@ const BookingDetails = ({ user }) => {
   const currentListing = listings[currentBooking.listingId];
   if (!currentListing.Images) return null;
 
-  const { city, name, state, country, Images, price } = currentListing;
+  const today = new Date().setHours(0, 0, 0, 0);
+  const date = new Date(currentBooking.endDate).setHours(0, 0, 0, 0);
+  const isPast = date < today;
+
+  const { city, name, state, country, Images, price, coordinates } = currentListing;
   const { startDate, endDate } = currentBooking;
+  const host = users[currentListing.userId]
   const dateString = getTravelDates(startDate, endDate);
 
   const toggleCancel = () => {
     setDisplayCancelForm(prev => !prev);
   }
 
-
   return (
-    <div className='booking__details container'>
-      <div className='booking__details-info'>
-        <h1 className='booking__details-location header-title'>{city}, {state}, {country}</h1>
-        <p className='booking__details-dates header-subtitle'>{dateString}</p>
-        <PhotoCarousel images={Images} />
-        <ReservationDetailsCard listing={currentListing} user={user} booking={currentBooking}/>
-        <button className='btn' onClick={toggleCancel}>Cancel Reservation</button>
+    <>
+      <div className='booking__details'>
+        <div className='booking__details-left'>
+          <h1 className='booking__details-location header-title'>{city}, {state}, {country}</h1>
+          <p className='booking__details-dates header-subtitle'>{dateString}</p>
+          <PhotoCarousel images={Images} />
+          <ReservationDetailsCard
+            listing={currentListing}
+            user={user}
+            booking={currentBooking}
+            host={host}
+          />
+          {!isPast &&
+            <button className='booking__cancel btn' onClick={() => setShowModal(true)}>Cancel Reservation</button>
+          }
+        </div>
+        <div className='booking__details-right'>
+          {isPast && <h1 className='booking__details-location header-title'>Where you stayed</h1>}
+          {!isPast && <h1 className='booking__details-location header-title'>Where you'll be staying</h1>}
+          <Map location={JSON.parse(coordinates)} />
+        </div>
       </div>
-      <div className='cancel-container'>
-        {displayCancelForm &&
+      {showModal && <Modal onClose={() => setShowModal(false)}>
+        <div className='cancel-container'>
           <CancelBooking
             booking={currentBooking}
-            setVisible={setDisplayCancelForm}
+            setShowModal={setShowModal}
             user={user}
-          />}
-      </div>
-    </div>
+          />
+        </div>
+      </Modal>}
+    </>
   )
 }
 

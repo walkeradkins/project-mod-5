@@ -13,7 +13,7 @@ const NoTripsCard = () => {
         <div className='notrips__left'>
           <span className="material-symbols-outlined notrips__hand notrips__content">flight_takeoff</span>
           <p className='notrips__sub notrips__content'>Time to get ready!</p>
-          <p className='notrips__text notrips__content'>Time to dust off your bags and start planning your next adventure.</p>
+          <p className='bookings__text notrips__content'>Time to dust off your bags and start getting ready for your next adventure.</p>
           <button className='btn notrips__content' onClick={handleClick}>Add more trips</button>
         </div>
         <div className='bookings__right'>
