@@ -1,24 +1,40 @@
 .booking__details {
   font-family: 'Montserrat', sans-serif;
-  display: flex;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 88vh;
+  gap: 1%;
 }
 
 
-.booking__details-info {
-  margin: 0 4em 4em;
+.booking__details-left {
+  display: flex;
+  flex-direction: column;
+  padding: .5em;
+  margin: .5em;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: white;
+  height: 95%;
+  border-radius: .5em;
+  overflow-y: auto;
+}
+
+.booking__details-right {
+  width: 95%;
 }
 
 .booking__details-location {
-
+  margin-bottom: .5em;
 }
 
-.booking__details-dates {
-
+.booking__cancel {
+  align-self: center;
+  margin-bottom: 4em;
 }
 
-.cancel-container {
+/* .cancel-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
+} */

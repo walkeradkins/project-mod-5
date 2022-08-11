@@ -30,8 +30,14 @@
   text-align: right;
 }
 
+.edit-listing__btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .edit-listing-form__btn {
-  max-width: 100%;
+  width: 50%;
   margin: 1em;
 }
 .edit-listing__input-label {
@@ -40,10 +46,6 @@
   align-items: center;
 }
 
-.edit-listing__btn-container {
-  display: flex;
-  flex-direction: column;
-}
 
 .edit-listing__input-container {
   display: flex;

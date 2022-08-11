@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteBooking, getBookings } from '../../store/bookings';
 
-const CancelBooking = ({ booking, setVisible, user }) => {
+const CancelBooking = ({ booking, setShowModal, user }) => {
   const [canceled, setCanceled] = useState(false);
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const CancelBooking = ({ booking, setVisible, user }) => {
       //
     }
     setCanceled(true);
-    setVisible(false);
+    setShowModal(false);
     history.push(`/users/${user.id}/bookings`)
   }
 
@@ -35,7 +35,7 @@ const CancelBooking = ({ booking, setVisible, user }) => {
     <div className='cancel-booking'>
       <h3 className='cancel-booking__prompt'>Are you sure you want to cancel your reservation?</h3>
       <button className='btn cancel-booking__btn' onClick={() => handleCancel(booking.id)}>Yes, cancel my reservation</button>
-      <button className='btn cancel-booking__btn' onClick={() => setVisible(false)}>No, take me back</button>
+      <button className='btn cancel-booking__btn' onClick={() => setShowModal(false)}>No, take me back</button>
     </div>
   )
 }

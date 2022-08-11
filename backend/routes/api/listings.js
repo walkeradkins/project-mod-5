@@ -157,7 +157,6 @@ router.post('/:id(\\d+)/image',
       url: image,
       listingId: id
     });
-    console.log('image-----------------', newImage.dataValues)
     return res.json(newImage.dataValues);
   }));
 

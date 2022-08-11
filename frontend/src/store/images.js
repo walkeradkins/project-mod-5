@@ -43,6 +43,7 @@ export const uploadOneImage = (payload, id) => async dispatch => {
 
   const data = await res.json();
   dispatch(createOne(data));
+  return data;
 }
 
 
@@ -50,12 +51,9 @@ export const createNewImages = (payload, id) => async dispatch => {
   const { images } = payload
   const formData = new FormData();
 
-  console.log('images', images)
-
   if (images && images.length !== 0) {
     for (var i = 0; i < images.length; i++) {
       formData.append("images", images[i]);
-      console.log('images[i]', images[i])
     }
   }
 

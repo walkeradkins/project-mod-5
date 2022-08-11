@@ -1,6 +1,6 @@
 import './BookingCard.css'
 import Calendar from 'react-calendar';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-calendar/dist/Calendar.css';
@@ -10,10 +10,13 @@ import { createNewBooking } from '../../store/bookings'
 
 const BookingCard = ({ listing, user }) => {
   const sessionUser = useSelector(state => state.session.user);
-
+  const [coord, setCoord] = useState({ x: 0, y: 0 });
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const handleMouseMove = (e) => {
+    setCoord({ x: e.screenX, y: e.screenY });
+  };
 
   const formatDate = (dateString) => {
     const day = dateString.getDate();
@@ -24,7 +27,6 @@ const BookingCard = ({ listing, user }) => {
   }
 
   const today = formatDate(new Date());
-
   const day = new Date();
 
   const futureDate = new Date(day.setDate(day.getDate() + 3));
@@ -141,7 +143,12 @@ const BookingCard = ({ listing, user }) => {
             </select>
           </label>
           {!isUsersListing &&
-            <button className='btn btn-reserve' type='submit'>Reserve</button>}
+            <button
+              className='btn btn-reserve'
+              type='submit'
+              onMouseMove={handleMouseMove}
+            >Reserve</button>
+          }
           {isUsersListing &&
             <button className='booking__text btn' disabled='true'>This is how your listing appears to users</button>
           }

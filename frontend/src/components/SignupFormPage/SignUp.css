@@ -1,25 +1,3 @@
-.file__upload-container-listing {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.file__upload-choose-listing {
-  border: transparent;
-}
-
-.file__upload-choose-text-listing {
-  display: flex;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: .85em;
-  border-radius: 0.5em;
-  background-color: #ff5a5f;
-  padding: 1em;
-}
-
 .file__upload-choose-text-listing:hover {
   background-color: #fe3d43;
 

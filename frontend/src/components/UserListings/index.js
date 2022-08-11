@@ -10,6 +10,8 @@ import NoListingsCard from '../NotListingsCard';
 import UnauthorizedUser from '../UnauthorizedUser';
 import EditListingFormModal from '../EditListingFormModal';
 import { Modal } from '../../context/Modal';
+import { AiOutlineEdit, AiTwotoneDelete } from 'react-icons/ai'
+import ReactTooltip from 'react-tooltip';
 
 
 const UserListings = ({ listings, user }) => {
@@ -82,8 +84,7 @@ const UserListings = ({ listings, user }) => {
 
   return (
     <div className='container'>
-      <h1 className='header-title'>Your Listings</h1>
-      {/* <div className='user-listings__main'> */}
+      <h1 className='header-title'>Manage Your Listings</h1>
       <ul className='user-listings__grid'>
         {userListings.map(listing => {
           return (
@@ -93,15 +94,24 @@ const UserListings = ({ listings, user }) => {
                 isSelected={selectedListing && listing.id === selectedListing.id}
               />
               <div className='user-listing__btn-container'>
-                <button
+                <ReactTooltip id="remove__tip" place="top" effect="solid">
+                  Remove Listing
+                </ReactTooltip>
+                <AiTwotoneDelete
+                  data-tip data-for='remove__tip'
+                  size='2em'
                   onClick={() => handleDeleteClick(listing)}
-                  className='btn user-listing__btn'
-                >Remove Listing</button>
-                <button
-                  // onClick={() => setSelectedListing(listing)}
+                  className='user-listing__button'
+                />
+                <ReactTooltip id="edit__tip" place="top" effect="solid">
+                  Edit Listing
+                </ReactTooltip>
+                <AiOutlineEdit
+                  data-tip data-for='edit__tip'
+                  size='2em'
                   onClick={() => handleEditClick(listing)}
-                  className='btn user-listing__btn'
-                >Edit Listing</button>
+                  className='user-listing__button'
+                />
                 {showEditModal && (
                   <Modal onClose={() => setShowEditModal(false)}>
                     <EditListingForm

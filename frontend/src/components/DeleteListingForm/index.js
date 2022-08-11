@@ -39,9 +39,11 @@ const DeleteListingForm = ({ listing, visible, showDeleteModal, setShowDeleteMod
   return (
     showDeleteModal &&
     <div className='delete-listing__form'>
-      <h3 className='delete-listing__title'>Remove {listing.name} from your listings?</h3>
-      <button className='delete-listing__btn btn' onClick={() => setShowDeleteModal(false)}>Cancel</button>
+      <p className='delete-listing__title'>{listing.name}</p>
+      <figure className='delete-link__image' style={{ backgroundImage: `url( ${listing?.Images[0].url} )` }} />
+      <p className='delete-listing__text'>Are you sure you want to permanently remove this listing?</p>
       <button className='delete-listing__btn btn' onClick={() => handleDelete(listing.id)}>Yes, Remove!</button>
+      <button className='delete-listing__btn btn' onClick={() => setShowDeleteModal(false)}>Cancel</button>
     </div>
   )
 }
