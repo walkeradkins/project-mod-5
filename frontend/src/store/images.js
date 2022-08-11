@@ -43,6 +43,7 @@ export const uploadOneImage = (payload, id) => async dispatch => {
 
   const data = await res.json();
   dispatch(createOne(data));
+  return data;
 }
 
 

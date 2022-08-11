@@ -8,6 +8,7 @@ import { ValidationError } from '../../utils/validationError';
 import { editImages, createNewImages } from '../../store/images'
 import ErrorMessage from '../ErrorMessage/'
 import { uploadOneImage, deleteImage } from '../../store/images'
+import { BounceLoader } from 'react-spinners'
 
 const EditImageForm = ({ listing, setShowEditModal }) => {
   const sessionUser = useSelector(state => state.session.user);
@@ -17,6 +18,7 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   const dispatch = useDispatch();
   const [imageURLs, setImageURLs] = useState([...Images])
   const [deletedImages, setDeletedImages] = useState([])
+  const [loading, setLoading] = useState(false)
   const updatedImages = useSelector(state => state.images)
   const userListings = useSelector(state => state.listings.listings.filter(listing => {
     return listing.userId === sessionUser.id;
@@ -28,19 +30,20 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   }, [updated]);
 
   let handleChange = async (e) => {
+    setLoading(true)
     const payload = {
       image: e.target.files[0],
       listingId: listing.id
     }
-    let newImage;
-    try {
-      newImage = await dispatch(uploadOneImage(payload, listing.id));
-    } catch (e) {
-      console.log(e)
-    }
 
-    let newFormValues = [...imageURLs, ...Object.values(updatedImages)];
+    let newImage;
+    await dispatch(uploadOneImage(payload, listing.id))
+      .then(image => newImage = image)
+
+    // let newFormValues = [...imageURLs, ...Object.values(updatedImages)];
+    let newFormValues = [...imageURLs, newImage];
     setImageURLs(newFormValues);
+    setLoading(false)
   }
 
   const removeFormFields = async (e, i) => {
@@ -56,9 +59,9 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   let handleSubmit = async (e) => {
     e.preventDefault();
 
-   for await (let id of deletedImages) {
-     await dispatch(deleteImage(id));
-   }
+    for await (let id of deletedImages) {
+      await dispatch(deleteImage(id));
+    }
     setUpdated(true)
     history.push(`/users/${sessionUser.id}/listings`)
     setShowEditModal(false)
@@ -71,8 +74,8 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
   }
 
   return (
-    <div className='edit-image-container'>
-      <h1 className='header-title'>Edit Your Images</h1>
+    <div className='edit-images-wrapper'>
+      <h1 className='header-title__edit'>Edit Your Images</h1>
       <div className='edit-images__container'>
         {imageURLs.map((element, index) => (
           <div className='edit-image__container' key={index}>
@@ -88,24 +91,27 @@ const EditImageForm = ({ listing, setShowEditModal }) => {
             </span>
           </div>
         ))}
-      </div>
-      <div className='file__upload-choose-listing'>
-        <label htmlFor='file' className='file__upload-choose-text-listing'>
-          <span>Upload New Image</span>
-        </label>
-        <input
-          id="file"
-          style={{ visibility: "hidden" }}
-          className='signup-form__input-file-listing'
-          type="file"
-          placeholder='Image'
-          onChange={(e) => handleChange(e)}
-          accept="image/*"
-        />
+        {loading && <div className='loader__container'>
+          <BounceLoader color={'aquamarine'} />
+        </div>}
       </div>
       <div className='edit-booking-link__button-container'>
+        <div className='file__upload-choose-listing'>
+          <label htmlFor='file' className='file__upload-choose-text-listing'>
+            <span>Upload New Image</span>
+          </label>
+          <input
+            id="file"
+            style={{ visibility: "hidden" }}
+            className='signup-form__input-file-listing'
+            type="file"
+            placeholder='Image'
+            onChange={(e) => handleChange(e)}
+            accept="image/*"
+          />
+        </div>
         <button
-          className={imageURLs.length < 5 ? 'disabled' : 'booking-link__button btn'}
+          className={imageURLs.length < 5 ? 'booking-link__button disabled' : 'booking-link__button btn'}
           onClick={handleSubmit}
           type='button'
           disabled={imageURLs.length < 5}

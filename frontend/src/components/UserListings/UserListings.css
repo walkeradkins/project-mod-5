@@ -1,7 +1,12 @@
- .user-listings__main {
+.user-listings__main {
   display: flex;
 }
 
+.user-listings__grid {
+  display: grid;
+  margin: 2em 0 4em;
+  gap: 2%;
+}
 
 .user-listing__btn {
   align-self: center
@@ -9,7 +14,20 @@
 
 .user-listing__btn-container {
   display: flex;
+  justify-content: flex-end;
   margin-bottom: 1em;
+}
+
+.user-listing__button {
+  margin: .5em;
+  cursor: pointer;
+  padding: .25em;
+  border-radius: .25em;
+  transition: .2s;
+}
+
+.user-listing__button:hover {
+  background-color: rgb(221, 221, 221);
 }
 
 .user-listing__btn {
@@ -17,19 +35,10 @@
   padding: .5em
 }
 
-.user-listings__grid {
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  grid-gap: 16px;
-}
-
 .user-listings__cards {
   padding: .5em;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   border-radius: .50em;
-  border: .5px solid #C8C8C8;
-  box-shadow: 0 3px 3px rgba(33,33,33,.2);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

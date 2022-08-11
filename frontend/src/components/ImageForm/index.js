@@ -86,28 +86,27 @@ const ImageForm = ({ listingId, user }) => {
               )}
             </span>
           </div>}
-        <div className='file__upload-choose-listing'>
-          <label htmlFor='file' className='file__upload-choose-text-listing'>
-            <span>Upload Image</span>
-          </label>
-          <input
-            id="file"
-            style={{ visibility: "hidden" }}
-            className='signup-form__input-file-listing'
-            type="file"
-            placeholder='Image'
-            onChange={(e) => handleChange(e)}
-            accept="image/*"
-          />
-        </div>
         <div className='booking-link__button-container'>
+          <div className='file__upload-choose-listing'>
+            <label htmlFor='file' className='file__upload-choose-text-listing'>
+              <span>Upload Image</span>
+            </label>
+            <input
+              id="file"
+              style={{ visibility: "hidden" }}
+              className='signup-form__input-file-listing'
+              type="file"
+              placeholder='Image'
+              onChange={(e) => handleChange(e)}
+              accept="image/*"
+            />
+          </div>
           <button
             className={
               Object.keys(imageURLs).length > 4 ?
                 'booking-link__button btn' :
                 'disabled'
             }
-            // disabled={Object.keys(imageURLs).length < 5}
             type="button"
             onClick={handleSubmit}
           >
@@ -120,21 +119,3 @@ const ImageForm = ({ listingId, user }) => {
 }
 
 export default ImageForm
-
-// {imageURLs.map((element, index) => (
-//   <div className='booking-link__container' key={index}>
-//     <figure className='booking-link__image' style={{ backgroundImage: `url( ${element.url} )` }} />
-//     <input
-//       placeholder='Image URL'
-//       className='booking_link__input'
-//       type="text"
-//       required
-//       name="url"
-//       value={element.url || ""}
-//       onChange={e => handleChange(index, e)}
-//     />
-//     {index > 4 ?
-//       <button type="button" className="remove-booking-link-listing__button btn" onClick={() => removeFormFields(index)}>X</button>
-//       : null}
-//   </div>
-// ))}
